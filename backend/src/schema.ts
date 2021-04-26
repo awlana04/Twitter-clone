@@ -14,9 +14,9 @@ import { DateTimeResolver } from 'graphql-scalars';
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
-import { permissions } from '../permissions';
-import { getUserId } from '../utils';
-import { Context } from '../context';
+import { permissions } from './permissions';
+import { getUserId } from './utils';
+import { Context } from './context';
 
 export const DateTime = asNexusMethod(DateTimeResolver, 'date')
 
@@ -329,7 +329,7 @@ const AuthPayload = objectType({
   },
 })
 
-const schemaWithoutPermissions = makeSchema({
+export const schemaWithoutPermissions = makeSchema({
   types: [
     Query,
     Mutation,
@@ -348,7 +348,7 @@ const schemaWithoutPermissions = makeSchema({
     typegen: __dirname + '../../generated/nexus.ts',
   },
   contextType: {
-    module: require.resolve('../context'),
+    module: require.resolve('./context'),
     export: 'Context',
   },
   sourceTypes: {
