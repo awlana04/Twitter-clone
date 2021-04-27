@@ -16,7 +16,8 @@ export const Mutation = objectType({
         password: nonNull(stringArg()),
       },
       resolve: async (_parent, args, context: Context) => {
-        const hashedPassword = await hash(args.password, 10)
+        const hashedPassword = await hash(args.password, 10);
+
         const user = await context.prisma.user.create({
           data: {
             name: args.name,
@@ -24,6 +25,7 @@ export const Mutation = objectType({
             password: hashedPassword,
           },
         })
+
         return {
           token: sign({ userId: user.id }, process.env.APP_SECRET),
           user,
@@ -43,13 +45,17 @@ export const Mutation = objectType({
             email,
           },
         })
+
         if (!user) {
-          throw new Error(`No user found for email: ${email}`)
+          throw new Error(`No user found for email: ${email}`);
         }
-        const passwordValid = await compare(password, user.password)
+
+        const passwordValid = await compare(password, user.password);
+
         if (!passwordValid) {
-          throw new Error('Invalid password')
+          throw new Error('Invalid password');
         }
+
         return {
           token: sign({ userId: user.id }, process.env.APP_SECRET),
           user,
@@ -67,7 +73,8 @@ export const Mutation = objectType({
         ),
       },
       resolve: (_, args, context: Context) => {
-        const userId = getUserId(context)
+        const userId = getUserId(context);
+
         return context.prisma.post.create({
           data: {
             title: args.data.title,
@@ -91,6 +98,7 @@ export const Mutation = objectType({
               published: true,
             },
           })
+
           return context.prisma.post.update({
             where: { id: args.id || undefined },
             data: { published: !post?.published },

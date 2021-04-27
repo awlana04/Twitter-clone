@@ -1,26 +1,51 @@
 import React from 'react';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  from,
+} from '@apollo/client';
+// import { onError } from '@apollo/client/link/error';s
+import { setContext } from 'apollo-link-context';
 
-import Users from './components/Users';
+import Routes from './routes';
 
-import './App.css';
+const httpLink = new HttpLink({ uri: 'http://localhost:4000' });
+
+// const errorLink = onError(({ graphQLErrors, networkError }) => {
+//   if (graphQLErrors)
+//     graphQLErrors.forEach(({ message, locations, path }) =>
+//       console.log(
+//         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+//       ),
+//     );
+
+//   if (networkError) console.log(`[Network error]: ${networkError}`);
+// });
+
+const authLink = setContext(async (request, { headers }) => {
+  const token = localStorage.getItem('token');
+
+  return {
+    ...headers,
+    headers: {
+      Authorization: token ? `Bearer ${token}` : null,
+    },
+  };
+});
+
+const link = authLink.concat(httpLink as any);
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  link: from([link as any]),
   cache: new InMemoryCache(),
 });
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/">
-            <Users />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <Routes />
     </ApolloProvider>
   );
 }
