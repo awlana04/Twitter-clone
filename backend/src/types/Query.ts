@@ -35,13 +35,6 @@ export const Query = objectType({
           where: { id: args.id || undefined },
         })
       },
-    });
-
-    t.list.field('users', {
-      type: 'User',
-      resolve: (parent, args, ctx) => {
-        return ctx.prisma.user.findMany()
-      }
     })
 
     t.nonNull.list.nonNull.field('feed', {
