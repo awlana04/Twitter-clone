@@ -6,7 +6,7 @@ import {
   HttpLink,
   from,
 } from '@apollo/client';
-// import { onError } from '@apollo/client/link/error';s
+// import { onError } from '@apollo/client/link/error';
 import { setContext } from 'apollo-link-context';
 
 import Routes from './routes';

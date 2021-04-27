@@ -27,8 +27,9 @@
     "no-unused-vars": "off",
     "no-use-before-define": "off",
     "prettier/prettier": "error",
-    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "warn",
+    "react/require-default-props": "off",
     "react/jsx-filename-extension": [
       1,
       {
