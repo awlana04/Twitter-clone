@@ -1,35 +1,25 @@
-/* eslint-disable array-callback-return */
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 
-const ALLUSERS_QUERY = gql`
-  query {
-    allUsers {
-      name
-    }
-  }
-`;
+import USERS_QUERY from '../schemas/Queries/Users';
 
-interface allUsers {
-  name: String;
+interface User {
+  name: string;
 }
 
-export default function Users() {
-  const { loading, error, data } = useQuery(ALLUSERS_QUERY);
+const Users: React.FC = () => {
+  const { loading, error, data } = useQuery(USERS_QUERY);
 
-  if (loading) {
-    <p>Loading...</p>;
-  }
-
-  if (error) {
-    <p>{error.message}</p>;
-  }
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <div>
-      {data.allUsers.map((allUser: allUsers) => {
-        <p>{allUser.name}</p>;
-      })}
+      {data.allUsers.map((allUser: User) => (
+        <p>{allUser.name}</p>
+      ))}
     </div>
   );
-}
+};
+
+export default Users;
