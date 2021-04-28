@@ -1,12 +1,14 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
 import LOGIN_MUTATION from '../../schemas/Mutations/Login';
 
-import { Container } from './styles';
+import Logo from '../../assets/logo.png';
+
+import { Container, Register } from './styles';
 
 interface SignUpValues {
   email: string;
@@ -37,7 +39,8 @@ const Signup: React.FC = () => {
 
   return (
     <Container>
-      <h1>Login</h1>
+      <img src={Logo} alt="Twitter's logo" />
+      <h3>Entrar no Twitter</h3>
 
       <Formik
         initialValues={initialValues}
@@ -63,9 +66,17 @@ const Signup: React.FC = () => {
           <Field name="password" type="password" placeholder="Password" />
           <ErrorMessage name="password" component="div" />
 
-          <button type="submit">Login</button>
+          <button type="submit">
+            <span>Login</span>
+          </button>
         </Form>
       </Formik>
+
+      <Register>
+        <h4>Don't have an account?</h4>
+
+        <Link to="/signup" />
+      </Register>
     </Container>
   );
 };
