@@ -6,6 +6,10 @@ import * as Yup from 'yup';
 
 import SIGNUP_MUTATION from '../../schemas/Mutations/Signup';
 
+import Button from '../../components/Button';
+
+import Logo from '../../assets/logo.png';
+
 import { Container } from './styles';
 
 interface SignUpValues {
@@ -46,7 +50,8 @@ const Signup: React.FC = () => {
 
   return (
     <Container>
-      <h1>Sign Up</h1>
+      <img src={Logo} alt="Twitter's blue bird logo" />
+      <h1>Criar conta</h1>
 
       <Formik
         initialValues={initialValues}
@@ -82,7 +87,9 @@ const Signup: React.FC = () => {
           />
           <ErrorMessage name="confirmPassword" component="div" />
 
-          <button type="submit">Sign Up</button>
+          <Button>
+            <span>Criar conta</span>
+          </Button>
         </Form>
       </Formik>
     </Container>

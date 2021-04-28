@@ -1,9 +1,10 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import USERS_QUERY from '../schemas/Queries/Users';
 
 interface User {
+  id: string;
   name: string;
 }
 
@@ -16,7 +17,7 @@ const Users: React.FC = () => {
   return (
     <div>
       {data.allUsers.map((allUser: User) => (
-        <p>{allUser.name}</p>
+        <p key={allUser.id}>{allUser.name}</p>
       ))}
     </div>
   );

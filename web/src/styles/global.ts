@@ -6,24 +6,15 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-  }
 
-  body {
-    color: #FFF;
-    -webkit-font-smoothing: antialiased !important;
+    border: none;
   }
 
   body, input, button {
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: normal;
   }
 
-  h1, h2, h3, h4, h5, h6, strong{
-    font-weight: 500;
-  }
-
-  button{
+  button, a {
     cursor: pointer;
   }
 `;

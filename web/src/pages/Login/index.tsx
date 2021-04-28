@@ -1,14 +1,17 @@
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
 import LOGIN_MUTATION from '../../schemas/Mutations/Login';
 
+import Button from '../../components/Button';
+import Links from '../../components/Links';
+
 import Logo from '../../assets/logo.png';
 
-import { Container, Links, ForgotPassword, Register } from './styles';
+import { Container, ForgotPassword, Register } from './styles';
 
 interface SignUpValues {
   email: string;
@@ -66,25 +69,23 @@ const Signup: React.FC = () => {
           <Field name="password" type="password" placeholder="Senha" />
           <ErrorMessage name="password" component="div" />
 
-          <button type="submit">
+          <Button>
             <span>Entrar</span>
-          </button>
+          </Button>
         </Form>
       </Formik>
 
-      <Links>
-        <ForgotPassword>
-          <h4>Esqueceu sua senha?</h4>
+      <ForgotPassword>
+        <Links to="/forgot">
+          <h4>Esqueceu a senha?</h4>
+        </Links>
+      </ForgotPassword>
 
-          <Link to="/forgot" />
-        </ForgotPassword>
-
-        <Register>
-          <h4>· Inscrever-se no Twitter</h4>
-
-          <Link to="/signup" />
-        </Register>
-      </Links>
+      <Register>
+        <Links to="/signup">
+          <h4> · Inscrever-se no Twitter</h4>
+        </Links>
+      </Register>
     </Container>
   );
 };
