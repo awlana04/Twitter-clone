@@ -8,7 +8,7 @@ import LOGIN_MUTATION from '../../schemas/Mutations/Login';
 
 import Logo from '../../assets/logo.png';
 
-import { Container, Register } from './styles';
+import { Container, Links, ForgotPassword, Register } from './styles';
 
 interface SignUpValues {
   email: string;
@@ -39,7 +39,7 @@ const Signup: React.FC = () => {
 
   return (
     <Container>
-      <img src={Logo} alt="Twitter's logo" />
+      <img src={Logo} alt="Twitter's blue bird logo" />
       <h3>Entrar no Twitter</h3>
 
       <Formik
@@ -63,20 +63,28 @@ const Signup: React.FC = () => {
           <Field name="email" type="text" placeholder="Email" />
           <ErrorMessage name="email" component="div" />
 
-          <Field name="password" type="password" placeholder="Password" />
+          <Field name="password" type="password" placeholder="Senha" />
           <ErrorMessage name="password" component="div" />
 
           <button type="submit">
-            <span>Login</span>
+            <span>Entrar</span>
           </button>
         </Form>
       </Formik>
 
-      <Register>
-        <h4>Don't have an account?</h4>
+      <Links>
+        <ForgotPassword>
+          <h4>Esqueceu sua senha?</h4>
 
-        <Link to="/signup" />
-      </Register>
+          <Link to="/forgot" />
+        </ForgotPassword>
+
+        <Register>
+          <h4>· Inscrever-se no Twitter</h4>
+
+          <Link to="/signup" />
+        </Register>
+      </Links>
     </Container>
   );
 };

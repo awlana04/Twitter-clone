@@ -2,11 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 50vw;
-  margin: 5em auto;
-
-  background-color: #fff;
-
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 2em 31rem;
 
   img {
     width: 50px;
@@ -15,85 +11,96 @@ export const Container = styled.div`
   }
 
   h3 {
-    font-size: 30px;
-    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
 
-    text-align: center;
+    color: black;
+
+    font-size: 36px;
+    font-weight: bolder;
   }
 
   form {
     display: grid;
-    grid-template-columns: 1fr;
-  }
+    grid-template-columns: 0.5fr;
 
-  input {
-    margin-bottom: 27px;
-    padding: 10px 20px;
+    input {
+      margin-bottom: 24px;
+      padding: 18px 18px;
 
-    border: none;
-    border: 2px solid rgb(0, 0, 0, 0.2);
-    border-radius: 20px;
+      border: 1px solid rgb(0, 0, 0, 0.3);
+      border-radius: 5px;
 
-    color: rgb(38, 50, 56);
+      font-size: 16px;
+      font-weight: 400;
+    }
 
-    font-size: 16px;
-    font-weight: 600;
+    button {
+      width: 100%;
+      padding-top: 8px;
+      padding-bottom: 8px;
 
-    text-align: center;
-    letter-spacing: 1px;
+      background-color: #1da1f2;
 
-    outline: none;
-    box-sizing: border-box;
-  }
+      border: 0;
+      border-radius: 25px;
 
-  button {
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+      color: #fff;
+      font-weight: bold;
 
-    cursor: pointer;
+      transition: 0.4s;
 
-    outline: none;
-  }
+      &:hover {
+        background: #1a91da;
+      }
 
-  button,
-  button span {
-    border-radius: 25px;
-  }
+      &:disabled {
+        opacity: 0.5;
+      }
 
-  button {
-    border: 0;
-    background-color: #55abee;
+      span {
+        padding: 0.4em 0.2em;
 
-    color: #fff;
+        font-size: 15px;
 
-    font-weight: bold;
-  }
+        display: block;
+      }
 
-  button span {
-    padding: 0.4em 0.2em;
+      &:active span {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
 
-    font-size: 15px;
-
-    display: block;
-    transition: all 0.1s linear;
-  }
-
-  button:hover {
-    background: #228dcf;
-  }
-
-  button:active span {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-
-  button span:focus {
-    outline: 0;
-  }
-
-  button:disabled {
-    opacity: 0.5;
+      & span:focus {
+        outline: 0;
+      }
+    }
   }
 `;
 
-export const Register = styled.button``;
+export const Links = styled.div`
+  margin-left: 20px;
+
+  button {
+    margin-top: 30px;
+
+    border: none;
+    transition: 0.4s;
+
+    h4 {
+      color: #1b95e0;
+
+      font-size: 14px;
+      font-weight: 400;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+`;
+
+export const ForgotPassword = styled.button``;
+
+export const Register = styled.button`
+  margin-left: 5px;
+`;
