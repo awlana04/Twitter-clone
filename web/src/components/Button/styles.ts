@@ -30,12 +30,4 @@ export const Container = styled.button`
 
     display: block;
   }
-
-  &:active span {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-
-  & span:focus {
-    outline: 0;
-  }
 `;

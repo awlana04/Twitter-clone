@@ -1,11 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
 import LOGIN_MUTATION from '../../schemas/Mutations/Login';
 
+import InputField from '../../components/InputField';
 import Button from '../../components/Button';
 import Links from '../../components/Links';
 
@@ -63,11 +64,8 @@ const Signup: React.FC = () => {
         }}
       >
         <Form>
-          <Field name="email" type="text" placeholder="Email" />
-          <ErrorMessage name="email" component="div" />
-
-          <Field name="password" type="password" placeholder="Senha" />
-          <ErrorMessage name="password" component="div" />
+          <InputField name="email" type="text" placeholder="Email" />
+          <InputField name="password" type="password" placeholder="Password" />
 
           <Button>
             <span>Entrar</span>
@@ -83,7 +81,7 @@ const Signup: React.FC = () => {
 
       <Register>
         <Links to="/signup">
-          <h4> · Inscrever-se no Twitter</h4>
+          <h4>· Inscrever-se no Twitter</h4>
         </Links>
       </Register>
     </Container>

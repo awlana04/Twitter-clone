@@ -19,22 +19,6 @@ export const Container = styled.div`
     font-size: 36px;
     font-weight: bolder;
   }
-
-  form {
-    display: grid;
-    grid-template-columns: 0.5fr;
-
-    input {
-      margin-bottom: 24px;
-      padding: 18px 18px;
-
-      border: 1px solid rgb(0, 0, 0, 0.3);
-      border-radius: 5px;
-
-      font-size: 16px;
-      font-weight: 400;
-    }
-  }
 `;
 
 export const ForgotPassword = styled.button`

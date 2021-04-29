@@ -1,11 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
 import SIGNUP_MUTATION from '../../schemas/Mutations/Signup';
 
+import InputField from '../../components/InputField';
 import Button from '../../components/Button';
 
 import Logo from '../../assets/logo.png';
@@ -71,21 +72,14 @@ const Signup: React.FC = () => {
         }}
       >
         <Form>
-          <Field name="email" type="text" placeholder="Email" />
-          <ErrorMessage name="email" component="div" />
-
-          <Field name="name" type="text" placeholder="Name" />
-          <ErrorMessage name="name" component="div" />
-
-          <Field name="password" type="password" placeholder="Password" />
-          <ErrorMessage name="password" component="div" />
-
-          <Field
+          <InputField name="email" type="text" placeholder="Email" />
+          <InputField name="name" type="text" placeholder="Name" />
+          <InputField name="password" type="password" placeholder="Password" />
+          <InputField
             name="confirmPassword"
             type="password"
             placeholder="Confirm Password"
           />
-          <ErrorMessage name="confirmPassword" component="div" />
 
           <Button>
             <span>Criar conta</span>

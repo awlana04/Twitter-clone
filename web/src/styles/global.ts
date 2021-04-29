@@ -10,6 +10,11 @@ export default createGlobalStyle`
     border: none;
   }
 
+  form {
+    display: grid;
+    grid-template-columns: 0.5fr;
+  }
+
   body, input, button {
     font-family: 'Roboto', sans-serif;
   }
