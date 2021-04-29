@@ -6,11 +6,10 @@ import * as Yup from 'yup';
 
 import LOGIN_MUTATION from '../../schemas/Mutations/Login';
 
+import Logo from '../../components/Logo';
 import InputField from '../../components/InputField';
 import Button from '../../components/Button';
 import Links from '../../components/Links';
-
-import Logo from '../../assets/logo.png';
 
 import { Container, ForgotPassword, Register } from './styles';
 
@@ -43,8 +42,9 @@ const Signup: React.FC = () => {
 
   return (
     <Container>
-      <img src={Logo} alt="Twitter's blue bird logo" />
-      <h3>Entrar no Twitter</h3>
+      <Logo>
+        <h3>Entrar no Twitter</h3>
+      </Logo>
 
       <Formik
         initialValues={initialValues}
