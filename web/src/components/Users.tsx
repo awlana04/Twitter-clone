@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
+import { Link } from 'react-router-dom';
 import USERS_QUERY from '../schemas/Queries/Users';
 
 interface User {

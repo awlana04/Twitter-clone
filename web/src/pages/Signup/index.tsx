@@ -74,12 +74,12 @@ const Signup: React.FC = () => {
       >
         <Form>
           <InputField name="email" type="text" placeholder="Email" />
-          <InputField name="name" type="text" placeholder="Name" />
-          <InputField name="password" type="password" placeholder="Password" />
+          <InputField name="name" type="text" placeholder="Nome" />
+          <InputField name="password" type="password" placeholder="Senha" />
           <InputField
             name="confirmPassword"
             type="password"
-            placeholder="Confirm Password"
+            placeholder="Confirmar senha"
           />
 
           <Button>

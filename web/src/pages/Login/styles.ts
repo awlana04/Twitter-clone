@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const ForgotPassword = styled.button`
   margin-top: 22px;
-  margin-left: 34px;
+  margin-left: 18px;
   margin-right: 5px;
 `;
 

@@ -7,7 +7,7 @@ export const Container = styled.a`
   h4 {
     color: #1b95e0;
 
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
 
     &:hover {

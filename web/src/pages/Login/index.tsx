@@ -65,7 +65,7 @@ const Signup: React.FC = () => {
       >
         <Form>
           <InputField name="email" type="text" placeholder="Email" />
-          <InputField name="password" type="password" placeholder="Password" />
+          <InputField name="password" type="password" placeholder="Senha" />
 
           <Button>
             <span>Entrar</span>
@@ -75,7 +75,7 @@ const Signup: React.FC = () => {
 
       <ForgotPassword>
         <Links to="/forgot">
-          <h4>Esqueceu a senha?</h4>
+          <h4>Esqueceu sua senha?</h4>
         </Links>
       </ForgotPassword>
 
