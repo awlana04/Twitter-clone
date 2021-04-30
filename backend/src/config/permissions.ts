@@ -1,6 +1,6 @@
 import { rule, shield } from 'graphql-shield';
 
-import { getUserId } from './getUserId';
+import { getUserId } from '../utils/getUserId';
 import { Context } from '../context';
 
 const rules = {

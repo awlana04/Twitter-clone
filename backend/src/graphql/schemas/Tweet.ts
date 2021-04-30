@@ -10,7 +10,7 @@ export const Tweet = objectType({
       t.field('author', {
         type: 'User',
         resolve: (parent, _, context: Context) => {
-          return context.prisma.post
+          return context.prisma.tweet
             .findUnique({
               where: { id: parent.id || undefined },
             })

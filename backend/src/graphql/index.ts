@@ -3,7 +3,7 @@ import { nexusPrisma } from 'nexus-plugin-prisma';
 import { applyMiddleware } from 'graphql-middleware';
 import { DateTimeResolver } from 'graphql-scalars';
 
-import { permissions } from '../utils/Permissions';
+import { permissions } from '../config/permissions';
 
 import { User } from './schemas/User';
 import { Tweet } from './schemas/Tweet';
