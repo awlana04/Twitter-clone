@@ -13,3 +13,7 @@ export function createContext(req: any) {
     prisma,
   };
 };
+
+export const context = {
+  prisma
+}
