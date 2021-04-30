@@ -11,21 +11,37 @@ generator client {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
+  id String @id @default(uuid())
+
+  // Credentials
+  email    String @unique
   password String
-  name     String?
-  posts    Post[]
+
+  // Profile
+  name     String
+  avatar   String?
+  bio      String?
+  location String?
+  website  String?
+
+  tweets Tweet[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  viewCount Int      @default(0)
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?
+model Tweet {
+  id String @id @default(uuid())
+
+  content String
+
+  authorId String? @map("author_id")
+  author   User?   @relation(fields: [authorId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("tweets")
 }
