@@ -3,7 +3,7 @@ import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
 import { Context } from '../../context';
-import { getUserId } from '../../utils/getUserId';
+import { getUserId, APP_SECRET } from '../../utils/getUserId';
 
 export const Mutation = objectType({
   name: 'Mutation',
@@ -29,7 +29,7 @@ export const Mutation = objectType({
         })
 
         return {
-          token: sign({ userId: user.id }, process.env.APP_SECRET),
+          token: sign({ userId: user.id }, APP_SECRET),
           user,
         }
       },
@@ -59,7 +59,7 @@ export const Mutation = objectType({
         }
 
         return {
-          token: sign({ userId: user.id }, process.env.APP_SECRET),
+          token: sign({ userId: user.id }, APP_SECRET),
           user,
         }
       },
@@ -69,7 +69,6 @@ export const Mutation = objectType({
       type: 'User',
       args: {
         id: stringArg(),
-        name: stringArg(),
         avatar: stringArg(),
         bio: stringArg(),
         location: stringArg(),
@@ -84,7 +83,10 @@ export const Mutation = objectType({
 
         return context.prisma.user.update({
           data: {
-            ...args,
+            avatar: args.avatar,
+            bio: args.bio,
+            location: args.location,
+            website: args.website,
           },
           where: {
             id: String(),

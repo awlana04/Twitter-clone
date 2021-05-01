@@ -1,11 +1,11 @@
-import { ServerInfo } from 'apollo-server'
-import { GraphQLClient } from 'graphql-request'
-import getPort, { makeRange } from 'get-port'
-import { PrismaClient } from '@prisma/client'
-import { Client } from 'pg'
-import { nanoid } from 'nanoid'
-import { join } from 'path'
-import { execSync } from 'child_process'
+import { ServerInfo } from 'apollo-server';
+import { GraphQLClient } from 'graphql-request';
+import getPort, { makeRange } from 'get-port';
+import { PrismaClient } from '@prisma/client';
+import { Client } from 'pg';
+import { nanoid } from 'nanoid';
+import { join } from 'path';
+import { execSync } from 'child_process';
 
 import { context } from '../src/context';
 import { server } from '../src/server';
@@ -17,6 +17,7 @@ type TestContext = {
 
 export function createTestContext(): TestContext {
   let ctx = {} as TestContext;
+
   const graphqlCtx = graphqlTestContext();
   const prismaCtx = prismaTestContext();
 

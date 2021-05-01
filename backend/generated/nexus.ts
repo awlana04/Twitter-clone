@@ -74,7 +74,7 @@ export interface NexusGenObjects {
     avatar?: string | null; // String
     bio?: string | null; // String
     email: string; // String!
-    id: number; // Int!
+    id: string; // String!
     location?: string | null; // String
     name: string; // String!
     website?: string | null; // String
@@ -116,7 +116,7 @@ export interface NexusGenFieldTypes {
     avatar: string | null; // String
     bio: string | null; // String
     email: string; // String!
-    id: number; // Int!
+    id: string; // String!
     location: string | null; // String
     name: string; // String!
     tweets: NexusGenRootTypes['Tweet'][]; // [Tweet!]!
@@ -149,7 +149,7 @@ export interface NexusGenFieldTypeNames {
     avatar: 'String'
     bio: 'String'
     email: 'String'
-    id: 'Int'
+    id: 'String'
     location: 'String'
     name: 'String'
     tweets: 'Tweet'
@@ -174,7 +174,6 @@ export interface NexusGenArgTypes {
       bio?: string | null; // String
       id?: string | null; // String
       location?: string | null; // String
-      name?: string | null; // String
       website?: string | null; // String
     }
   }

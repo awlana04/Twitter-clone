@@ -18,7 +18,7 @@ class PrismaTestEnvironment extends NodeEnvironment {
     this.schema = `test_${nanoid()}`;
 
     // Generate the pg connection string for the test schema
-    this.databaseUrl = `postgres://postgres:docker@localhost:5432/tutorial?schema=${this.schema}`;
+    this.databaseUrl = `postgres://postgres:docker@localhost:5432/twitter-clone_postgres?schema=${this.schema}`;
   }
 
   async setup() {
@@ -28,7 +28,7 @@ class PrismaTestEnvironment extends NodeEnvironment {
     this.global.process.env.DATABASE_URL = this.databaseUrl;
 
     // Run the migrations to ensure our schema has the required structure
-    await exec(`${prismaBinary} migrate up --create-db --experimental`);
+    await exec(`${prismaBinary} migrate dev --name init`);
 
     return super.setup();
   }

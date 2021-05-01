@@ -15,7 +15,7 @@ scalar DateTime
 type Mutation {
   login(email: String!, password: String!): AuthPayload
   signup(avatar: String, email: String!, name: String!, password: String!): AuthPayload
-  updateProfile(avatar: String, bio: String, id: String, location: String, name: String, website: String): User
+  updateProfile(avatar: String, bio: String, id: String, location: String, website: String): User
 }
 
 type Query {
@@ -35,7 +35,7 @@ type User {
   avatar: String
   bio: String
   email: String!
-  id: Int!
+  id: String!
   location: String
 
   """Credentials"""
