@@ -1,3 +1,5 @@
+import { graphql } from 'graphql';
+
 import { createTestContext } from './__helpers';
 
 const ctx = createTestContext();
@@ -12,7 +14,7 @@ it('ensures that a user is created', async () => {
         password
       }
     }
-  `)
+  `);
 
   expect(signUp).toMatchInlineSnapshot(`
     Object {
@@ -23,5 +25,5 @@ it('ensures that a user is created', async () => {
         "password": "123456"
       },
     }
-  `)
+  `);
 })
