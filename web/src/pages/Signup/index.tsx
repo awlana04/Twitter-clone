@@ -15,7 +15,6 @@ import { Container } from './styles';
 
 interface SignUpValues {
   email: string;
-  name: string;
   password: string;
   confirmPassword: string;
 }
@@ -25,7 +24,6 @@ const Signup: React.FC = () => {
 
   const [signup] = useMutation(SIGNUP_MUTATION, {
     variables: {
-      name: '',
       email: '',
       password: '',
     },
@@ -33,7 +31,6 @@ const Signup: React.FC = () => {
 
   const initialValues: SignUpValues = {
     email: '',
-    name: '',
     password: '',
     confirmPassword: '',
   };
@@ -42,7 +39,6 @@ const Signup: React.FC = () => {
     email: Yup.string()
       .required('Email required')
       .email('Invalid email address'),
-    name: Yup.string(),
     password: Yup.string().required('Password required'),
     confirmPassword: Yup.string()
       .required('Confirm your password')
@@ -74,7 +70,6 @@ const Signup: React.FC = () => {
       >
         <Form>
           <InputField name="email" type="text" placeholder="Email" />
-          <InputField name="name" type="text" placeholder="Nome" />
           <InputField name="password" type="password" placeholder="Senha" />
           <InputField
             name="confirmPassword"

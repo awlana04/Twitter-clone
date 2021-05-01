@@ -6,7 +6,7 @@ import USERS_QUERY from '../schemas/Queries/Users';
 
 interface User {
   id: string;
-  name: string;
+  email: string;
 }
 
 const Users: React.FC = () => {
@@ -18,7 +18,7 @@ const Users: React.FC = () => {
   return (
     <div>
       {data.allUsers.map((allUser: User) => (
-        <p key={allUser.id}>{allUser.name}</p>
+        <p key={allUser.id}>{allUser.email}</p>
       ))}
     </div>
   );

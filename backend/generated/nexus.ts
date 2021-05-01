@@ -76,7 +76,7 @@ export interface NexusGenObjects {
     email: string; // String!
     id: string; // String!
     location?: string | null; // String
-    name: string; // String!
+    name?: string | null; // String
     website?: string | null; // String
   }
 }
@@ -118,7 +118,7 @@ export interface NexusGenFieldTypes {
     email: string; // String!
     id: string; // String!
     location: string | null; // String
-    name: string; // String!
+    name: string | null; // String
     tweets: NexusGenRootTypes['Tweet'][]; // [Tweet!]!
     website: string | null; // String
   }
@@ -164,9 +164,7 @@ export interface NexusGenArgTypes {
       password: string; // String!
     }
     signup: { // args
-      avatar?: string | null; // String
       email: string; // String!
-      name: string; // String!
       password: string; // String!
     }
     updateProfile: { // args

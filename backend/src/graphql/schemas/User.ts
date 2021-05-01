@@ -7,7 +7,7 @@ export const User = objectType({
   definition(t) {
     t.nonNull.string('id')
     t.nonNull.string('email')
-    t.nonNull.string('name', { description: 'Credentials' }),
+    t.string('name', { description: 'Credentials' }),
       t.string('avatar'),
       t.string('bio'),
       t.string('location'),

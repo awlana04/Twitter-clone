@@ -6,6 +6,7 @@ import Signup from '../pages/Signup';
 import Login from '../pages/Login';
 
 import Users from '../components/Users';
+import Profile from '../pages/Profile';
 
 import IsAuthenticated from './IsAuthenticated';
 
@@ -19,6 +20,9 @@ const Routes: React.FC = () => (
       <IsAuthenticated>
         <Route path="/users">
           <Users />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
       </IsAuthenticated>
     </Switch>

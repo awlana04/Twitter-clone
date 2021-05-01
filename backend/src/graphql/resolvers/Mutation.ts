@@ -11,8 +11,6 @@ export const Mutation = objectType({
     t.field('signup', {
       type: 'AuthPayload',
       args: {
-        avatar: stringArg(),
-        name: nonNull(stringArg()),
         email: nonNull(stringArg()),
         password: nonNull(stringArg()),
       },
@@ -21,8 +19,6 @@ export const Mutation = objectType({
 
         const user = await context.prisma.user.create({
           data: {
-            avatar: args.avatar,
-            name: args.name,
             email: args.email,
             password: hashedPassword,
           },

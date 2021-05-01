@@ -4,7 +4,7 @@ const USERS_QUERY = gql`
   query {
     allUsers {
       id
-      name
+      email
     }
   }
 `;

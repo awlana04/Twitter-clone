@@ -17,6 +17,7 @@ export const Query = objectType({
       type: 'User',
       resolve: (parent, args, context: Context) => {
         const userId = getUserId(context)
+
         return context.prisma.user.findUnique({
           where: {
             id: String(userId),
