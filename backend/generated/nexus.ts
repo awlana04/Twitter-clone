@@ -43,6 +43,10 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  ProfileWhereUniqueInput: { // input type
+    id?: string | null; // String
+    userId?: string | null; // String
+  }
 }
 
 export interface NexusGenEnums {
@@ -63,6 +67,14 @@ export interface NexusGenObjects {
     user?: NexusGenRootTypes['User'] | null; // User
   }
   Mutation: {};
+  Profile: { // root type
+    avatar?: string | null; // String
+    bio?: string | null; // String
+    id: string; // String!
+    location?: string | null; // String
+    name?: string | null; // String
+    website?: string | null; // String
+  }
   Query: {};
   Tweet: { // root type
     content: string; // String!
@@ -71,13 +83,10 @@ export interface NexusGenObjects {
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   User: { // root type
-    avatar?: string | null; // String
-    bio?: string | null; // String
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
     email: string; // String!
     id: string; // String!
-    location?: string | null; // String
-    name?: string | null; // String
-    website?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
 }
 
@@ -97,9 +106,19 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User'] | null; // User
   }
   Mutation: { // field return type
+    createProfile: NexusGenRootTypes['Profile'] | null; // Profile
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
-    updateProfile: NexusGenRootTypes['User'] | null; // User
+    updateProfile: NexusGenRootTypes['Profile'] | null; // Profile
+  }
+  Profile: { // field return type
+    avatar: string | null; // String
+    bio: string | null; // String
+    id: string; // String!
+    location: string | null; // String
+    name: string | null; // String
+    user: NexusGenRootTypes['User'] | null; // User
+    website: string | null; // String
   }
   Query: { // field return type
     allUsers: NexusGenRootTypes['User'][]; // [User!]!
@@ -113,14 +132,11 @@ export interface NexusGenFieldTypes {
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   User: { // field return type
-    avatar: string | null; // String
-    bio: string | null; // String
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
     email: string; // String!
     id: string; // String!
-    location: string | null; // String
-    name: string | null; // String
-    tweets: NexusGenRootTypes['Tweet'][]; // [Tweet!]!
-    website: string | null; // String
+    profile: NexusGenRootTypes['Profile'][]; // [Profile!]!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
 }
 
@@ -130,9 +146,19 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
   }
   Mutation: { // field return type name
+    createProfile: 'Profile'
     login: 'AuthPayload'
     signup: 'AuthPayload'
-    updateProfile: 'User'
+    updateProfile: 'Profile'
+  }
+  Profile: { // field return type name
+    avatar: 'String'
+    bio: 'String'
+    id: 'String'
+    location: 'String'
+    name: 'String'
+    user: 'User'
+    website: 'String'
   }
   Query: { // field return type name
     allUsers: 'User'
@@ -146,19 +172,24 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'DateTime'
   }
   User: { // field return type name
-    avatar: 'String'
-    bio: 'String'
+    createdAt: 'DateTime'
     email: 'String'
     id: 'String'
-    location: 'String'
-    name: 'String'
-    tweets: 'Tweet'
-    website: 'String'
+    profile: 'Profile'
+    updatedAt: 'DateTime'
   }
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createProfile: { // args
+      avatar?: string | null; // String
+      bio?: string | null; // String
+      id?: string | null; // String
+      location?: string | null; // String
+      name?: string | null; // String
+      website?: string | null; // String
+    }
     login: { // args
       email: string; // String!
       password: string; // String!
@@ -170,10 +201,18 @@ export interface NexusGenArgTypes {
     updateProfile: { // args
       avatar?: string | null; // String
       bio?: string | null; // String
-      id: string; // String!
+      id?: string | null; // String
       location?: string | null; // String
       name?: string | null; // String
       website?: string | null; // String
+    }
+  }
+  User: {
+    profile: { // args
+      after?: NexusGenInputs['ProfileWhereUniqueInput'] | null; // ProfileWhereUniqueInput
+      before?: NexusGenInputs['ProfileWhereUniqueInput'] | null; // ProfileWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
     }
   }
 }
@@ -186,7 +225,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 

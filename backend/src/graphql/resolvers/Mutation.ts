@@ -61,34 +61,55 @@ export const Mutation = objectType({
       },
     })
 
-    t.field('updateProfile', {
-      type: 'User',
+    t.field('createProfile', {
+      type: 'Profile',
       args: {
-        id: nonNull(stringArg()),
+        id: stringArg(),
         avatar: stringArg(),
         name: stringArg(),
         bio: stringArg(),
         location: stringArg(),
         website: stringArg(),
       },
-      resolve: (parent, { ...args }, context: Context) => {
+      resolve: (parent, { id, ...args }, context: Context) => {
+        const userId = getUserId(context);
 
-        // const userId = getUserId(context);
+        if (!userId) {
+          throw new Error('Could not authenticate user.');
+        }
 
-        // if (!userId) {
-        //   throw new Error('Could not authenticate user.');
-        // }
-
-        return context.prisma.user.update({
+        return context.prisma.profile.create({
           data: {
-            avatar: args.avatar,
-            name: args.name,
-            bio: args.bio,
-            location: args.location,
-            website: args.website,
+            ...args,
+            user: { connect: { id: String(userId) } }
+          }
+        })
+      }
+    })
+
+    t.field('updateProfile', {
+      type: 'Profile',
+      args: {
+        id: stringArg(),
+        avatar: stringArg(),
+        name: stringArg(),
+        bio: stringArg(),
+        location: stringArg(),
+        website: stringArg(),
+      },
+      resolve: (parent, { id, ...args }, context: Context) => {
+        const userId = getUserId(context);
+
+        if (!userId) {
+          throw new Error('Could not authenticate user.');
+        }
+
+        return context.prisma.profile.update({
+          data: {
+            ...args,
           },
           where: {
-            id: args.id || undefined,
+            id: String(id),
           }
         })
       }

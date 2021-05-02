@@ -6,6 +6,7 @@ import { DateTimeResolver } from 'graphql-scalars';
 import { permissions } from '../config/permissions';
 
 import { User } from './schemas/User';
+import { Profile } from './schemas/Profile';
 import { Tweet } from './schemas/Tweet';
 
 import { Query } from './resolvers/Query';
@@ -16,10 +17,11 @@ export const DateTime = asNexusMethod(DateTimeResolver, 'date');
 
 export const schemaWithoutPermissions = makeSchema({
   types: [
+    User,
+    Profile,
+    Tweet,
     Query,
     Mutation,
-    User,
-    Tweet,
     AuthPayload,
     DateTime,
   ],

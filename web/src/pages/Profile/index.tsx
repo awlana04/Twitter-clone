@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 
 import ME_QUERY from '../../schemas/Queries/Me';
 
-import UpdateProfile from '../../components/UpdateProfile';
+import CreateProfile from '../../components/CreateProfile';
 
 import { Container } from './styles';
 
@@ -18,12 +18,13 @@ const Profile: React.FC = () => {
     <Container>
       <h1>Profile</h1>
 
-      <UpdateProfile />
+      <CreateProfile />
 
-      <p>{data.me.name}</p>
-      <p>{data.me.bio}</p>
-      <p>{data.me.location}</p>
-      <p>{data.me.website}</p>
+      <p>{data.me.profile[0].name}</p>
+      <p>{data.me.email}</p>
+      <p>{data.me.profile[0].bio}</p>
+      <p>{data.me.profile[0].location}</p>
+      <p>{data.me.profile[0].website}</p>
     </Container>
   );
 };

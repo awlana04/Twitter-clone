@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import UPDATE_PROFILE_MUTATION from '../../schemas/Mutations/UpdateProfile';
+import CREATE_PROFILE_MUTATION from '../../schemas/Mutations/CreateProfile';
 import ME_QUERY from '../../schemas/Queries/Me';
 
 import InputField from '../InputField';
@@ -18,10 +18,10 @@ interface ProfileValues {
   website: string;
 }
 
-const UpdateProfile: React.FC = () => {
+const CreateProfile: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const [updateProfile] = useMutation(UPDATE_PROFILE_MUTATION, {
+  const [createProfile] = useMutation(CREATE_PROFILE_MUTATION, {
     variables: {
       name: '',
       bio: '',
@@ -56,13 +56,14 @@ const UpdateProfile: React.FC = () => {
   return (
     <Container>
       <button type="button" onClick={openModal}>
-        Atualizar perfil
+        Criar perfil
       </button>
 
       <StyledModal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Modal"
+        ariaHideApp={false}
       >
         <Formik
           initialValues={initialValues}
@@ -70,11 +71,9 @@ const UpdateProfile: React.FC = () => {
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
 
-            const response = await updateProfile({
+            await createProfile({
               variables: values,
             });
-
-            localStorage.setItem('token', response.data.updateProfile.token);
 
             setSubmitting(false);
           }}
@@ -86,7 +85,7 @@ const UpdateProfile: React.FC = () => {
             <InputField name="website" type="text" placeholder="Website" />
 
             <Button>
-              <span>Atualizar perfil</span>
+              <span>Criar perfil</span>
             </Button>
           </Form>
         </Formik>
@@ -95,4 +94,4 @@ const UpdateProfile: React.FC = () => {
   );
 };
 
-export default UpdateProfile;
+export default CreateProfile;

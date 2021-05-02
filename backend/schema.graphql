@@ -13,9 +13,25 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTime
 
 type Mutation {
+  createProfile(avatar: String, bio: String, id: String, location: String, name: String, website: String): Profile
   login(email: String!, password: String!): AuthPayload
   signup(email: String!, password: String!): AuthPayload
-  updateProfile(avatar: String, bio: String, id: String!, location: String, name: String, website: String): User
+  updateProfile(avatar: String, bio: String, id: String, location: String, name: String, website: String): Profile
+}
+
+type Profile {
+  avatar: String
+  bio: String
+  id: String!
+  location: String
+  name: String
+  user: User
+  website: String
+}
+
+input ProfileWhereUniqueInput {
+  id: String
+  userId: String
 }
 
 type Query {
@@ -32,14 +48,9 @@ type Tweet {
 }
 
 type User {
-  avatar: String
-  bio: String
+  createdAt: DateTime!
   email: String!
   id: String!
-  location: String
-
-  """Credentials"""
-  name: String
-  tweets: [Tweet!]!
-  website: String
+  profile(after: ProfileWhereUniqueInput, before: ProfileWhereUniqueInput, first: Int, last: Int): [Profile!]!
+  updatedAt: DateTime!
 }

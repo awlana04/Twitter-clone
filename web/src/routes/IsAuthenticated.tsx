@@ -11,7 +11,7 @@ const IsAuthenticated: React.FC = ({ children }) => {
   if (error) return <p>{error.message}</p>;
 
   if (!data.me) {
-    return <Redirect to={{ pathname: '/landing' }} />;
+    return <Redirect to={{ pathname: '/' }} />;
   }
 
   return <>{children}</>;
