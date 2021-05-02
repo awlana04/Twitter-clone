@@ -4,23 +4,24 @@ import Modal from 'react-modal';
 export const Container = styled.div``;
 
 export const StyledModal = styled(Modal)`
-  max-width: 40em;
+  max-width: 34em;
   min-width: 20em;
-  min-height: 20em;
-  margin-right: -50%;
+  min-height: 28em;
+  margin-top: 22%;
+  margin-left: 48%;
 
-  background: red;
+  border: 1px solid rgb(0, 0, 0, 0.2);
 
   border-radius: 25px;
 
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-
   transform: translate(-50%, -50%);
 
-  overlay {
-    background: #9e9e9e69;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    width: 30rem;
   }
 `;

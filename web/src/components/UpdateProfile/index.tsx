@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Formik, Form } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 
 import UPDATE_PROFILE_MUTATION from '../../schemas/Mutations/UpdateProfile';
 import ME_QUERY from '../../schemas/Queries/Me';
@@ -38,12 +38,12 @@ const UpdateProfile: React.FC = () => {
     website: '',
   };
 
-  // const validationSchema = Yup.object({
-  //   name: Yup.string().required('Name required'),
-  //   bio: Yup.string().required('Bio required'),
-  //   location: Yup.string().required('Location required'),
-  //   website: Yup.string().required('Website required'),
-  // });
+  const validationSchema = Yup.object({
+    name: Yup.string().required('Name required'),
+    bio: Yup.string().required('Bio required'),
+    location: Yup.string().required('Location required'),
+    website: Yup.string().required('Website required'),
+  });
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -66,13 +66,15 @@ const UpdateProfile: React.FC = () => {
       >
         <Formik
           initialValues={initialValues}
-          // validationSchema={validationSchema}
+          validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
 
-            await updateProfile({
+            const response = await updateProfile({
               variables: values,
             });
+
+            localStorage.setItem('token', response.data.updateProfile.token);
 
             setSubmitting(false);
           }}

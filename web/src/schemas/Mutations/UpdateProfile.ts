@@ -7,8 +7,14 @@ const UPDATE_PROFILE_MUTATION = gql`
     $location: String!
     $website: String!
   ) {
-    update(name: $name, bio: $bio, location: $location, website: $website) {
+    updateProfile(
+      name: $name
+      bio: $bio
+      location: $location
+      website: $website
+    ) {
       id
+      token
     }
   }
 `;

@@ -19,6 +19,11 @@ const Profile: React.FC = () => {
       <h1>Profile</h1>
 
       <UpdateProfile />
+
+      <p>{data.me.name}</p>
+      <p>{data.me.bio}</p>
+      <p>{data.me.location}</p>
+      <p>{data.me.website}</p>
     </Container>
   );
 };

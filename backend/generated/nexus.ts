@@ -170,8 +170,9 @@ export interface NexusGenArgTypes {
     updateProfile: { // args
       avatar?: string | null; // String
       bio?: string | null; // String
-      id?: string | null; // String
+      id: string; // String!
       location?: string | null; // String
+      name?: string | null; // String
       website?: string | null; // String
     }
   }

@@ -4,11 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 import IS_LOGGED_IN from '../schemas/Queries/IsAuthenticated';
 
-interface Props {
-  children?: React.ReactNode;
-}
-
-const IsAuthenticated: React.FC = ({ children }: Props) => {
+const IsAuthenticated: React.FC = ({ children }) => {
   const { loading, error, data } = useQuery(IS_LOGGED_IN);
 
   if (loading) return <p>Loading...</p>;

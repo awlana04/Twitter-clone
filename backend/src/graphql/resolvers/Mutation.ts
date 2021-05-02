@@ -64,28 +64,31 @@ export const Mutation = objectType({
     t.field('updateProfile', {
       type: 'User',
       args: {
-        id: stringArg(),
+        id: nonNull(stringArg()),
         avatar: stringArg(),
+        name: stringArg(),
         bio: stringArg(),
         location: stringArg(),
         website: stringArg(),
       },
-      resolve: (parent, { id, ...args }, context: Context) => {
-        const userId = getUserId(context);
+      resolve: (parent, { ...args }, context: Context) => {
 
-        if (!userId) {
-          throw new Error('Could not authenticate user.');
-        }
+        // const userId = getUserId(context);
+
+        // if (!userId) {
+        //   throw new Error('Could not authenticate user.');
+        // }
 
         return context.prisma.user.update({
           data: {
             avatar: args.avatar,
+            name: args.name,
             bio: args.bio,
             location: args.location,
             website: args.website,
           },
           where: {
-            id: String(),
+            id: args.id || undefined,
           }
         })
       }
