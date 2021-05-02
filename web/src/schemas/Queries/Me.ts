@@ -6,6 +6,8 @@ const ME_QUERY = gql`
       id
       email
       profile {
+        id
+        avatar
         name
         bio
         location

@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { Formik, Form } from 'formik';
+import { useQuery, useMutation } from '@apollo/client';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 // import * as Yup from 'yup';
 
-import CREATE_PROFILE_MUTATION from '../../schemas/Mutations/CreateProfile';
+import UPDATE_PROFILE_MUTATION from '../../schemas/Mutations/UpdateProfile';
 import ME_QUERY from '../../schemas/Queries/Me';
 
-import InputField from '../InputField';
+// import InputField from '../InputField';
 import Button from '../Button';
 
 import { Container, StyledModal } from './styles';
 
 interface ProfileValues {
+  id: string;
   avatar: string;
   name: string;
   bio: string;
@@ -19,11 +20,15 @@ interface ProfileValues {
   website: string;
 }
 
-const CreateProfile: React.FC = () => {
+const UpdateProfile: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const [createProfile] = useMutation(CREATE_PROFILE_MUTATION, {
+  const { loading, error, data } = useQuery(ME_QUERY);
+
+  const [updateProfile] = useMutation(UPDATE_PROFILE_MUTATION, {
     variables: {
+      id: '',
+      avatar: '',
       name: '',
       bio: '',
       location: '',
@@ -32,12 +37,21 @@ const CreateProfile: React.FC = () => {
     refetchQueries: [{ query: ME_QUERY }],
   });
 
+  if (loading) {
+    return <p>Loading</p>;
+  }
+
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+
   const initialValues: ProfileValues = {
-    avatar: '',
-    name: '',
-    bio: '',
-    location: '',
-    website: '',
+    id: data.me.profile[0].id,
+    avatar: data.me.profile[0].avatar,
+    name: data.me.profile[0].name,
+    bio: data.me.profile[0].bio,
+    location: data.me.profile[0].location,
+    website: data.me.profile[0].website,
   };
 
   // const validationSchema = Yup.object({
@@ -58,7 +72,7 @@ const CreateProfile: React.FC = () => {
   return (
     <Container>
       <button type="button" onClick={openModal}>
-        Criar perfil
+        Atualizar perfil
       </button>
 
       <StyledModal
@@ -73,7 +87,7 @@ const CreateProfile: React.FC = () => {
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
 
-            await createProfile({
+            await updateProfile({
               variables: values,
             });
 
@@ -82,13 +96,27 @@ const CreateProfile: React.FC = () => {
           }}
         >
           <Form>
-            <InputField name="name" type="text" placeholder="Nome" />
-            <InputField name="bio" type="text" placeholder="Bio" />
+            {/* <InputField name="name" type="text" placeholder="Nome" />
+            <InputField
+              name="bio"
+              type="text"
+              as="textarea"
+              placeholder="Bio"
+            />
             <InputField name="location" type="text" placeholder="Localização" />
-            <InputField name="website" type="text" placeholder="Website" />
+            <InputField name="website" type="text" placeholder="Website" /> */}
+
+            <Field name="name" type="text" placeholder="Nome" />
+            <ErrorMessage name="name" component="div" />
+            <Field name="bio" type="text" as="textarea" placeholder="Bio" />
+            <ErrorMessage name="bio" component="div" />
+            <Field name="location" type="text" placeholder="Localização" />
+            <ErrorMessage name="location" component="div" />
+            <Field name="website" type="text" placeholder="Website" />
+            <ErrorMessage name="website" component="div" />
 
             <Button>
-              <span>Criar perfil</span>
+              <span>Atualizar perfil</span>
             </Button>
           </Form>
         </Formik>
@@ -97,4 +125,4 @@ const CreateProfile: React.FC = () => {
   );
 };
 
-export default CreateProfile;
+export default UpdateProfile;
