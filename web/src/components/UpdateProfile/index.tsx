@@ -6,7 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import UPDATE_PROFILE_MUTATION from '../../schemas/Mutations/UpdateProfile';
 import ME_QUERY from '../../schemas/Queries/Me';
 
-// import InputField from '../InputField';
+import InputField from '../InputField';
 import Button from '../Button';
 
 import { Container, StyledModal } from './styles';

@@ -47,10 +47,15 @@ type Tweet {
   updatedAt: DateTime!
 }
 
+input TweetWhereUniqueInput {
+  id: String
+}
+
 type User {
   createdAt: DateTime!
   email: String!
   id: String!
   profile(after: ProfileWhereUniqueInput, before: ProfileWhereUniqueInput, first: Int, last: Int): [Profile!]!
+  tweets(after: TweetWhereUniqueInput, before: TweetWhereUniqueInput, first: Int, last: Int): [Tweet!]!
   updatedAt: DateTime!
 }

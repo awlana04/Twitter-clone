@@ -47,6 +47,9 @@ export interface NexusGenInputs {
     id?: string | null; // String
     userId?: string | null; // String
   }
+  TweetWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
 }
 
 export interface NexusGenEnums {
@@ -136,6 +139,7 @@ export interface NexusGenFieldTypes {
     email: string; // String!
     id: string; // String!
     profile: NexusGenRootTypes['Profile'][]; // [Profile!]!
+    tweets: NexusGenRootTypes['Tweet'][]; // [Tweet!]!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
 }
@@ -176,6 +180,7 @@ export interface NexusGenFieldTypeNames {
     email: 'String'
     id: 'String'
     profile: 'Profile'
+    tweets: 'Tweet'
     updatedAt: 'DateTime'
   }
 }
@@ -211,6 +216,12 @@ export interface NexusGenArgTypes {
     profile: { // args
       after?: NexusGenInputs['ProfileWhereUniqueInput'] | null; // ProfileWhereUniqueInput
       before?: NexusGenInputs['ProfileWhereUniqueInput'] | null; // ProfileWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    tweets: { // args
+      after?: NexusGenInputs['TweetWhereUniqueInput'] | null; // TweetWhereUniqueInput
+      before?: NexusGenInputs['TweetWhereUniqueInput'] | null; // TweetWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
     }
