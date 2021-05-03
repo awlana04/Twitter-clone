@@ -71,7 +71,7 @@ const UpdateProfile: React.FC = () => {
   return (
     <Container>
       <button type="button" onClick={openModal}>
-        Atualizar perfil
+        Editar perfil
       </button>
 
       <StyledModal

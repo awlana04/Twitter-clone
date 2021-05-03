@@ -1,14 +1,27 @@
 import React from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { FiArrowLeft, FiUser, FiLink } from 'react-icons/fi';
 
 import ME_QUERY from '../../schemas/Queries/Me';
 
 import CreateProfile from '../../components/CreateProfile';
 import UpdateProfile from '../../components/UpdateProfile';
 
-import { Container } from './styles';
+import {
+  Container,
+  ProfileContent,
+  ProfileInfo,
+  ProfileHeader,
+  Avatar,
+  MakeProfile,
+  ProfileWebsite,
+  Followers,
+} from './styles';
 
 const Profile: React.FC = () => {
+  const history = useHistory();
+
   const { loading, error, data } = useQuery(ME_QUERY);
 
   if (loading) {
@@ -21,15 +34,49 @@ const Profile: React.FC = () => {
 
   return (
     <Container>
-      <h1>Profile</h1>
+      <ProfileContent>
+        <ProfileInfo>
+          <ProfileHeader>
+            <button type="button" onClick={() => history.goBack()}>
+              <FiArrowLeft size="22" color="#1a91da" />
+            </button>
 
-      {data.me.profile[0].id ? <UpdateProfile /> : <CreateProfile />}
+            <span>{data.me.profile[0].name}</span>
+          </ProfileHeader>
 
-      <p>{data.me.profile[0].name}</p>
-      <p>{data.me.email}</p>
-      <p>{data.me.profile[0].bio}</p>
-      <p>{data.me.profile[0].location}</p>
-      <p>{data.me.profile[0].website}</p>
+          <Avatar>
+            <FiUser size="64" color="#1a91da" />
+          </Avatar>
+
+          <MakeProfile>
+            {data.me.profile[0] ? <UpdateProfile /> : <CreateProfile />}
+          </MakeProfile>
+
+          <h3>{data.me.profile[0].name}</h3>
+          {data.me.profile[0] ? (
+            <ProfileWebsite>
+              <FiLink size="18" color="#5b7083" />
+              <Link
+                to={{ pathname: `http://${data.me.profile[0].website}` }}
+                target="_blank"
+              >
+                {data.me.profile[0].website}
+              </Link>
+            </ProfileWebsite>
+          ) : null}
+
+          <Followers>
+            <p>
+              <strong>70</strong>
+              <span>Seguindo</span>
+            </p>
+            <p>
+              <strong>12</strong>
+              <span>Seguidores</span>
+            </p>
+          </Followers>
+        </ProfileInfo>
+      </ProfileContent>
     </Container>
   );
 };
