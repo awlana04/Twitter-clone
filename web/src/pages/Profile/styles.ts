@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   h3 {
     font-size: 22px;
   }
@@ -13,7 +9,9 @@ export const Container = styled.div`
 export const ProfileContent = styled.div`
   margin-top: 20px;
 
-  grid-column: 1 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ProfileInfo = styled.div``;

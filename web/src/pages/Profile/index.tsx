@@ -5,6 +5,7 @@ import { FiArrowLeft, FiUser, FiLink } from 'react-icons/fi';
 
 import ME_QUERY from '../../schemas/Queries/Me';
 
+import SideBar from '../../components/SideBar';
 import CreateProfile from '../../components/CreateProfile';
 import UpdateProfile from '../../components/UpdateProfile';
 
@@ -34,6 +35,8 @@ const Profile: React.FC = () => {
 
   return (
     <Container>
+      <SideBar />
+
       <ProfileContent>
         <ProfileInfo>
           <ProfileHeader>
