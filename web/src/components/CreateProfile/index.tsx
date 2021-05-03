@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 // import * as Yup from 'yup';
 
 import CREATE_PROFILE_MUTATION from '../../schemas/Mutations/CreateProfile';
 import ME_QUERY from '../../schemas/Queries/Me';
 
-import InputField from '../InputField';
 import Button from '../Button';
 
 import { Container, StyledModal } from './styles';
@@ -82,10 +81,14 @@ const CreateProfile: React.FC = () => {
           }}
         >
           <Form>
-            <InputField name="name" type="text" placeholder="Nome" />
-            <InputField name="bio" type="text" placeholder="Bio" />
-            <InputField name="location" type="text" placeholder="Localização" />
-            <InputField name="website" type="text" placeholder="Website" />
+            <Field name="name" type="text" placeholder="Nome" />
+            <ErrorMessage name="name" component="div" />
+            <Field name="bio" type="text" placeholder="Bio" />
+            <ErrorMessage name="bio" component="div" />
+            <Field name="location" type="text" placeholder="Localização" />
+            <ErrorMessage name="location" component="div" />
+            <Field name="website" type="text" placeholder="Website" />
+            <ErrorMessage name="website" component="div" />
 
             <Button>
               <span>Criar perfil</span>

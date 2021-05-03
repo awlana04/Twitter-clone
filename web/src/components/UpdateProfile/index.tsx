@@ -6,7 +6,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import UPDATE_PROFILE_MUTATION from '../../schemas/Mutations/UpdateProfile';
 import ME_QUERY from '../../schemas/Queries/Me';
 
-import InputField from '../InputField';
 import Button from '../Button';
 
 import { Container, StyledModal } from './styles';
@@ -96,16 +95,6 @@ const UpdateProfile: React.FC = () => {
           }}
         >
           <Form>
-            {/* <InputField name="name" type="text" placeholder="Nome" />
-            <InputField
-              name="bio"
-              type="text"
-              as="textarea"
-              placeholder="Bio"
-            />
-            <InputField name="location" type="text" placeholder="Localização" />
-            <InputField name="website" type="text" placeholder="Website" /> */}
-
             <Field name="name" type="text" placeholder="Nome" />
             <ErrorMessage name="name" component="div" />
             <Field name="bio" type="text" as="textarea" placeholder="Bio" />
