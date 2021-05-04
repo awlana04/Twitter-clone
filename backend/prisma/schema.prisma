@@ -30,10 +30,11 @@ model Profile {
   id String @id @default(uuid())
 
   name     String?
-  avatar   String?
   bio      String?
   location String?
   website  String?
+
+  imageUpload ImageUpload[]
 
   userId String? @unique @map("user_id")
   user   User?   @relation(fields: [userId], references: [id])
@@ -42,6 +43,21 @@ model Profile {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("profiles")
+}
+
+model ImageUpload {
+  id String @id @default(uuid())
+
+  avatar          String?
+  backgroundCover String? @map("background_cover")
+
+  profileId String?  @unique @map("profile_id")
+  profile   Profile? @relation(fields: [profileId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("image_upload")
 }
 
 model Tweet {

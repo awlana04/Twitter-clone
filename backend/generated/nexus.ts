@@ -8,6 +8,7 @@ import { Context } from "./../src/context"
 import { core, connectionPluginCore } from "nexus"
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
+    upload<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "Upload";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
@@ -16,6 +17,7 @@ declare global {
 }
 declare global {
   interface NexusGenCustomOutputMethods<TypeName extends string> {
+    upload<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Upload";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
@@ -43,6 +45,10 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  ImageUploadWhereUniqueInput: { // input type
+    id?: string | null; // String
+    profileId?: string | null; // String
+  }
   ProfileWhereUniqueInput: { // input type
     id?: string | null; // String
     userId?: string | null; // String
@@ -62,6 +68,7 @@ export interface NexusGenScalars {
   Boolean: boolean
   ID: string
   DateTime: any
+  Upload: any
 }
 
 export interface NexusGenObjects {
@@ -69,9 +76,15 @@ export interface NexusGenObjects {
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
   }
+  ImageUpload: { // root type
+    avatar?: NexusGenScalars['Upload'] | null; // Upload
+    backgroundCover?: NexusGenScalars['Upload'] | null; // Upload
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
   Mutation: {};
   Profile: { // root type
-    avatar?: string | null; // String
     bio?: string | null; // String
     id: string; // String!
     location?: string | null; // String
@@ -108,16 +121,25 @@ export interface NexusGenFieldTypes {
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
   }
+  ImageUpload: { // field return type
+    avatar: NexusGenScalars['Upload'] | null; // Upload
+    backgroundCover: NexusGenScalars['Upload'] | null; // Upload
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    profile: NexusGenRootTypes['Profile'] | null; // Profile
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
   Mutation: { // field return type
     createProfile: NexusGenRootTypes['Profile'] | null; // Profile
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     updateProfile: NexusGenRootTypes['Profile'] | null; // Profile
+    uploadAvatar: NexusGenScalars['Upload'] | null; // Upload
   }
   Profile: { // field return type
-    avatar: string | null; // String
     bio: string | null; // String
     id: string; // String!
+    imageUpload: NexusGenRootTypes['ImageUpload'][]; // [ImageUpload!]!
     location: string | null; // String
     name: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
@@ -149,16 +171,25 @@ export interface NexusGenFieldTypeNames {
     token: 'String'
     user: 'User'
   }
+  ImageUpload: { // field return type name
+    avatar: 'Upload'
+    backgroundCover: 'Upload'
+    createdAt: 'DateTime'
+    id: 'String'
+    profile: 'Profile'
+    updatedAt: 'DateTime'
+  }
   Mutation: { // field return type name
     createProfile: 'Profile'
     login: 'AuthPayload'
     signup: 'AuthPayload'
     updateProfile: 'Profile'
+    uploadAvatar: 'Upload'
   }
   Profile: { // field return type name
-    avatar: 'String'
     bio: 'String'
     id: 'String'
+    imageUpload: 'ImageUpload'
     location: 'String'
     name: 'String'
     user: 'User'
@@ -204,12 +235,23 @@ export interface NexusGenArgTypes {
       password: string; // String!
     }
     updateProfile: { // args
-      avatar?: string | null; // String
       bio?: string | null; // String
       id?: string | null; // String
       location?: string | null; // String
       name?: string | null; // String
       website?: string | null; // String
+    }
+    uploadAvatar: { // args
+      avatar?: string | null; // String
+      id?: string | null; // String
+    }
+  }
+  Profile: {
+    imageUpload: { // args
+      after?: NexusGenInputs['ImageUploadWhereUniqueInput'] | null; // ImageUploadWhereUniqueInput
+      before?: NexusGenInputs['ImageUploadWhereUniqueInput'] | null; // ImageUploadWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
     }
   }
   User: {

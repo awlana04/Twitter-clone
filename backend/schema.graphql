@@ -12,17 +12,32 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+type ImageUpload {
+  avatar: Upload
+  backgroundCover: Upload
+  createdAt: DateTime!
+  id: String!
+  profile: Profile
+  updatedAt: DateTime!
+}
+
+input ImageUploadWhereUniqueInput {
+  id: String
+  profileId: String
+}
+
 type Mutation {
   createProfile(avatar: String, bio: String, id: String, location: String, name: String, website: String): Profile
   login(email: String!, password: String!): AuthPayload
   signup(email: String!, password: String!): AuthPayload
-  updateProfile(avatar: String, bio: String, id: String, location: String, name: String, website: String): Profile
+  updateProfile(bio: String, id: String, location: String, name: String, website: String): Profile
+  uploadAvatar(avatar: String, id: String): Upload
 }
 
 type Profile {
-  avatar: String
   bio: String
   id: String!
+  imageUpload(after: ImageUploadWhereUniqueInput, before: ImageUploadWhereUniqueInput, first: Int, last: Int): [ImageUpload!]!
   location: String
   name: String
   user: User
@@ -50,6 +65,8 @@ type Tweet {
 input TweetWhereUniqueInput {
   id: String
 }
+
+scalar Upload
 
 type User {
   createdAt: DateTime!

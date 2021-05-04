@@ -1,6 +1,7 @@
-import { nonNull, objectType, stringArg } from 'nexus';
+import { nonNull, objectType, stringArg, arg } from 'nexus';
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import fs from 'fs';
 
 import { Context } from '../../context';
 import { getUserId, APP_SECRET } from '../../utils/getUserId';
@@ -91,7 +92,6 @@ export const Mutation = objectType({
       type: 'Profile',
       args: {
         id: stringArg(),
-        avatar: stringArg(),
         name: stringArg(),
         bio: stringArg(),
         location: stringArg(),
@@ -114,6 +114,29 @@ export const Mutation = objectType({
         })
       }
     })
+
+    t.field('uploadAvatar', {
+      type: 'ImageUpload',
+      args: {
+        id: stringArg(),
+        avatar: stringArg(),
+      },
+      resolve: (parent, { id, avatar, ...args }, context: Context) => {
+        return context.prisma.imageUpload.create({
+          data: {
+            ...args,
+          }
+        })
+      }
+      // resolve: async (parent, { id, avatar, ...args }, context: Context) => {
+
+      // const { createReadStream, filename, mimetype } = avatar;
+
+      // const fileStream = createReadStream()
+
+      // fileStream.pipe(fs.createWriteStream(`../../../tmp/${filename}`));
+      // }
+    });
 
     // t.field('incrementPostViewCount', {
     //   type: 'Post',

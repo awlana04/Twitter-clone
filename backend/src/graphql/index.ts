@@ -7,7 +7,10 @@ import { permissions } from '../config/permissions';
 
 import { User } from './schemas/User';
 import { Profile } from './schemas/Profile';
+import { ImageUpload } from './schemas/ImageUpload';
 import { Tweet } from './schemas/Tweet';
+
+import { Upload } from './resolvers/Upload';
 
 import { Query } from './resolvers/Query';
 import { Mutation } from './resolvers/Mutation';
@@ -19,6 +22,8 @@ export const schemaWithoutPermissions = makeSchema({
   types: [
     User,
     Profile,
+    ImageUpload,
+    Upload,
     Tweet,
     Query,
     Mutation,
