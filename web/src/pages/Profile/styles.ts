@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const ProfileContent = styled.div`
-  margin-top: 20px;
+  margin-top: -340px;
 
   display: flex;
   align-items: center;
@@ -26,8 +26,12 @@ export const ProfileHeader = styled.div`
 `;
 
 export const Avatar = styled.div`
+  width: 100px;
+  height: 100px;
   margin-top: 126px;
   margin-left: 24px;
+
+  border-radius: 50%;
 `;
 
 export const MakeProfile = styled.div`

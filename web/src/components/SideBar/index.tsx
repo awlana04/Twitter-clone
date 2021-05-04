@@ -69,11 +69,8 @@ const SideBar: React.FC = () => (
       <More>
         <Link to="users">
           <h2>
-            <p>
-              <FiMoreHorizontal size="22" />
-
-              <span>More</span>
-            </p>
+            <FiMoreHorizontal size="22" />
+            <span>More</span>
           </h2>
         </Link>
       </More>

@@ -4,6 +4,8 @@ export const Container = styled.div`
   margin-top: 26px;
   margin-left: 48px;
 
+  font-size: 14px;
+
   img {
     width: 34px;
     margin-bottom: 32px;
@@ -43,17 +45,4 @@ export const Messages = styled.div``;
 
 export const Notifications = styled.div``;
 
-export const More = styled.div`
-  p {
-    width: 26px;
-    height: 26px;
-
-    border: 2px solid #000000;
-
-    border-radius: 50px;
-
-    &:hover {
-      border: 2px solid #1da1f2;
-    }
-  }
-`;
+export const More = styled.div``;

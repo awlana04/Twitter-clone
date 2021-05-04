@@ -27,6 +27,7 @@
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
     "no-use-before-define": "off",
+    "prefer-destructuring": "off",
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "warn",

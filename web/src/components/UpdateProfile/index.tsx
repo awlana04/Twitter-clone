@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { FiUser } from 'react-icons/fi';
 // import * as Yup from 'yup';
 
 import UPDATE_PROFILE_MUTATION from '../../schemas/Mutations/UpdateProfile';
@@ -20,7 +21,30 @@ interface ProfileValues {
 }
 
 const UpdateProfile: React.FC = () => {
+  const inputFile = useRef(null);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [image, setImage] = useState('');
+  const [imageLoading, setImageLoading] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  // const updateImage = async (e) => {
+  //   const files = e.target.files;
+  //   const data = new FormData();
+
+  //   data.append('file', files[0]);
+
+  //   setImageLoading(true);
+
+  //   // const response = await fetch()
+  // };
 
   const { loading, error, data } = useQuery(ME_QUERY);
 
@@ -60,14 +84,6 @@ const UpdateProfile: React.FC = () => {
   //   website: Yup.string().required('Website required'),
   // });
 
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
   return (
     <Container>
       <button type="button" onClick={openModal}>
@@ -80,6 +96,33 @@ const UpdateProfile: React.FC = () => {
         contentLabel="Modal"
         ariaHideApp={false}
       >
+        {/* <input
+          name="file"
+          type="file"
+          placeholder="Adicionar foto"
+          onChange={updateImage}
+          ref={inputFile}
+        />
+
+        {imageLoading ? (
+          <h3>Loading...</h3>
+        ) : (
+          <>
+            {data.me.profile[0].avatar ? (
+              <span onClick={() => inputFile.current.click()}>
+                <img
+                  src={data.me.profile[0].avatar}
+                  alt={`${data.me.profile[0].name}' avatar`}
+                />
+              </span>
+            ) : (
+              <span onClick={() => inputFile.current.click()}>
+                <FiUser size="26" color="#1a91da" />
+              </span>
+            )}
+          </>
+        )} */}
+
         <Formik
           initialValues={initialValues}
           // validationSchema={validationSchema}

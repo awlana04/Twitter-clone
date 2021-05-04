@@ -48,7 +48,14 @@ const Profile: React.FC = () => {
           </ProfileHeader>
 
           <Avatar>
-            <FiUser size="64" color="#1a91da" />
+            {data.me.profile[0].avatar ? (
+              <img
+                src={data.me.profile[0].avatar}
+                alt={`${data.me.profile[0].name}' avatar`}
+              />
+            ) : (
+              <FiUser size="64" color="#1a91da" />
+            )}
           </Avatar>
 
           <MakeProfile>
