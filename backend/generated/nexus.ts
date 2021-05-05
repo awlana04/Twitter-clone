@@ -77,11 +77,10 @@ export interface NexusGenObjects {
     user?: NexusGenRootTypes['User'] | null; // User
   }
   AvatarUpload: { // root type
+    avatar?: NexusGenScalars['Upload'] | null; // Upload
     createdAt: NexusGenScalars['DateTime']; // DateTime!
-    filename?: string | null; // String
     id: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
-    uri?: string | null; // String
   }
   Mutation: {};
   Profile: { // root type
@@ -122,12 +121,11 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User'] | null; // User
   }
   AvatarUpload: { // field return type
+    avatar: NexusGenScalars['Upload'] | null; // Upload
     createdAt: NexusGenScalars['DateTime']; // DateTime!
-    filename: string | null; // String
     id: string; // String!
     profile: NexusGenRootTypes['Profile'] | null; // Profile
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
-    uri: string | null; // String
   }
   Mutation: { // field return type
     createProfile: NexusGenRootTypes['Profile'] | null; // Profile
@@ -172,12 +170,11 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
   }
   AvatarUpload: { // field return type name
+    avatar: 'Upload'
     createdAt: 'DateTime'
-    filename: 'String'
     id: 'String'
     profile: 'Profile'
     updatedAt: 'DateTime'
-    uri: 'String'
   }
   Mutation: { // field return type name
     createProfile: 'Profile'
@@ -242,7 +239,7 @@ export interface NexusGenArgTypes {
       website?: string | null; // String
     }
     uploadAvatar: { // args
-      filename?: NexusGenScalars['Upload'] | null; // Upload
+      avatar?: NexusGenScalars['Upload'] | null; // Upload
     }
   }
   Profile: {

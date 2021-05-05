@@ -8,12 +8,11 @@ type AuthPayload {
 }
 
 type AvatarUpload {
+  avatar: Upload
   createdAt: DateTime!
-  filename: String
   id: String!
   profile: Profile
   updatedAt: DateTime!
-  uri: String
 }
 
 input AvatarUploadWhereUniqueInput {
@@ -31,7 +30,7 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload
   signup(email: String!, password: String!): AuthPayload
   updateProfile(bio: String, id: String, location: String, name: String, website: String): Profile
-  uploadAvatar(filename: Upload): AvatarUpload
+  uploadAvatar(avatar: Upload): AvatarUpload
 }
 
 type Profile {

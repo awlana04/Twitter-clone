@@ -2,9 +2,31 @@ import { nonNull, objectType, stringArg, arg } from 'nexus';
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import fs from 'fs';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Context } from '../../context';
 import { getUserId, APP_SECRET } from '../../utils/getUserId';
+
+const storeUpload = async ({ stream, filename }: any): Promise<any> => {
+  const uploadDir = '../../../tmp';
+  const id = uuidv4();
+  const path = `${uploadDir}/${uuidv4}-${filename}`;
+
+  return new Promise((resolve, reject) =>
+    stream
+      .pipe(fs.createWriteStream(path))
+      .on('finish', () => resolve({ id, path }))
+      .on('error', reject),
+  )
+}
+
+const processUpload = async (upload: any) => {
+  const { createReadStream, filename, mimetype, encoding } = await upload;
+  const stream = createReadStream();
+  const { id, path } = await storeUpload({ stream, filename });
+
+  return { id, path };
+}
 
 export const Mutation = objectType({
   name: 'Mutation',
@@ -115,51 +137,21 @@ export const Mutation = objectType({
       }
     })
 
+    t.field('uploadAvatar', {
+      type: 'AvatarUpload',
+      args: {
+        avatar: arg({ type: 'Upload' }),
+      },
+      resolve: async (_, { avatar }, context: Context) => {
+        const avatarUrl = await processUpload(avatar);
 
-    // t.field('uploadAvatar', {
-    //   type: 'ImageUpload', // Or any other type that your resolver returns
-    //   args: {
-    //     avatar: arg({ type: 'Upload' }),
-    //   },
-    //   resolve: async (root, args, context) => {
-    //     const {
-    //       createReadStream,
-    //       filename,
-    //       mimetype,
-    //       encoding,
-    //     } = await args.avatar;
-    //     if (!filename) {
-    //       throw Error('Invalid file Stream')
-    //     }
-    //     const ext = filename.split('.').pop();
-    //     const buf = await readFS(createReadStream());
-    //     const fileParsed = parse(buf.toString());
-    //     const fileData = fileParsed.data;
-
-    //     console.log(fileData)
-    //     return fileData
-    //   },
-    // }),
-
-    // t.field('uploadAvatar', {
-    //   type: 'AvatarUpload',
-    //   args: {
-    //     filename: arg({ type: 'Upload' }),
-    //   },
-    //   resolve: async (parent, { filename, ...args }, context: Context) => {
-    //     const { createReadStream, filename, mimetype } = avatar;
-
-    //     const fileStream = createReadStream();
-
-    //     fileStream.pipe(fs.createWriteStream(`../../../tmp/${filename}`));
-
-    //     return context.prisma.avatarUpload.create({
-    //       data: {
-    //         ...args
-    //       }
-    //     });
-    //   }
-    // });
+        return context.prisma.avatarUpload.create({
+          data: {
+            avatar: avatarUrl as any,
+          }
+        })
+      }
+    })
 
     // t.field('incrementPostViewCount', {
     //   type: 'Post',

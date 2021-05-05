@@ -48,8 +48,7 @@ model Profile {
 model AvatarUpload {
   id String @id @default(uuid())
 
-  filename String?
-  uri      String?
+  avatar String?
 
   profileId String?  @unique @map("profile_id")
   profile   Profile? @relation(fields: [profileId], references: [id])
