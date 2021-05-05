@@ -9,6 +9,6 @@ export const Profile = objectType({
       t.model.location(),
       t.model.website(),
       t.model.user(),
-      t.model.imageUpload()
+      t.model.avatarUpload()
   }
 })

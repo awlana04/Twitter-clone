@@ -115,28 +115,51 @@ export const Mutation = objectType({
       }
     })
 
-    t.field('uploadAvatar', {
-      type: 'ImageUpload',
-      args: {
-        id: stringArg(),
-        avatar: stringArg(),
-      },
-      resolve: (parent, { id, avatar, ...args }, context: Context) => {
-        return context.prisma.imageUpload.create({
-          data: {
-            ...args,
-          }
-        })
-      }
-      // resolve: async (parent, { id, avatar, ...args }, context: Context) => {
 
-      // const { createReadStream, filename, mimetype } = avatar;
+    // t.field('uploadAvatar', {
+    //   type: 'ImageUpload', // Or any other type that your resolver returns
+    //   args: {
+    //     avatar: arg({ type: 'Upload' }),
+    //   },
+    //   resolve: async (root, args, context) => {
+    //     const {
+    //       createReadStream,
+    //       filename,
+    //       mimetype,
+    //       encoding,
+    //     } = await args.avatar;
+    //     if (!filename) {
+    //       throw Error('Invalid file Stream')
+    //     }
+    //     const ext = filename.split('.').pop();
+    //     const buf = await readFS(createReadStream());
+    //     const fileParsed = parse(buf.toString());
+    //     const fileData = fileParsed.data;
 
-      // const fileStream = createReadStream()
+    //     console.log(fileData)
+    //     return fileData
+    //   },
+    // }),
 
-      // fileStream.pipe(fs.createWriteStream(`../../../tmp/${filename}`));
-      // }
-    });
+    // t.field('uploadAvatar', {
+    //   type: 'AvatarUpload',
+    //   args: {
+    //     filename: arg({ type: 'Upload' }),
+    //   },
+    //   resolve: async (parent, { filename, ...args }, context: Context) => {
+    //     const { createReadStream, filename, mimetype } = avatar;
+
+    //     const fileStream = createReadStream();
+
+    //     fileStream.pipe(fs.createWriteStream(`../../../tmp/${filename}`));
+
+    //     return context.prisma.avatarUpload.create({
+    //       data: {
+    //         ...args
+    //       }
+    //     });
+    //   }
+    // });
 
     // t.field('incrementPostViewCount', {
     //   type: 'Post',

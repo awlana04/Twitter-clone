@@ -34,7 +34,7 @@ model Profile {
   location String?
   website  String?
 
-  imageUpload ImageUpload[]
+  avatarUpload AvatarUpload[]
 
   userId String? @unique @map("user_id")
   user   User?   @relation(fields: [userId], references: [id])
@@ -45,11 +45,11 @@ model Profile {
   @@map("profiles")
 }
 
-model ImageUpload {
+model AvatarUpload {
   id String @id @default(uuid())
 
-  avatar          String?
-  backgroundCover String? @map("background_cover")
+  filename String?
+  uri      String?
 
   profileId String?  @unique @map("profile_id")
   profile   Profile? @relation(fields: [profileId], references: [id])

@@ -45,7 +45,7 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  ImageUploadWhereUniqueInput: { // input type
+  AvatarUploadWhereUniqueInput: { // input type
     id?: string | null; // String
     profileId?: string | null; // String
   }
@@ -76,12 +76,12 @@ export interface NexusGenObjects {
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
   }
-  ImageUpload: { // root type
-    avatar?: NexusGenScalars['Upload'] | null; // Upload
-    backgroundCover?: NexusGenScalars['Upload'] | null; // Upload
+  AvatarUpload: { // root type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
+    filename?: string | null; // String
     id: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    uri?: string | null; // String
   }
   Mutation: {};
   Profile: { // root type
@@ -121,25 +121,25 @@ export interface NexusGenFieldTypes {
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
   }
-  ImageUpload: { // field return type
-    avatar: NexusGenScalars['Upload'] | null; // Upload
-    backgroundCover: NexusGenScalars['Upload'] | null; // Upload
+  AvatarUpload: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
+    filename: string | null; // String
     id: string; // String!
     profile: NexusGenRootTypes['Profile'] | null; // Profile
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    uri: string | null; // String
   }
   Mutation: { // field return type
     createProfile: NexusGenRootTypes['Profile'] | null; // Profile
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     updateProfile: NexusGenRootTypes['Profile'] | null; // Profile
-    uploadAvatar: NexusGenScalars['Upload'] | null; // Upload
+    uploadAvatar: NexusGenRootTypes['AvatarUpload'] | null; // AvatarUpload
   }
   Profile: { // field return type
+    avatarUpload: NexusGenRootTypes['AvatarUpload'][]; // [AvatarUpload!]!
     bio: string | null; // String
     id: string; // String!
-    imageUpload: NexusGenRootTypes['ImageUpload'][]; // [ImageUpload!]!
     location: string | null; // String
     name: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
@@ -171,25 +171,25 @@ export interface NexusGenFieldTypeNames {
     token: 'String'
     user: 'User'
   }
-  ImageUpload: { // field return type name
-    avatar: 'Upload'
-    backgroundCover: 'Upload'
+  AvatarUpload: { // field return type name
     createdAt: 'DateTime'
+    filename: 'String'
     id: 'String'
     profile: 'Profile'
     updatedAt: 'DateTime'
+    uri: 'String'
   }
   Mutation: { // field return type name
     createProfile: 'Profile'
     login: 'AuthPayload'
     signup: 'AuthPayload'
     updateProfile: 'Profile'
-    uploadAvatar: 'Upload'
+    uploadAvatar: 'AvatarUpload'
   }
   Profile: { // field return type name
+    avatarUpload: 'AvatarUpload'
     bio: 'String'
     id: 'String'
-    imageUpload: 'ImageUpload'
     location: 'String'
     name: 'String'
     user: 'User'
@@ -242,14 +242,13 @@ export interface NexusGenArgTypes {
       website?: string | null; // String
     }
     uploadAvatar: { // args
-      avatar?: string | null; // String
-      id?: string | null; // String
+      filename?: NexusGenScalars['Upload'] | null; // Upload
     }
   }
   Profile: {
-    imageUpload: { // args
-      after?: NexusGenInputs['ImageUploadWhereUniqueInput'] | null; // ImageUploadWhereUniqueInput
-      before?: NexusGenInputs['ImageUploadWhereUniqueInput'] | null; // ImageUploadWhereUniqueInput
+    avatarUpload: { // args
+      after?: NexusGenInputs['AvatarUploadWhereUniqueInput'] | null; // AvatarUploadWhereUniqueInput
+      before?: NexusGenInputs['AvatarUploadWhereUniqueInput'] | null; // AvatarUploadWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
     }

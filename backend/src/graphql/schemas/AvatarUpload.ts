@@ -1,11 +1,11 @@
 import { objectType, } from 'nexus';
 
-export const ImageUpload = objectType({
-  name: 'ImageUpload',
+export const AvatarUpload = objectType({
+  name: 'AvatarUpload',
   definition(t) {
     t.model.id(),
-      t.upload('avatar'),
-      t.upload('backgroundCover'),
+      t.model.filename(),
+      t.model.uri(),
       t.model.profile(),
       t.model.createdAt(),
       t.model.updatedAt()
