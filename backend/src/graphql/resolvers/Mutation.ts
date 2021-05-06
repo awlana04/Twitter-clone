@@ -1,32 +1,33 @@
 import { nonNull, objectType, stringArg, arg } from 'nexus';
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { GraphQLUpload } from 'graphql-upload';
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 
 import { Context } from '../../context';
 import { getUserId, APP_SECRET } from '../../utils/getUserId';
 
-const storeUpload = async ({ stream, filename }: any): Promise<any> => {
-  const uploadDir = '../../../tmp';
-  const id = uuidv4();
-  const path = `${uploadDir}/${uuidv4}-${filename}`;
+// const storeUpload = async ({ stream, filename }: any): Promise<any> => {
+//   const uploadDir = '../../../tmp';
+//   const id = uuidv4();
+//   const path = `${uploadDir}/${uuidv4}-${filename}`;
 
-  return new Promise((resolve, reject) =>
-    stream
-      .pipe(fs.createWriteStream(path))
-      .on('finish', () => resolve({ id, path }))
-      .on('error', reject),
-  )
-}
+//   return new Promise((resolve, reject) =>
+//     stream
+//       .pipe(fs.createWriteStream(path))
+//       .on('finish', () => resolve({ id, path }))
+//       .on('error', reject),
+//   )
+// }
 
-const processUpload = async (upload: any) => {
-  const { createReadStream, filename, mimetype, encoding } = await upload;
-  const stream = createReadStream();
-  const { id, path } = await storeUpload({ stream, filename });
+// const processUpload = async (upload: any) => {
+//   const { createReadStream, filename, mimetype, encoding } = await upload;
+//   const stream = createReadStream();
+//   const { id, path } = await storeUpload({ stream, filename });
 
-  return { id, path };
-}
+//   return { id, path };
+// }
 
 export const Mutation = objectType({
   name: 'Mutation',
@@ -141,24 +142,46 @@ export const Mutation = objectType({
       type: 'AvatarUpload',
       args: {
         id: stringArg(),
-        avatar: arg({ type: 'Upload' }),
+        filename: stringArg(),
+        mimetype: stringArg(),
+        encoding: stringArg(),
+        AvatarUpload: arg({ type: GraphQLUpload }),
       },
-      resolve: async (_, { avatar }, context: Context) => {
+      resolve: async (_, { id, AvatarUpload, ...args }, context: Context) => {
         const userId = getUserId(context);
 
         if (!userId) {
           throw new Error('Could not authenticate user.');
         }
 
-        const avatarUrl = await processUpload(avatar);
+        const { filename, mimetype, createReadStream } = await AvatarUpload;
+        const stream = createReadStream();
+
+        stream.pipe(fs.createWriteStream(`../../../${filename}`));
 
         return context.prisma.avatarUpload.create({
           data: {
-            id: avatarUrl.id,
-            avatar: avatarUrl.path,
+            ...args,
             user: { connect: { id: String(userId) } }
           }
-        })
+        });
+        // const userId = getUserId(context);
+
+        // if (!userId) {
+        //   throw new Error('Could not authenticate user.');
+        // }
+
+        // const avatarUrl = await processUpload(avatar);
+
+        // console.log(avatarUrl.path);
+
+        // return context.prisma.avatarUpload.create({
+        //   data: {
+        //     id: avatarUrl.id,
+        //     avatar: avatarUrl.path,
+        //     user: { connect: { id: String(userId) } }
+        //   }
+        // })
       }
     })
 

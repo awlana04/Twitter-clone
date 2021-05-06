@@ -26,7 +26,9 @@ CREATE TABLE "profiles" (
 -- CreateTable
 CREATE TABLE "avatar_upload" (
     "id" TEXT NOT NULL,
-    "avatar" TEXT,
+    "filename" TEXT,
+    "mimetype" TEXT,
+    "encoding" TEXT,
     "user_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,

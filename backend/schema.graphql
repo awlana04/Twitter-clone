@@ -8,9 +8,11 @@ type AuthPayload {
 }
 
 type AvatarUpload {
-  avatar: Upload
   createdAt: DateTime!
+  encoding: String
+  filename: String
   id: String!
+  mimetype: String
   updatedAt: DateTime!
   user: User
 }
@@ -30,7 +32,7 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload
   signup(email: String!, password: String!): AuthPayload
   updateProfile(bio: String, id: String, location: String, name: String, website: String): Profile
-  uploadAvatar(avatar: Upload, id: String): AvatarUpload
+  uploadAvatar(AvatarUpload: Upload, encoding: String, filename: String, id: String, mimetype: String): AvatarUpload
 }
 
 type Profile {
@@ -64,6 +66,7 @@ input TweetWhereUniqueInput {
   id: String
 }
 
+"""The `Upload` scalar type represents a file upload."""
 scalar Upload
 
 type User {

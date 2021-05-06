@@ -8,7 +8,6 @@ import { Context } from "./../src/context"
 import { core, connectionPluginCore } from "nexus"
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
-    upload<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "Upload";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
@@ -17,7 +16,6 @@ declare global {
 }
 declare global {
   interface NexusGenCustomOutputMethods<TypeName extends string> {
-    upload<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Upload";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
@@ -77,9 +75,11 @@ export interface NexusGenObjects {
     user?: NexusGenRootTypes['User'] | null; // User
   }
   AvatarUpload: { // root type
-    avatar?: NexusGenScalars['Upload'] | null; // Upload
     createdAt: NexusGenScalars['DateTime']; // DateTime!
+    encoding?: string | null; // String
+    filename?: string | null; // String
     id: string; // String!
+    mimetype?: string | null; // String
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   Mutation: {};
@@ -121,9 +121,11 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User'] | null; // User
   }
   AvatarUpload: { // field return type
-    avatar: NexusGenScalars['Upload'] | null; // Upload
     createdAt: NexusGenScalars['DateTime']; // DateTime!
+    encoding: string | null; // String
+    filename: string | null; // String
     id: string; // String!
+    mimetype: string | null; // String
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     user: NexusGenRootTypes['User'] | null; // User
   }
@@ -170,9 +172,11 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
   }
   AvatarUpload: { // field return type name
-    avatar: 'Upload'
     createdAt: 'DateTime'
+    encoding: 'String'
+    filename: 'String'
     id: 'String'
+    mimetype: 'String'
     updatedAt: 'DateTime'
     user: 'User'
   }
@@ -239,8 +243,11 @@ export interface NexusGenArgTypes {
       website?: string | null; // String
     }
     uploadAvatar: { // args
-      avatar?: NexusGenScalars['Upload'] | null; // Upload
+      AvatarUpload?: NexusGenScalars['Upload'] | null; // Upload
+      encoding?: string | null; // String
+      filename?: string | null; // String
       id?: string | null; // String
+      mimetype?: string | null; // String
     }
   }
   User: {
