@@ -47,7 +47,7 @@ declare global {
 export interface NexusGenInputs {
   AvatarUploadWhereUniqueInput: { // input type
     id?: string | null; // String
-    profileId?: string | null; // String
+    userId?: string | null; // String
   }
   ProfileWhereUniqueInput: { // input type
     id?: string | null; // String
@@ -124,8 +124,8 @@ export interface NexusGenFieldTypes {
     avatar: NexusGenScalars['Upload'] | null; // Upload
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
-    profile: NexusGenRootTypes['Profile'] | null; // Profile
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User'] | null; // User
   }
   Mutation: { // field return type
     createProfile: NexusGenRootTypes['Profile'] | null; // Profile
@@ -135,7 +135,6 @@ export interface NexusGenFieldTypes {
     uploadAvatar: NexusGenRootTypes['AvatarUpload'] | null; // AvatarUpload
   }
   Profile: { // field return type
-    avatarUpload: NexusGenRootTypes['AvatarUpload'][]; // [AvatarUpload!]!
     bio: string | null; // String
     id: string; // String!
     location: string | null; // String
@@ -155,6 +154,7 @@ export interface NexusGenFieldTypes {
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   User: { // field return type
+    avatar: NexusGenRootTypes['AvatarUpload'][]; // [AvatarUpload!]!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     email: string; // String!
     id: string; // String!
@@ -173,8 +173,8 @@ export interface NexusGenFieldTypeNames {
     avatar: 'Upload'
     createdAt: 'DateTime'
     id: 'String'
-    profile: 'Profile'
     updatedAt: 'DateTime'
+    user: 'User'
   }
   Mutation: { // field return type name
     createProfile: 'Profile'
@@ -184,7 +184,6 @@ export interface NexusGenFieldTypeNames {
     uploadAvatar: 'AvatarUpload'
   }
   Profile: { // field return type name
-    avatarUpload: 'AvatarUpload'
     bio: 'String'
     id: 'String'
     location: 'String'
@@ -204,6 +203,7 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'DateTime'
   }
   User: { // field return type name
+    avatar: 'AvatarUpload'
     createdAt: 'DateTime'
     email: 'String'
     id: 'String'
@@ -240,17 +240,16 @@ export interface NexusGenArgTypes {
     }
     uploadAvatar: { // args
       avatar?: NexusGenScalars['Upload'] | null; // Upload
+      id?: string | null; // String
     }
   }
-  Profile: {
-    avatarUpload: { // args
+  User: {
+    avatar: { // args
       after?: NexusGenInputs['AvatarUploadWhereUniqueInput'] | null; // AvatarUploadWhereUniqueInput
       before?: NexusGenInputs['AvatarUploadWhereUniqueInput'] | null; // AvatarUploadWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
     }
-  }
-  User: {
     profile: { // args
       after?: NexusGenInputs['ProfileWhereUniqueInput'] | null; // ProfileWhereUniqueInput
       before?: NexusGenInputs['ProfileWhereUniqueInput'] | null; // ProfileWhereUniqueInput

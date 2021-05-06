@@ -24,10 +24,10 @@ CREATE TABLE "profiles" (
 );
 
 -- CreateTable
-CREATE TABLE "image_upload" (
+CREATE TABLE "avatar_upload" (
     "id" TEXT NOT NULL,
     "avatar" TEXT,
-    "profile_id" TEXT,
+    "user_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -52,13 +52,13 @@ CREATE UNIQUE INDEX "users.email_unique" ON "users"("email");
 CREATE UNIQUE INDEX "profiles.user_id_unique" ON "profiles"("user_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "image_upload.profile_id_unique" ON "image_upload"("profile_id");
+CREATE UNIQUE INDEX "avatar_upload.user_id_unique" ON "avatar_upload"("user_id");
 
 -- AddForeignKey
 ALTER TABLE "profiles" ADD FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "image_upload" ADD FOREIGN KEY ("profile_id") REFERENCES "profiles"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "avatar_upload" ADD FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "tweets" ADD FOREIGN KEY ("author_id") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;

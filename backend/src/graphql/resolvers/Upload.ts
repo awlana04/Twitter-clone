@@ -17,6 +17,8 @@ export const Upload = scalarType({
       throw new GraphQLError('Mime type does not match file content.');
     }
 
+    console.log(upload);
+
     return upload;
   },
   parseLiteral: (ast) => {

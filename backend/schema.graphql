@@ -11,13 +11,13 @@ type AvatarUpload {
   avatar: Upload
   createdAt: DateTime!
   id: String!
-  profile: Profile
   updatedAt: DateTime!
+  user: User
 }
 
 input AvatarUploadWhereUniqueInput {
   id: String
-  profileId: String
+  userId: String
 }
 
 """
@@ -30,11 +30,10 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload
   signup(email: String!, password: String!): AuthPayload
   updateProfile(bio: String, id: String, location: String, name: String, website: String): Profile
-  uploadAvatar(avatar: Upload): AvatarUpload
+  uploadAvatar(avatar: Upload, id: String): AvatarUpload
 }
 
 type Profile {
-  avatarUpload(after: AvatarUploadWhereUniqueInput, before: AvatarUploadWhereUniqueInput, first: Int, last: Int): [AvatarUpload!]!
   bio: String
   id: String!
   location: String
@@ -68,6 +67,7 @@ input TweetWhereUniqueInput {
 scalar Upload
 
 type User {
+  avatar(after: AvatarUploadWhereUniqueInput, before: AvatarUploadWhereUniqueInput, first: Int, last: Int): [AvatarUpload!]!
   createdAt: DateTime!
   email: String!
   id: String!

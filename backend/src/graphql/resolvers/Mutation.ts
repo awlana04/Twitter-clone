@@ -1,8 +1,8 @@
 import { nonNull, objectType, stringArg, arg } from 'nexus';
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
+import fs from 'fs';
 
 import { Context } from '../../context';
 import { getUserId, APP_SECRET } from '../../utils/getUserId';
@@ -140,14 +140,23 @@ export const Mutation = objectType({
     t.field('uploadAvatar', {
       type: 'AvatarUpload',
       args: {
+        id: stringArg(),
         avatar: arg({ type: 'Upload' }),
       },
       resolve: async (_, { avatar }, context: Context) => {
+        const userId = getUserId(context);
+
+        if (!userId) {
+          throw new Error('Could not authenticate user.');
+        }
+
         const avatarUrl = await processUpload(avatar);
 
         return context.prisma.avatarUpload.create({
           data: {
-            avatar: avatarUrl as any,
+            id: avatarUrl.id,
+            avatar: avatarUrl.path,
+            user: { connect: { id: String(userId) } }
           }
         })
       }

@@ -19,6 +19,7 @@ model User {
 
   tweets  Tweet[]
   profile Profile[]
+  avatar  AvatarUpload[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -34,8 +35,6 @@ model Profile {
   location String?
   website  String?
 
-  avatarUpload AvatarUpload[]
-
   userId String? @unique @map("user_id")
   user   User?   @relation(fields: [userId], references: [id])
 
@@ -50,13 +49,13 @@ model AvatarUpload {
 
   avatar String?
 
-  profileId String?  @unique @map("profile_id")
-  profile   Profile? @relation(fields: [profileId], references: [id])
+  userId String? @unique @map("user_id")
+  user   User?   @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("image_upload")
+  @@map("avatar_upload")
 }
 
 model Tweet {

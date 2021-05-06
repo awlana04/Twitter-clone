@@ -8,7 +8,6 @@ export const Profile = objectType({
       t.model.bio(),
       t.model.location(),
       t.model.website(),
-      t.model.user(),
-      t.model.avatarUpload()
+      t.model.user()
   }
 })
