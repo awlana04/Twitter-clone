@@ -42,6 +42,11 @@ export const StyledModal = styled(Modal)`
   align-items: center;
   justify-content: center;
 
+  img {
+    width: 25px;
+    height: 25px;
+  }
+
   input {
     width: 30rem;
     margin-bottom: 24px;

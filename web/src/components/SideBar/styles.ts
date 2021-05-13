@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-top: 26px;
-  margin-left: 48px;
+  margin-top: 22px;
+  margin-left: 68px;
 
   font-size: 14px;
 
   img {
-    width: 34px;
-    margin-bottom: 32px;
+    width: 28px;
+    margin-bottom: 28px;
 
     display: block;
   }
@@ -36,8 +36,15 @@ export const Navigation = styled.div`
     width: 200px;
     height: 25px;
 
+    display: flex;
+    flex-direction: row;
+
     &:hover {
       color: #1da1f2;
+    }
+
+    span {
+      margin-top: 2px;
     }
   }
 `;

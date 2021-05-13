@@ -28,17 +28,19 @@ export const ProfileHeader = styled.div`
 `;
 
 export const Avatar = styled.div`
-  width: 100px;
-  height: 100px;
-  margin-top: 126px;
-  margin-left: 24px;
+  img {
+    width: 156px;
+    height: 156px;
+    margin-top: 116px;
 
-  border-radius: 50%;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+  }
 `;
 
 export const MakeProfile = styled.div`
-  width: 600px;
-  margin-top: -26px;
+  width: 544px;
+  margin-top: -66px;
   margin-bottom: 26px;
 
   display: grid;
