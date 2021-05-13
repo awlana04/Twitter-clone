@@ -17,6 +17,8 @@ export const ProfileContent = styled.div`
 export const ProfileInfo = styled.div``;
 
 export const ProfileHeader = styled.div`
+  margin-top: 36px;
+
   span {
     margin-left: 22px;
 

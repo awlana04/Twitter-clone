@@ -4,6 +4,7 @@ export const Profile = objectType({
   name: 'Profile',
   definition(t) {
     t.model.id(),
+      t.model.avatar(),
       t.model.name(),
       t.model.bio(),
       t.model.location(),

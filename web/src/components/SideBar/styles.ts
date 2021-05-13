@@ -32,8 +32,13 @@ export const Logo = styled.div``;
 export const Navigation = styled.div`
   transition: 0.4s;
 
-  h2:hover {
-    color: #1da1f2;
+  h2 {
+    width: 200px;
+    height: 25px;
+
+    &:hover {
+      color: #1da1f2;
+    }
   }
 `;
 

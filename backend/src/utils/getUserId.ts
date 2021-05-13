@@ -2,8 +2,6 @@ import { verify } from 'jsonwebtoken';
 
 import { Context } from '../context';
 
-export const APP_SECRET = 'appsecret321';
-
 interface Token {
   userId: string;
 };
@@ -13,7 +11,10 @@ export function getUserId(context: Context) {
 
   if (authHeader) {
     const token = authHeader.replace('Bearer ', '');
-    const verifiedToken = verify(token, APP_SECRET) as Token;
+    const verifiedToken = verify(
+      token,
+      process.env.APP_SECRET as string
+    ) as Token;
 
     return verifiedToken && String(verifiedToken.userId);
   };

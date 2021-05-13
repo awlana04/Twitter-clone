@@ -71,6 +71,7 @@ export interface NexusGenObjects {
   }
   Mutation: {};
   Profile: { // root type
+    avatar?: string | null; // String
     bio?: string | null; // String
     id: string; // String!
     location?: string | null; // String
@@ -114,6 +115,7 @@ export interface NexusGenFieldTypes {
     updateProfile: NexusGenRootTypes['Profile'] | null; // Profile
   }
   Profile: { // field return type
+    avatar: string | null; // String
     bio: string | null; // String
     id: string; // String!
     location: string | null; // String
@@ -154,6 +156,7 @@ export interface NexusGenFieldTypeNames {
     updateProfile: 'Profile'
   }
   Profile: { // field return type name
+    avatar: 'String'
     bio: 'String'
     id: 'String'
     location: 'String'
@@ -201,6 +204,7 @@ export interface NexusGenArgTypes {
       password: string; // String!
     }
     updateProfile: { // args
+      avatar?: string | null; // String
       bio?: string | null; // String
       id?: string | null; // String
       location?: string | null; // String

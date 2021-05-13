@@ -9,7 +9,7 @@ const UPDATE_PROFILE_MUTATION = gql`
     $location: String
     $website: String
   ) {
-    createProfile(
+    updateProfile(
       id: $id
       avatar: $avatar
       name: $name

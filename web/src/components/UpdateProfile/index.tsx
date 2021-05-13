@@ -21,7 +21,7 @@ interface ProfileValues {
 }
 
 const UpdateProfile: React.FC = () => {
-  const inputFile = useRef(null);
+  const inputFile = useRef<HTMLInputElement | null>(null);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [image, setImage] = useState('');
@@ -35,16 +35,28 @@ const UpdateProfile: React.FC = () => {
     setModalIsOpen(false);
   };
 
-  // const updateImage = async (e) => {
-  //   const files = e.target.files;
-  //   const data = new FormData();
+  const updateImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files!;
+    const data = new FormData();
 
-  //   data.append('file', files[0]);
+    data.append('file', files[0]);
+    data.append('upload_preset', 'l3e3ee55');
 
-  //   setImageLoading(true);
+    setImageLoading(true);
 
-  //   // const response = await fetch()
-  // };
+    const response = await fetch(
+      process.env.REACT_APP_CLOUDINARY_API_URL as string,
+      {
+        method: 'POST',
+        body: data,
+      },
+    );
+
+    const file = await response.json();
+
+    setImage(file.secure_url);
+    setImageLoading(false);
+  };
 
   const { loading, error, data } = useQuery(ME_QUERY);
 
@@ -96,12 +108,13 @@ const UpdateProfile: React.FC = () => {
         contentLabel="Modal"
         ariaHideApp={false}
       >
-        {/* <input
+        <input
           name="file"
           type="file"
           placeholder="Adicionar foto"
           onChange={updateImage}
           ref={inputFile}
+          style={{ display: 'none' }}
         />
 
         {imageLoading ? (
@@ -109,19 +122,24 @@ const UpdateProfile: React.FC = () => {
         ) : (
           <>
             {data.me.profile[0].avatar ? (
-              <span onClick={() => inputFile.current.click()}>
-                <img
-                  src={data.me.profile[0].avatar}
-                  alt={`${data.me.profile[0].name}' avatar`}
-                />
-              </span>
+              <button type="button" onClick={() => inputFile.current?.click()}>
+                <span>
+                  <img
+                    src={data.me.profile[0].avatar}
+                    alt={`${data.me.profile[0].name}' avatar`}
+                    style={{ width: '25px', height: '25px' }}
+                  />
+                </span>
+              </button>
             ) : (
-              <span onClick={() => inputFile.current.click()}>
-                <FiUser size="26" color="#1a91da" />
-              </span>
+              <button type="button" onClick={() => inputFile.current?.click()}>
+                <span>
+                  <FiUser size="26" color="#1a91da" />
+                </span>
+              </button>
             )}
           </>
-        )} */}
+        )}
 
         <Formik
           initialValues={initialValues}
@@ -130,7 +148,7 @@ const UpdateProfile: React.FC = () => {
             setSubmitting(true);
 
             await updateProfile({
-              variables: values,
+              variables: { ...values, avatar: image },
             });
 
             setSubmitting(false);

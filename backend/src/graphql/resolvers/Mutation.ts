@@ -1,33 +1,9 @@
-import { nonNull, objectType, stringArg, arg } from 'nexus';
+import { nonNull, objectType, stringArg } from 'nexus';
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import { v4 as uuidv4 } from 'uuid';
-import fs from 'fs';
 
 import { Context } from '../../context';
-import { getUserId, APP_SECRET } from '../../utils/getUserId';
-import { Upload } from './Upload';
-
-// const storeUpload = async ({ stream, filename }: any): Promise<any> => {
-//   const uploadDir = '../../../tmp';
-//   const id = uuidv4();
-//   const path = `${uploadDir}/${uuidv4}-${filename}`;
-
-//   return new Promise((resolve, reject) =>
-//     stream
-//       .pipe(fs.createWriteStream(path))
-//       .on('finish', () => resolve({ id, path }))
-//       .on('error', reject),
-//   )
-// }
-
-// const processUpload = async (upload: any) => {
-//   const { createReadStream, filename, mimetype, encoding } = await upload;
-//   const stream = createReadStream();
-//   const { id, path } = await storeUpload({ stream, filename });
-
-//   return { id, path };
-// }
+import { getUserId } from '../../utils/getUserId';
 
 export const Mutation = objectType({
   name: 'Mutation',
@@ -49,7 +25,7 @@ export const Mutation = objectType({
         })
 
         return {
-          token: sign({ userId: user.id }, APP_SECRET),
+          token: sign({ userId: user.id }, process.env.APP_SECRET as string),
           user,
         }
       },
@@ -79,7 +55,7 @@ export const Mutation = objectType({
         }
 
         return {
-          token: sign({ userId: user.id }, APP_SECRET),
+          token: sign({ userId: user.id }, process.env.APP_SECRET as string),
           user,
         }
       },
@@ -115,6 +91,7 @@ export const Mutation = objectType({
       type: 'Profile',
       args: {
         id: stringArg(),
+        avatar: stringArg(),
         name: stringArg(),
         bio: stringArg(),
         location: stringArg(),

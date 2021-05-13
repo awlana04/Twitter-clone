@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, HttpLink, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 import { setContext } from 'apollo-link-context';
 
-const httpLink = new HttpLink({ uri: 'http://localhost:4000' });
+const httpLink = new HttpLink({ uri: process.env.REACT_APP_BACKEND_URI });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)

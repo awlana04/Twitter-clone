@@ -52,6 +52,7 @@ const Profile: React.FC = () => {
               <img
                 src={data.me.profile[0].avatar}
                 alt={`${data.me.profile[0].name}' avatar`}
+                style={{ width: '150px', borderRadius: '50%' }}
               />
             ) : (
               <FiUser size="64" color="#1a91da" />
