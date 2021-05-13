@@ -2,15 +2,13 @@ import { makeSchema, asNexusMethod, connectionPlugin } from 'nexus';
 import { nexusPrisma } from 'nexus-plugin-prisma';
 import { applyMiddleware } from 'graphql-middleware';
 import { DateTimeResolver } from 'graphql-scalars';
+import path from 'path';
 
 import { permissions } from '../config/permissions';
 
 import { User } from './schemas/User';
 import { Profile } from './schemas/Profile';
-import { AvatarUpload } from './schemas/AvatarUpload';
 import { Tweet } from './schemas/Tweet';
-
-import { Upload } from './resolvers/Upload';
 
 import { Query } from './resolvers/Query';
 import { Mutation } from './resolvers/Mutation';
@@ -22,8 +20,6 @@ export const schemaWithoutPermissions = makeSchema({
   types: [
     User,
     Profile,
-    AvatarUpload,
-    Upload,
     Tweet,
     Query,
     Mutation,
@@ -31,8 +27,8 @@ export const schemaWithoutPermissions = makeSchema({
     DateTime,
   ],
   outputs: {
-    schema: __dirname + '../../../schema.graphql',
-    typegen: __dirname + '../../../generated/nexus.ts',
+    schema: path.join(__dirname, '..', '..', 'schema.graphql'),
+    typegen: path.join(__dirname, '..', '..', 'generated', 'nexus.ts'),
   },
   plugins: [nexusPrisma({ experimentalCRUD: true }), connectionPlugin()],
   contextType: {

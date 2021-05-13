@@ -1,12 +1,12 @@
 import { nonNull, objectType, stringArg, arg } from 'nexus';
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import { GraphQLUpload } from 'graphql-upload';
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 
 import { Context } from '../../context';
 import { getUserId, APP_SECRET } from '../../utils/getUserId';
+import { Upload } from './Upload';
 
 // const storeUpload = async ({ stream, filename }: any): Promise<any> => {
 //   const uploadDir = '../../../tmp';
@@ -135,53 +135,6 @@ export const Mutation = objectType({
             id: String(id),
           }
         })
-      }
-    })
-
-    t.field('uploadAvatar', {
-      type: 'AvatarUpload',
-      args: {
-        id: stringArg(),
-        filename: stringArg(),
-        mimetype: stringArg(),
-        encoding: stringArg(),
-        AvatarUpload: arg({ type: GraphQLUpload }),
-      },
-      resolve: async (_, { id, AvatarUpload, ...args }, context: Context) => {
-        const userId = getUserId(context);
-
-        if (!userId) {
-          throw new Error('Could not authenticate user.');
-        }
-
-        const { filename, mimetype, createReadStream } = await AvatarUpload;
-        const stream = createReadStream();
-
-        stream.pipe(fs.createWriteStream(`../../../${filename}`));
-
-        return context.prisma.avatarUpload.create({
-          data: {
-            ...args,
-            user: { connect: { id: String(userId) } }
-          }
-        });
-        // const userId = getUserId(context);
-
-        // if (!userId) {
-        //   throw new Error('Could not authenticate user.');
-        // }
-
-        // const avatarUrl = await processUpload(avatar);
-
-        // console.log(avatarUrl.path);
-
-        // return context.prisma.avatarUpload.create({
-        //   data: {
-        //     id: avatarUrl.id,
-        //     avatar: avatarUrl.path,
-        //     user: { connect: { id: String(userId) } }
-        //   }
-        // })
       }
     })
 

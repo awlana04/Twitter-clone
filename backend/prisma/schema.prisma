@@ -19,7 +19,6 @@ model User {
 
   tweets  Tweet[]
   profile Profile[]
-  avatar  AvatarUpload[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -42,22 +41,6 @@ model Profile {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("profiles")
-}
-
-model AvatarUpload {
-  id String @id @default(uuid())
-
-  filename String?
-  mimetype String?
-  encoding String?
-
-  userId String? @unique @map("user_id")
-  user   User?   @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@map("avatar_upload")
 }
 
 model Tweet {
