@@ -19,6 +19,7 @@ import {
   Messages,
   Notifications,
   More,
+  TweetButton,
 } from './styles';
 
 const SideBar: React.FC = () => (
@@ -75,6 +76,10 @@ const SideBar: React.FC = () => (
         </Link>
       </More>
     </Navigation>
+
+    <TweetButton>
+      <h3>Tweet</h3>
+    </TweetButton>
   </Container>
 );
 

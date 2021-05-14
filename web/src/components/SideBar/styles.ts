@@ -58,3 +58,23 @@ export const Messages = styled.div``;
 export const Notifications = styled.div``;
 
 export const More = styled.div``;
+
+export const TweetButton = styled.button`
+  width: 244px;
+  height: 50px;
+  margin-left: -15px;
+
+  background: #1da1f2;
+  border-radius: 25px;
+
+  transition: 0.4s;
+
+  &:hover {
+    background: #1a91da;
+  }
+
+  h3 {
+    color: #ffffff;
+    font-size: 16px;
+  }
+`;
