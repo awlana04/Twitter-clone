@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
+import { FiX } from 'react-icons/fi';
 
 import CREATE_TWEET_MUTATION from '../../schemas/Mutations/CreateTweet';
 import ME_QUERY from '../../schemas/Queries/Me';
@@ -43,8 +44,15 @@ const Tweet: React.FC = () => {
   }
 
   const initialValues: TweetValues = {
-    content: data.me.tweet[0].content,
+    content: data.tweet[0].content,
   };
+
+  const validationSchema = Yup.object({
+    content: Yup.string()
+      .required()
+      .min(1, 'Must be more than 1 character')
+      .max(256, 'Must be less 257 characters'),
+  });
 
   return (
     <Container>
@@ -56,7 +64,7 @@ const Tweet: React.FC = () => {
       >
         <Formik
           initialValues={initialValues}
-          // validationSchema={validationSchema}
+          validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
 
@@ -68,10 +76,15 @@ const Tweet: React.FC = () => {
             setModalIsOpen(false);
           }}
         >
+          <span>
+            <FiX size="22" color="#1da1f2" />
+          </span>
+
           <Form>
             <Field
               name="content"
               type="text"
+              as="textarea"
               placeholder="O que está acontecendo?"
             />
             <ErrorMessage name="name" component="div" />

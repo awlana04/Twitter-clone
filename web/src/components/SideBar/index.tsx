@@ -10,6 +10,8 @@ import {
 
 import TwitterLogo from '../../assets/logo.png';
 
+import Tweet from '../Tweet';
+
 import {
   Container,
   Logo,
@@ -19,7 +21,7 @@ import {
   Messages,
   Notifications,
   More,
-  TweetButton,
+  // TweetButton,
 } from './styles';
 
 const SideBar: React.FC = () => (
@@ -77,9 +79,7 @@ const SideBar: React.FC = () => (
       </More>
     </Navigation>
 
-    <TweetButton>
-      <h3>Tweet</h3>
-    </TweetButton>
+    <Tweet />
   </Container>
 );
 

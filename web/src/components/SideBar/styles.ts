@@ -59,22 +59,22 @@ export const Notifications = styled.div``;
 
 export const More = styled.div``;
 
-export const TweetButton = styled.button`
-  width: 244px;
-  height: 50px;
-  margin-left: -15px;
+// export const TweetButton = styled.button`
+//   width: 244px;
+//   height: 50px;
+//   margin-left: -15px;
 
-  background: #1da1f2;
-  border-radius: 25px;
+//   background: #1da1f2;
+//   border-radius: 25px;
 
-  transition: 0.4s;
+//   transition: 0.4s;
 
-  &:hover {
-    background: #1a91da;
-  }
+//   &:hover {
+//     background: #1a91da;
+//   }
 
-  h3 {
-    color: #ffffff;
-    font-size: 16px;
-  }
-`;
+//   h3 {
+//     color: #ffffff;
+//     font-size: 16px;
+//   }
+// `;
