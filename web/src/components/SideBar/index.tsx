@@ -1,4 +1,5 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import {
   FiHome,
@@ -7,6 +8,8 @@ import {
   FiBell,
   FiMoreHorizontal,
 } from 'react-icons/fi';
+
+import ME_QUERY from '../../schemas/Queries/Me';
 
 import TwitterLogo from '../../assets/logo.png';
 
@@ -21,66 +24,94 @@ import {
   Messages,
   Notifications,
   More,
-  // TweetButton,
+  MoreOptions,
+  Avatar,
+  Name,
 } from './styles';
 
-const SideBar: React.FC = () => (
-  <Container>
-    <Logo>
-      <Link to="/">
-        <img src={TwitterLogo} alt="Home" />
-      </Link>
-    </Logo>
+const SideBar: React.FC = () => {
+  const { loading, error, data } = useQuery(ME_QUERY);
 
-    <Navigation>
-      <Home>
+  if (loading) {
+    return <p>loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+
+  return (
+    <Container>
+      <Logo>
         <Link to="/">
-          <h2>
-            <FiHome size="26" />
-            <span>Home</span>
-          </h2>
+          <img src={TwitterLogo} alt="Home" />
         </Link>
-      </Home>
+      </Logo>
 
-      <Profile>
-        <Link to="/users">
-          <h2>
-            <FiUser size="26" />
-            <span>Profile</span>
-          </h2>
-        </Link>
-      </Profile>
+      <Navigation>
+        <Home>
+          <Link to="/">
+            <h2>
+              <FiHome size="26" />
+              <span>Home</span>
+            </h2>
+          </Link>
+        </Home>
 
-      <Messages>
-        <Link to="/users">
-          <h2>
-            <FiMail size="26" />
-            <span>Messages</span>
-          </h2>
-        </Link>
-      </Messages>
+        <Profile>
+          <Link to="/users">
+            <h2>
+              <FiUser size="26" />
+              <span>Profile</span>
+            </h2>
+          </Link>
+        </Profile>
 
-      <Notifications>
-        <Link to="users">
-          <h2>
-            <FiBell size="26" />
-            <span>Notifications</span>
-          </h2>
-        </Link>
-      </Notifications>
+        <Messages>
+          <Link to="/users">
+            <h2>
+              <FiMail size="26" />
+              <span>Messages</span>
+            </h2>
+          </Link>
+        </Messages>
 
-      <More>
-        <Link to="users">
-          <h2>
-            <FiMoreHorizontal size="22" />
-            <span>More</span>
-          </h2>
-        </Link>
-      </More>
-    </Navigation>
+        <Notifications>
+          <Link to="users">
+            <h2>
+              <FiBell size="26" />
+              <span>Notifications</span>
+            </h2>
+          </Link>
+        </Notifications>
 
-    <Tweet />
-  </Container>
-);
+        <More>
+          <Link to="users">
+            <h2>
+              <FiMoreHorizontal size="22" />
+              <span>More</span>
+            </h2>
+          </Link>
+        </More>
+      </Navigation>
+
+      <Tweet />
+
+      <MoreOptions>
+        <Avatar>
+          <img
+            src={data.me.profile[0].avatar}
+            alt={`${data.me.profile[0].name}'s avatar`}
+          />
+        </Avatar>
+        <Name>
+          <h5>{data.me.profile[0].name}</h5>
+        </Name>
+
+        <FiMoreHorizontal size="22" />
+      </MoreOptions>
+    </Container>
+  );
+};
 
 export default SideBar;

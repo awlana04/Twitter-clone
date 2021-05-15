@@ -59,22 +59,40 @@ export const Notifications = styled.div``;
 
 export const More = styled.div``;
 
-// export const TweetButton = styled.button`
-//   width: 244px;
-//   height: 50px;
-//   margin-left: -15px;
+export const MoreOptions = styled.div`
+  width: 200px;
+  height: 64px;
+  margin-top: 44px;
 
-//   background: #1da1f2;
-//   border-radius: 25px;
+  background-color: #ffffff;
 
-//   transition: 0.4s;
+  cursor: pointer;
 
-//   &:hover {
-//     background: #1a91da;
-//   }
+  &:hover {
+    background-color: rgba(29, 161, 242, 0.5);
+  }
 
-//   h3 {
-//     color: #ffffff;
-//     font-size: 16px;
-//   }
-// `;
+  svg {
+    margin-left: 200px;
+  }
+`;
+
+export const Avatar = styled.div`
+  img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: -32px;
+
+    border-radius: 50%;
+  }
+`;
+
+export const Name = styled.div`
+  margin-left: 58px;
+  margin-bottom: -20px;
+
+  h5 {
+    font-size: 16px;
+    font-weight: 500;
+  }
+`;

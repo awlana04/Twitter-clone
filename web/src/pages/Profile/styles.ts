@@ -21,6 +21,7 @@ export const ProfileHeader = styled.div`
 
   display: flex;
   flex-direction: row;
+
   button {
     width: 36px;
     height: 36px;
