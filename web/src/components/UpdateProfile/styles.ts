@@ -32,7 +32,6 @@ export const StyledModal = styled(Modal)`
 
   background-color: #ffff;
 
-  border: 1px solid rgb(0, 0, 0, 0.2);
   border-radius: 25px;
 
   transform: translate(-50%, -50%);
@@ -41,6 +40,39 @@ export const StyledModal = styled(Modal)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  div {
+    max-width: 36em;
+    min-width: 33.9em;
+
+    border-bottom: 1.5px solid rgb(0, 0, 0, 0.4);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+
+    h5 {
+      width: 36px;
+      height: 36px;
+      margin: 8px 8px;
+
+      background-color: #ffffff;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      &:hover {
+        cursor: pointer;
+
+        background-color: rgba(29, 161, 242, 0.1);
+      }
+
+      svg {
+        margin: 7px;
+      }
+    }
+  }
 
   img {
     width: 25px;

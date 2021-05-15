@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { FiX } from 'react-icons/fi';
+import { FiX, FiUser } from 'react-icons/fi';
 
 import CREATE_TWEET_MUTATION from '../../schemas/Mutations/CreateTweet';
 import ME_QUERY from '../../schemas/Queries/Me';
@@ -44,7 +44,7 @@ const Tweet: React.FC = () => {
   }
 
   const initialValues: TweetValues = {
-    content: data.tweet[0].content,
+    content: '',
   };
 
   const validationSchema = Yup.object({
@@ -56,6 +56,10 @@ const Tweet: React.FC = () => {
 
   return (
     <Container>
+      <button type="button" onClick={openModal}>
+        <h3>Tweet</h3>
+      </button>
+
       <StyledModal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -76,11 +80,24 @@ const Tweet: React.FC = () => {
             setModalIsOpen(false);
           }}
         >
-          <span>
-            <FiX size="22" color="#1da1f2" />
-          </span>
-
           <Form>
+            <div>
+              <button type="button" onClick={closeModal}>
+                <h5>
+                  <FiX size="24" color="#1da1f2" />
+                </h5>
+              </button>
+            </div>
+
+            {data.me.profile[0].avatar ? (
+              <img
+                src={data.me.profile[0].avatar}
+                alt={`${data.me.profile[0].name}' avatar`}
+              />
+            ) : (
+              <FiUser size="64" color="#1a91da" />
+            )}
+
             <Field
               name="content"
               type="text"

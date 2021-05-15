@@ -13,6 +13,10 @@ const ME_QUERY = gql`
         location
         website
       }
+      tweets {
+        id
+        content
+      }
     }
   }
 `;

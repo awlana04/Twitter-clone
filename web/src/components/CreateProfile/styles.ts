@@ -30,8 +30,6 @@ export const StyledModal = styled(Modal)`
   margin-top: 22%;
   margin-left: 48%;
 
-  border: 1px solid rgb(0, 0, 0, 0.2);
-
   border-radius: 25px;
 
   transform: translate(-50%, -50%);

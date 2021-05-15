@@ -2,36 +2,23 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 
 export const Container = styled.div`
-  svg {
-    width: 50px;
-    height: 50px;
-
-    background-color: #ffffff;
-
-    border-radius: 50%;
-
-    &:hover {
-      background-color: rgba(29, 161, 242, 0.1);
-    }
-  }
-
   button {
-    width: 122px;
-    height: 42px;
+    width: 240px;
+    height: 50px;
+    margin-left: -15px;
 
-    border: 1px solid #1da1f2;
+    background: #1da1f2;
     border-radius: 25px;
-
-    color: #1da1f2;
-    font-size: 14px;
-    font-weight: 500;
-
-    letter-spacing: 0.7px;
 
     transition: 0.4s;
 
     &:hover {
-      background-color: rgba(29, 161, 242, 0.1);
+      background: #1a91da;
+    }
+
+    h3 {
+      color: #ffffff;
+      font-size: 16px;
     }
   }
 `;
@@ -39,36 +26,68 @@ export const Container = styled.div`
 export const StyledModal = styled(Modal)`
   max-width: 34em;
   min-width: 20em;
-  min-height: 32em;
-  margin-top: 22%;
+  min-height: 20em;
+  margin-top: 14%;
   margin-left: 48%;
 
   background-color: #ffff;
 
-  border: 1px solid rgb(0, 0, 0, 0.2);
   border-radius: 25px;
 
   transform: translate(-50%, -50%);
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  div {
+    max-width: 36em;
+    min-width: 33.9em;
 
-  /* img {
-    width: 25px;
-    height: 25px;
-  } */
+    border-bottom: 1.5px solid rgb(0, 0, 0, 0.4);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 
-  input {
-    width: 30rem;
-    margin-bottom: 24px;
-    padding: 18px 18px;
+    button {
+      width: 36px;
+      height: 36px;
+      margin: 8px 8px;
 
-    border: 1px solid rgb(0, 0, 0, 0.3);
-    border-radius: 5px;
+      background-color: #ffffff;
 
-    font-size: 16px;
-    font-weight: 400;
+      border-radius: 50%;
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      &:hover {
+        background-color: rgba(29, 161, 242, 0.1);
+      }
+
+      svg {
+        margin: 7px;
+      }
+    }
+  }
+
+  textarea {
+    max-width: 32em;
+    min-width: 24em;
+    min-height: 8em;
+    margin-left: 86px;
+
+    border: none;
+  }
+
+  img {
+    width: 52px;
+    height: 52px;
+    margin-top: 18px;
+    margin-left: 16px;
+    margin-bottom: -50px;
+
+    border-radius: 50%;
+  }
+
+  button {
+    width: 80px;
+    margin-left: 34em;
   }
 `;

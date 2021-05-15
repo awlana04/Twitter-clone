@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FiUser } from 'react-icons/fi';
-// import * as Yup from 'yup';
+import { FiUser, FiX } from 'react-icons/fi';
 
 import UPDATE_PROFILE_MUTATION from '../../schemas/Mutations/UpdateProfile';
 import ME_QUERY from '../../schemas/Queries/Me';
@@ -89,13 +88,6 @@ const UpdateProfile: React.FC = () => {
     website: data.me.profile[0].website,
   };
 
-  // const validationSchema = Yup.object({
-  //   name: Yup.string().required('Name required'),
-  //   bio: Yup.string().required('Bio required'),
-  //   location: Yup.string().required('Location required'),
-  //   website: Yup.string().required('Website required'),
-  // });
-
   return (
     <Container>
       <button type="button" onClick={openModal}>
@@ -117,6 +109,16 @@ const UpdateProfile: React.FC = () => {
           style={{ display: 'none' }}
         />
 
+        <>
+          <div>
+            <button type="button" onClick={closeModal}>
+              <h5>
+                <FiX size="24" color="#1da1f2" />
+              </h5>
+            </button>
+          </div>
+        </>
+
         {imageLoading ? (
           <h3>Loading...</h3>
         ) : (
@@ -127,7 +129,6 @@ const UpdateProfile: React.FC = () => {
                   <img
                     src={data.me.profile[0].avatar}
                     alt={`${data.me.profile[0].name}' avatar`}
-                    style={{ width: '25px', height: '25px' }}
                   />
                 </span>
               </button>
@@ -143,7 +144,6 @@ const UpdateProfile: React.FC = () => {
 
         <Formik
           initialValues={initialValues}
-          // validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
 
@@ -166,7 +166,7 @@ const UpdateProfile: React.FC = () => {
             <ErrorMessage name="website" component="div" />
 
             <Button>
-              <span>Atualizar perfil</span>
+              <span>Salvar</span>
             </Button>
           </Form>
         </Formik>
