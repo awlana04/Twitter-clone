@@ -25,6 +25,7 @@ import {
   Notifications,
   More,
   MoreOptions,
+  Content,
   Avatar,
   Name,
 } from './styles';
@@ -98,17 +99,19 @@ const SideBar: React.FC = () => {
       <Tweet />
 
       <MoreOptions>
-        <Avatar>
-          <img
-            src={data.me.profile[0].avatar}
-            alt={`${data.me.profile[0].name}'s avatar`}
-          />
-        </Avatar>
-        <Name>
-          <h5>{data.me.profile[0].name}</h5>
-        </Name>
+        <Content>
+          <Avatar>
+            <img
+              src={data.me.profile[0].avatar}
+              alt={`${data.me.profile[0].name}'s avatar`}
+            />
+          </Avatar>
+          <Name>
+            <h5>{data.me.profile[0].name}</h5>
+          </Name>
 
-        <FiMoreHorizontal size="22" />
+          <FiMoreHorizontal size="22" />
+        </Content>
       </MoreOptions>
     </Container>
   );

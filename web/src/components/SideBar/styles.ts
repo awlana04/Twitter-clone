@@ -60,16 +60,22 @@ export const Notifications = styled.div``;
 export const More = styled.div``;
 
 export const MoreOptions = styled.div`
-  width: 200px;
-  height: 64px;
-  margin-top: 44px;
+  width: 238px;
+  height: 68px;
+  margin-top: 32px;
 
   background-color: #ffffff;
+  border-radius: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   cursor: pointer;
+  transition: 0.4s;
 
   &:hover {
-    background-color: rgba(29, 161, 242, 0.5);
+    background-color: rgba(29, 161, 242, 0.1);
   }
 
   svg {
@@ -77,10 +83,15 @@ export const MoreOptions = styled.div`
   }
 `;
 
+export const Content = styled.div`
+  margin-top: -6px;
+`;
+
 export const Avatar = styled.div`
   img {
     width: 48px;
     height: 48px;
+    margin-left: -4px;
     margin-bottom: -32px;
 
     border-radius: 50%;
@@ -88,7 +99,7 @@ export const Avatar = styled.div`
 `;
 
 export const Name = styled.div`
-  margin-left: 58px;
+  margin-left: 54px;
   margin-bottom: -20px;
 
   h5 {

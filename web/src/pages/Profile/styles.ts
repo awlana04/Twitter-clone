@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const ProfileContent = styled.div`
-  margin-top: -386px;
+  margin-top: -496px;
 
   display: flex;
   align-items: center;
