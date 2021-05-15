@@ -26,13 +26,13 @@ export const Container = styled.div`
 export const StyledModal = styled(Modal)`
   max-width: 34em;
   min-width: 20em;
-  min-height: 32em;
+  min-height: 34em;
   margin-top: 22%;
   margin-left: 48%;
 
   background-color: #ffff;
 
-  border-radius: 25px;
+  border-radius: 16px;
 
   transform: translate(-50%, -50%);
 
@@ -44,17 +44,22 @@ export const StyledModal = styled(Modal)`
   div {
     max-width: 36em;
     min-width: 33.9em;
+    margin-top: -8px;
 
+    background-color: #ffffff;
+    border-top-right-radius: 50%;
+    /* border-top-right-radius: 50%; */
     border-bottom: 1.5px solid rgb(0, 0, 0, 0.4);
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+
+    button {
+      margin-bottom: 16px;
+    }
 
     h5 {
       width: 36px;
       height: 36px;
-      margin: 8px 8px;
-
-      background-color: #ffffff;
+      margin-left: 8px;
+      margin-bottom: -28px;
 
       border-radius: 50%;
 
@@ -71,6 +76,15 @@ export const StyledModal = styled(Modal)`
       svg {
         margin: 7px;
       }
+    }
+
+    span {
+      margin-left: 68px;
+
+      font-size: 18px;
+      font-weight: 600;
+
+      letter-spacing: 1px;
     }
   }
 

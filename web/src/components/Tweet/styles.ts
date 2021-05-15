@@ -26,7 +26,7 @@ export const Container = styled.div`
 export const StyledModal = styled(Modal)`
   max-width: 34em;
   min-width: 20em;
-  min-height: 20em;
+  min-height: 16em;
   margin-top: 14%;
   margin-left: 48%;
 
@@ -89,5 +89,6 @@ export const StyledModal = styled(Modal)`
   button {
     width: 80px;
     margin-left: 34em;
+    margin-bottom: 10px;
   }
 `;

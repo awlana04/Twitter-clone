@@ -99,6 +99,11 @@ const UpdateProfile: React.FC = () => {
         onRequestClose={closeModal}
         contentLabel="Modal"
         ariaHideApp={false}
+        style={{
+          overlay: {
+            background: '#9e9e9e69',
+          },
+        }}
       >
         <input
           name="file"
@@ -115,6 +120,8 @@ const UpdateProfile: React.FC = () => {
               <h5>
                 <FiX size="24" color="#1da1f2" />
               </h5>
+
+              <span>Editar Perfil</span>
             </button>
           </div>
         </>
