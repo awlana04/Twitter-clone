@@ -85,8 +85,8 @@ export const MoreOptions = styled.button`
 `;
 
 export const StyledModal = styled(Modal)`
-  max-width: 34em;
-  min-width: 20em;
+  max-width: 14em;
+  min-width: 10em;
   min-height: 34em;
   margin-top: 22%;
   margin-left: 48%;
