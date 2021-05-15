@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   FiHome,
   FiUser,
@@ -24,6 +24,7 @@ import {
   Messages,
   Notifications,
   More,
+  StyledModal,
   MoreOptions,
   Content,
   Avatar,
@@ -31,6 +32,18 @@ import {
 } from './styles';
 
 const SideBar: React.FC = () => {
+  const history = useHistory();
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   const { loading, error, data } = useQuery(ME_QUERY);
 
   if (loading) {
@@ -98,7 +111,7 @@ const SideBar: React.FC = () => {
 
       <Tweet />
 
-      <MoreOptions>
+      <MoreOptions type="button" onClick={openModal}>
         <Content>
           <Avatar>
             <img
@@ -113,6 +126,27 @@ const SideBar: React.FC = () => {
           <FiMoreHorizontal size="22" />
         </Content>
       </MoreOptions>
+
+      <StyledModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Modal"
+        ariaHideApp={false}
+      >
+        <Content>
+          <Avatar>
+            <img
+              src={data.me.profile[0].avatar}
+              alt={`${data.me.profile[0].name}'s avatar`}
+            />
+          </Avatar>
+          <Name>
+            <h5>{data.me.profile[0].name}</h5>
+          </Name>
+
+          <FiMoreHorizontal size="22" />
+        </Content>
+      </StyledModal>
     </Container>
   );
 };

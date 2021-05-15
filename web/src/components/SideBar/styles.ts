@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Modal from 'react-modal';
 
 export const Container = styled.div`
   margin-top: 22px;
@@ -59,7 +60,7 @@ export const Notifications = styled.div``;
 
 export const More = styled.div``;
 
-export const MoreOptions = styled.div`
+export const MoreOptions = styled.button`
   width: 238px;
   height: 68px;
   margin-top: 32px;
@@ -81,6 +82,24 @@ export const MoreOptions = styled.div`
   svg {
     margin-left: 200px;
   }
+`;
+
+export const StyledModal = styled(Modal)`
+  max-width: 34em;
+  min-width: 20em;
+  min-height: 34em;
+  margin-top: 22%;
+  margin-left: 48%;
+
+  background-color: #ffff;
+
+  border-radius: 16px;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Content = styled.div`
