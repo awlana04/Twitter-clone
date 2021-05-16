@@ -85,25 +85,28 @@ export const MoreOptions = styled.button`
 `;
 
 export const StyledModal = styled(Modal)`
-  max-width: 14em;
-  min-width: 10em;
-  min-height: 34em;
-  margin-top: 22%;
-  margin-left: 48%;
+  width: 338px;
+  height: 122px;
+  margin-left: 186px;
+  margin-top: -76px;
 
   background-color: #ffff;
 
-  border-radius: 16px;
+  border-top: 2px solid rgb(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgb(0, 0, 0, 0.1);
 
+  cursor: pointer;
   transform: translate(-50%, -50%);
 
   display: flex;
-  align-items: center;
+  align-items: row;
   justify-content: center;
+
+  transition: 0.4s;
 `;
 
 export const Content = styled.div`
-  margin-top: -6px;
+  margin-top: 28px;
 `;
 
 export const Avatar = styled.div`
@@ -118,11 +121,18 @@ export const Avatar = styled.div`
 `;
 
 export const Name = styled.div`
-  margin-left: 54px;
   margin-bottom: -20px;
 
   h5 {
     font-size: 16px;
     font-weight: 500;
   }
+`;
+
+export const Logout = styled.div`
+  margin-top: 48px;
+  margin-left: -10px;
+  margin-bottom: 28px;
+
+  font-size: 16px;
 `;

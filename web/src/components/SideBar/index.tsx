@@ -29,6 +29,7 @@ import {
   Content,
   Avatar,
   Name,
+  Logout,
 } from './styles';
 
 const SideBar: React.FC = () => {
@@ -42,6 +43,12 @@ const SideBar: React.FC = () => {
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const handleLogout = async () => {
+    localStorage.removeItem('token');
+
+    history.push('/login');
   };
 
   const { loading, error, data } = useQuery(ME_QUERY);
@@ -132,6 +139,11 @@ const SideBar: React.FC = () => {
         onRequestClose={closeModal}
         contentLabel="Modal"
         ariaHideApp={false}
+        style={{
+          overlay: {
+            position: 'static',
+          },
+        }}
       >
         <Content>
           <Avatar>
@@ -144,7 +156,9 @@ const SideBar: React.FC = () => {
             <h5>{data.me.profile[0].name}</h5>
           </Name>
 
-          <FiMoreHorizontal size="22" />
+          <Logout onClick={handleLogout}>
+            <p>Sair da conta</p>
+          </Logout>
         </Content>
       </StyledModal>
     </Container>
