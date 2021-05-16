@@ -126,6 +126,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     allUsers: NexusGenRootTypes['User'][]; // [User!]!
     me: NexusGenRootTypes['User'] | null; // User
+    tweets: NexusGenRootTypes['Tweet'][]; // [Tweet!]!
   }
   Tweet: { // field return type
     author: NexusGenRootTypes['User'] | null; // User
@@ -167,6 +168,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     allUsers: 'User'
     me: 'User'
+    tweets: 'Tweet'
   }
   Tweet: { // field return type name
     author: 'User'

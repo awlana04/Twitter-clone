@@ -64,14 +64,14 @@ const SideBar: React.FC = () => {
   return (
     <Container>
       <Logo>
-        <Link to="/">
+        <Link to="/home">
           <img src={TwitterLogo} alt="Home" />
         </Link>
       </Logo>
 
       <Navigation>
         <Home>
-          <Link to="/">
+          <Link to="/home">
             <h2>
               <FiHome size="26" />
               <span>Home</span>
@@ -80,7 +80,7 @@ const SideBar: React.FC = () => {
         </Home>
 
         <Profile>
-          <Link to="/users">
+          <Link to="/profile">
             <h2>
               <FiUser size="26" />
               <span>Profile</span>

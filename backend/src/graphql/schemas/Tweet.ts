@@ -1,7 +1,7 @@
 import { objectType } from 'nexus';
 
 export const Tweet = objectType({
-  name: "Tweet",
+  name: 'Tweet',
   definition(t) {
     t.model.id(),
       t.model.content()
