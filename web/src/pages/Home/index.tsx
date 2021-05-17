@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -7,10 +7,10 @@ import { FiX, FiUser } from 'react-icons/fi';
 import CREATE_TWEET_MUTATION from '../../schemas/Mutations/CreateTweet';
 import ME_QUERY from '../../schemas/Queries/Me';
 
-import SideBar from '../../components/SideBar';
 import Button from '../../components/Button';
+import SideBar from '../../components/SideBar';
 
-import { Container, Tweet, Tweets } from './styles';
+import { Container, HomePage, Tweet, Feed } from './styles';
 
 interface TweetValues {
   content: string;
@@ -49,7 +49,9 @@ const Home: React.FC = () => {
     <Container>
       <SideBar />
 
-      <Home>
+      <HomePage>
+        <h3>Página Inicial</h3>
+
         <Tweet>
           <Formik
             initialValues={initialValues}
@@ -89,19 +91,10 @@ const Home: React.FC = () => {
           </Formik>
         </Tweet>
 
-        <Tweets>
-          {data.me.profile.avatar ? (
-            <img
-              src={data.me.profile[0].avatar}
-              alt={`${data.me.profile[0].name}' avatar`}
-            />
-          ) : (
-            <FiUser size="64" color="#1a91da" />
-          )}
-
-          <p>{data.me.tweets}</p>
-        </Tweets>
-      </Home>
+        <Feed>
+          <h5>Hello World!</h5>
+        </Feed>
+      </HomePage>
     </Container>
   );
 };
