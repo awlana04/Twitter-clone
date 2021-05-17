@@ -76,7 +76,16 @@ export const StyledModal = styled(Modal)`
     border: none;
   }
 
-  img {
+  button {
+    width: 80px;
+    margin-left: 34em;
+    margin-bottom: 10px;
+  }
+`;
+
+export const Avatar = styled.div`
+  img,
+  svg {
     width: 52px;
     height: 52px;
     margin-top: 18px;
@@ -84,11 +93,5 @@ export const StyledModal = styled(Modal)`
     margin-bottom: -50px;
 
     border-radius: 50%;
-  }
-
-  button {
-    width: 80px;
-    margin-left: 34em;
-    margin-bottom: 10px;
   }
 `;

@@ -7,7 +7,8 @@ import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 import { Container, Tweets, Tweet, Content, Interactions } from './styles';
 
 interface TweetsInterface {
-  context: string;
+  id: string;
+  content: string;
   createdAt: number;
   author: {
     profile: {
@@ -21,38 +22,37 @@ const AllTweets: React.FC = () => {
   const { loading, error, data } = useQuery(TWEETS_QUERY);
 
   if (loading) {
-    <p>Loading...</p>;
+    return <p>Loading...</p>;
   }
 
   if (error) {
-    <p>{error.message}</p>;
+    return <p>{error.message}</p>;
   }
 
   return (
     <Container>
-      {data.tweets[0].map((tweet: TweetsInterface) => (
-        <Tweet>
-          {data.tweet[0].author[0].profile[0].avatar ? (
+      {data.tweets.map((tweet: TweetsInterface) => (
+        <Tweet key={tweet.id}>
+          {tweet.author.profile.avatar ? (
             <img
-              src={data.tweet[0].author[0].profile[0].avatar}
-              alt={`${data.tweet[0].author[0].profile[0].name}' avatar`}
+              src={tweet.author.profile.avatar}
+              alt={`${tweet.author.profile.name}' avatar`}
             />
           ) : (
             <FiUser size="64" color="#1a91da" />
           )}
 
-          <h6>{data.tweet[0].author[0].profile[0].name}</h6>
-          <span>{data.tweet[0].createdAt}</span>
+          <h6>{tweet.author.profile.name}</h6>
+          <span>{tweet.createdAt}</span>
 
           <Content>
-            <p>{data.tweet[0].content}</p>
+            <p>{tweet.content}</p>
           </Content>
 
           <Interactions />
         </Tweet>
       ))}
-      {/* <Tweets>
-      </Tweets> */}
+      <Tweets />
     </Container>
   );
 };

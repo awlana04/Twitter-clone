@@ -26,7 +26,8 @@ export const Tweet = styled.div`
     border: none;
   }
 
-  img {
+  img,
+  svg {
     width: 52px;
     height: 52px;
     margin-top: 18px;

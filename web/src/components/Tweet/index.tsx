@@ -9,7 +9,7 @@ import ME_QUERY from '../../schemas/Queries/Me';
 
 import Button from '../Button';
 
-import { Container, StyledModal } from './styles';
+import { Container, StyledModal, Avatar } from './styles';
 
 interface TweetValues {
   content: string;
@@ -94,14 +94,16 @@ const Tweet: React.FC = () => {
               </button>
             </div>
 
-            {data.me.profile[0].avatar ? (
-              <img
-                src={data.me.profile[0].avatar}
-                alt={`${data.me.profile[0].name}' avatar`}
-              />
-            ) : (
-              <FiUser size="64" color="#1a91da" />
-            )}
+            <Avatar>
+              {data.me.profile[0].avatar ? (
+                <img
+                  src={data.me.profile[0].avatar}
+                  alt={`${data.me.profile[0].name}' avatar`}
+                />
+              ) : (
+                <FiUser size="64" color="#1a91da" />
+              )}
+            </Avatar>
 
             <Field
               name="content"

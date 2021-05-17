@@ -49,7 +49,8 @@ export const ProfileHeader = styled.div`
 `;
 
 export const Avatar = styled.div`
-  img {
+  img,
+  svg {
     width: 156px;
     height: 156px;
     margin-top: 116px;
