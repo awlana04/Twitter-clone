@@ -9,6 +9,7 @@ import ME_QUERY from '../../schemas/Queries/Me';
 
 import Button from '../../components/Button';
 import SideBar from '../../components/SideBar';
+import AllTweets from '../../components/AllTweets';
 
 import { Container, HomePage, Tweet, Feed } from './styles';
 
@@ -91,9 +92,11 @@ const Home: React.FC = () => {
           </Formik>
         </Tweet>
 
-        <Feed>
+        {/* <Feed>
           <h5>Hello World!</h5>
-        </Feed>
+        </Feed> */}
+
+        <AllTweets />
       </HomePage>
     </Container>
   );

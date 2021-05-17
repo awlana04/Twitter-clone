@@ -80,7 +80,7 @@ export interface NexusGenObjects {
   }
   Query: {};
   Tweet: { // root type
-    content: string; // String!
+    content?: string | null; // String
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -110,6 +110,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     createProfile: NexusGenRootTypes['Profile'] | null; // Profile
+    createTweet: NexusGenRootTypes['Tweet'] | null; // Tweet
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     updateProfile: NexusGenRootTypes['Profile'] | null; // Profile
@@ -130,7 +131,7 @@ export interface NexusGenFieldTypes {
   }
   Tweet: { // field return type
     author: NexusGenRootTypes['User'] | null; // User
-    content: string; // String!
+    content: string | null; // String
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -152,6 +153,7 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     createProfile: 'Profile'
+    createTweet: 'Tweet'
     login: 'AuthPayload'
     signup: 'AuthPayload'
     updateProfile: 'Profile'
@@ -196,6 +198,9 @@ export interface NexusGenArgTypes {
       location?: string | null; // String
       name?: string | null; // String
       website?: string | null; // String
+    }
+    createTweet: { // args
+      content?: string | null; // String
     }
     login: { // args
       email: string; // String!
