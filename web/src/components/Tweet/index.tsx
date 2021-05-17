@@ -9,7 +9,7 @@ import ME_QUERY from '../../schemas/Queries/Me';
 
 import Button from '../Button';
 
-import { Container, StyledModal, Avatar } from './styles';
+import { Container, StyledModal, ButtonClose, Avatar } from './styles';
 
 interface TweetValues {
   content: string;
@@ -86,13 +86,13 @@ const Tweet: React.FC = () => {
           }}
         >
           <Form>
-            <div>
+            <ButtonClose>
               <button type="button" onClick={closeModal}>
                 <h5>
                   <FiX size="24" color="#1da1f2" />
                 </h5>
               </button>
-            </div>
+            </ButtonClose>
 
             <Avatar>
               {data.me.profile[0].avatar ? (

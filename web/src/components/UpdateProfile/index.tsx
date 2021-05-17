@@ -8,7 +8,7 @@ import ME_QUERY from '../../schemas/Queries/Me';
 
 import Button from '../Button';
 
-import { Container, StyledModal } from './styles';
+import { Container, StyledModal, ButtonClose } from './styles';
 
 interface ProfileValues {
   id: string;
@@ -114,17 +114,13 @@ const UpdateProfile: React.FC = () => {
           style={{ display: 'none' }}
         />
 
-        <>
-          <div>
-            <button type="button" onClick={closeModal}>
-              <h5>
-                <FiX size="24" color="#1da1f2" />
-              </h5>
-
-              <span>Editar Perfil</span>
-            </button>
-          </div>
-        </>
+        <ButtonClose>
+          <button type="button" onClick={closeModal}>
+            <h5>
+              <FiX size="24" color="#1da1f2" />
+            </h5>
+          </button>
+        </ButtonClose>
 
         {imageLoading ? (
           <h3>Loading...</h3>
