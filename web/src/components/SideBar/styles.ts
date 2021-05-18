@@ -110,13 +110,18 @@ export const Content = styled.div`
 `;
 
 export const Avatar = styled.div`
-  img {
+  img,
+  svg {
     width: 48px;
     height: 48px;
     margin-left: -4px;
     margin-bottom: -32px;
 
     border-radius: 50%;
+  }
+
+  svg {
+    margin-left: -164px;
   }
 `;
 

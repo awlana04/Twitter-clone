@@ -121,10 +121,16 @@ const SideBar: React.FC = () => {
       <MoreOptions type="button" onClick={openModal}>
         <Content>
           <Avatar>
-            <img
-              src={data.me.profile[0].avatar}
-              alt={`${data.me.profile[0].name}'s avatar`}
-            />
+            {data.me.profile[0].avatar ? (
+              <img
+                src={data.me.profile[0].avatar}
+                alt={`${data.me.profile[0].name}' avatar`}
+              />
+            ) : (
+              <span>
+                <FiUser size="26" color="#1a91da" />
+              </span>
+            )}
           </Avatar>
           <Name>
             <h5>{data.me.profile[0].name}</h5>
@@ -147,10 +153,16 @@ const SideBar: React.FC = () => {
       >
         <Content>
           <Avatar>
-            <img
-              src={data.me.profile[0].avatar}
-              alt={`${data.me.profile[0].name}'s avatar`}
-            />
+            {data.me.profile[0].avatar ? (
+              <img
+                src={data.me.profile[0].avatar}
+                alt={`${data.me.profile[0].name}' avatar`}
+              />
+            ) : (
+              <span>
+                <FiUser size="26" color="#1a91da" />
+              </span>
+            )}
           </Avatar>
           <Name>
             <h5>{data.me.profile[0].name}</h5>

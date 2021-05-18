@@ -41,15 +41,6 @@ export const StyledModal = styled(Modal)`
   align-items: center;
   justify-content: center;
 
-  span {
-    margin-left: 68px;
-
-    font-size: 18px;
-    font-weight: 600;
-
-    letter-spacing: 1px;
-  }
-
   img {
     width: 25px;
     height: 25px;
@@ -69,8 +60,9 @@ export const StyledModal = styled(Modal)`
 `;
 
 export const ButtonClose = styled.div`
-  max-width: 36em;
+  max-width: 30em;
   min-width: 34em;
+  height: 20px;
 
   border-bottom: 1.5px solid rgb(0, 0, 0, 0.4);
   border-top-left-radius: 25px;
@@ -79,7 +71,8 @@ export const ButtonClose = styled.div`
   button {
     width: 36px;
     height: 36px;
-    margin: 8px 8px;
+    margin-top: -18px;
+    margin-left: 8px;
 
     background-color: #ffffff;
 
@@ -94,7 +87,18 @@ export const ButtonClose = styled.div`
     }
 
     svg {
-      margin: 7px;
+      margin: 8px;
+      margin-top: 4px;
     }
+  }
+`;
+
+export const Title = styled.div`
+  h5 {
+    margin-top: -32px;
+    margin-left: -208px;
+
+    font-size: 18px;
+    letter-spacing: 1px;
   }
 `;

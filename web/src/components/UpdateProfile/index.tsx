@@ -8,7 +8,7 @@ import ME_QUERY from '../../schemas/Queries/Me';
 
 import Button from '../Button';
 
-import { Container, StyledModal, ButtonClose } from './styles';
+import { Container, StyledModal, ButtonClose, Title } from './styles';
 
 interface ProfileValues {
   id: string;
@@ -121,6 +121,10 @@ const UpdateProfile: React.FC = () => {
             </h5>
           </button>
         </ButtonClose>
+
+        <Title>
+          <h5>Editar perfil</h5>
+        </Title>
 
         {imageLoading ? (
           <h3>Loading...</h3>
