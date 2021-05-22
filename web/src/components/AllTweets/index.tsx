@@ -1,15 +1,19 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { formatDistance, subDays } from 'date-fns';
 import { FiUser } from 'react-icons/fi';
 
 import TWEETS_QUERY from '../../schemas/Queries/Tweets';
+import LIKED_TWEETS_MUTATIONS from '../../schemas/Mutations/LikedTweets';
 
 import { Container, Tweet, TweetInfo, Content, Interactions } from './styles';
 
 interface TweetsInterface {
   id: string;
   content: string;
+  likes: Array<{
+    id: string;
+  }>;
   createdAt: number;
   author: {
     profile: Array<{
@@ -19,8 +23,19 @@ interface TweetsInterface {
   };
 }
 
-const AllTweets: React.FC = () => {
+interface TweetProps {
+  id: string;
+}
+
+const AllTweets: React.FC<TweetProps> = ({ id }: TweetProps) => {
   const { loading, error, data } = useQuery(TWEETS_QUERY);
+
+  const [likeTweet] = useMutation(LIKED_TWEETS_MUTATIONS, {
+    variables: {
+      id: '',
+    },
+    refetchQueries: [{ query: TWEETS_QUERY }],
+  });
 
   if (loading) {
     return <p>Loading...</p>;
@@ -29,6 +44,14 @@ const AllTweets: React.FC = () => {
   if (error) {
     return <p>{error.message}</p>;
   }
+
+  const handleCreateLike = async () => {
+    await likeTweet({
+      variables: {
+        id,
+      },
+    });
+  };
 
   return (
     <Container>
@@ -53,9 +76,11 @@ const AllTweets: React.FC = () => {
               ago
             </span>
           </TweetInfo>
+
           <Content>
             <p>{tweet.content}</p>
           </Content>
+
           <Interactions />
         </Tweet>
       ))}

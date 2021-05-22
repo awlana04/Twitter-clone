@@ -5,6 +5,9 @@ const TWEETS_QUERY = gql`
     tweets {
       id
       content
+      likes {
+        id
+      }
       createdAt
       author {
         id
