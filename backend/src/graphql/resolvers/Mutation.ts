@@ -115,8 +115,8 @@ export const Mutation = objectType({
       }
     })
 
-    t.field("createTweet", {
-      type: "Tweet",
+    t.field('createTweet', {
+      type: 'Tweet',
       args: {
         content: stringArg()
       },
@@ -136,33 +136,25 @@ export const Mutation = objectType({
       }
     })
 
-    // t.field('incrementPostViewCount', {
-    //   type: 'Post',
-    //   args: {
-    //     id: nonNull(intArg()),
-    //   },
-    //   resolve: (_, args, context: Context) => {
-    //     return context.prisma.post.update({
-    //       where: { id: args.id || undefined },
-    //       data: {
-    //         viewCount: {
-    //           increment: 1,
-    //         },
-    //       },
-    //     })
-    //   },
-    // })
+    t.field('likedTweet', {
+      type: 'LikedTweet',
+      args: {
+        id: stringArg()
+      },
+      resolve: (parent, { id }, ctx) => {
+        const userId = getUserId(ctx);
 
-    // t.field('deletePost', {
-    //   type: 'Post',
-    //   args: {
-    //     id: nonNull(intArg()),
-    //   },
-    //   resolve: (_, args, context: Context) => {
-    //     return context.prisma.post.delete({
-    //       where: { id: args.id },
-    //     })
-    //   },
-    // })
+        if (!userId) {
+          throw new Error('Could not authenticate user.');
+        }
+
+        return ctx.prisma.likedTweet.create({
+          data: {
+            tweet: { connect: { id: String(id) } },
+            user: { connect: { id: String(userId) } }
+          }
+        })
+      }
+    })
   },
 })

@@ -21,6 +21,7 @@ export const Tweet = styled.div`
   textarea {
     max-width: 30em;
     min-width: 26em;
+    height: 56px;
     margin-left: 56px;
 
     border: none;

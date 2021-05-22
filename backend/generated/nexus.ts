@@ -43,12 +43,12 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  LikedTweetWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   ProfileWhereUniqueInput: { // input type
     id?: string | null; // String
     userId?: string | null; // String
-  }
-  TweetWhereUniqueInput: { // input type
-    id?: string | null; // String
   }
 }
 
@@ -68,6 +68,10 @@ export interface NexusGenObjects {
   AuthPayload: { // root type
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
+  }
+  LikedTweet: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
   }
   Mutation: {};
   Profile: { // root type
@@ -108,9 +112,15 @@ export interface NexusGenFieldTypes {
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
   }
+  LikedTweet: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    tweet: NexusGenRootTypes['Tweet'] | null; // Tweet
+  }
   Mutation: { // field return type
     createProfile: NexusGenRootTypes['Profile'] | null; // Profile
     createTweet: NexusGenRootTypes['Tweet'] | null; // Tweet
+    likedTweet: NexusGenRootTypes['LikedTweet'] | null; // LikedTweet
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     updateProfile: NexusGenRootTypes['Profile'] | null; // Profile
@@ -134,12 +144,14 @@ export interface NexusGenFieldTypes {
     content: string | null; // String
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
+    likes: NexusGenRootTypes['LikedTweet'][]; // [LikedTweet!]!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   User: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     email: string; // String!
     id: string; // String!
+    likedTweets: NexusGenRootTypes['LikedTweet'][]; // [LikedTweet!]!
     profile: NexusGenRootTypes['Profile'][]; // [Profile!]!
     tweets: NexusGenRootTypes['Tweet'][]; // [Tweet!]!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -151,9 +163,15 @@ export interface NexusGenFieldTypeNames {
     token: 'String'
     user: 'User'
   }
+  LikedTweet: { // field return type name
+    createdAt: 'DateTime'
+    id: 'String'
+    tweet: 'Tweet'
+  }
   Mutation: { // field return type name
     createProfile: 'Profile'
     createTweet: 'Tweet'
+    likedTweet: 'LikedTweet'
     login: 'AuthPayload'
     signup: 'AuthPayload'
     updateProfile: 'Profile'
@@ -177,12 +195,14 @@ export interface NexusGenFieldTypeNames {
     content: 'String'
     createdAt: 'DateTime'
     id: 'String'
+    likes: 'LikedTweet'
     updatedAt: 'DateTime'
   }
   User: { // field return type name
     createdAt: 'DateTime'
     email: 'String'
     id: 'String'
+    likedTweets: 'LikedTweet'
     profile: 'Profile'
     tweets: 'Tweet'
     updatedAt: 'DateTime'
@@ -202,6 +222,9 @@ export interface NexusGenArgTypes {
     createTweet: { // args
       content?: string | null; // String
     }
+    likedTweet: { // args
+      id?: string | null; // String
+    }
     login: { // args
       email: string; // String!
       password: string; // String!
@@ -219,16 +242,24 @@ export interface NexusGenArgTypes {
       website?: string | null; // String
     }
   }
-  User: {
-    profile: { // args
-      after?: NexusGenInputs['ProfileWhereUniqueInput'] | null; // ProfileWhereUniqueInput
-      before?: NexusGenInputs['ProfileWhereUniqueInput'] | null; // ProfileWhereUniqueInput
+  Tweet: {
+    likes: { // args
+      after?: NexusGenInputs['LikedTweetWhereUniqueInput'] | null; // LikedTweetWhereUniqueInput
+      before?: NexusGenInputs['LikedTweetWhereUniqueInput'] | null; // LikedTweetWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
     }
-    tweets: { // args
-      after?: NexusGenInputs['TweetWhereUniqueInput'] | null; // TweetWhereUniqueInput
-      before?: NexusGenInputs['TweetWhereUniqueInput'] | null; // TweetWhereUniqueInput
+  }
+  User: {
+    likedTweets: { // args
+      after?: NexusGenInputs['LikedTweetWhereUniqueInput'] | null; // LikedTweetWhereUniqueInput
+      before?: NexusGenInputs['LikedTweetWhereUniqueInput'] | null; // LikedTweetWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    profile: { // args
+      after?: NexusGenInputs['ProfileWhereUniqueInput'] | null; // ProfileWhereUniqueInput
+      before?: NexusGenInputs['ProfileWhereUniqueInput'] | null; // ProfileWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
     }

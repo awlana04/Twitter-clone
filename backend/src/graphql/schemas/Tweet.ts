@@ -4,9 +4,10 @@ export const Tweet = objectType({
   name: 'Tweet',
   definition(t) {
     t.model.id(),
-      t.model.content()
-    t.model.author()
-    t.model.createdAt()
-    t.model.updatedAt()
+      t.model.content(),
+      t.model.likes(),
+      t.model.author(),
+      t.model.createdAt(),
+      t.model.updatedAt()
   }
 })

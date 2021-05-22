@@ -12,9 +12,20 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+type LikedTweet {
+  createdAt: DateTime!
+  id: String!
+  tweet: Tweet
+}
+
+input LikedTweetWhereUniqueInput {
+  id: String
+}
+
 type Mutation {
   createProfile(avatar: String, bio: String, id: String, location: String, name: String, website: String): Profile
   createTweet(content: String): Tweet
+  likedTweet(id: String): LikedTweet
   login(email: String!, password: String!): AuthPayload
   signup(email: String!, password: String!): AuthPayload
   updateProfile(avatar: String, bio: String, id: String, location: String, name: String, website: String): Profile
@@ -46,18 +57,16 @@ type Tweet {
   content: String
   createdAt: DateTime!
   id: String!
+  likes(after: LikedTweetWhereUniqueInput, before: LikedTweetWhereUniqueInput, first: Int, last: Int): [LikedTweet!]!
   updatedAt: DateTime!
-}
-
-input TweetWhereUniqueInput {
-  id: String
 }
 
 type User {
   createdAt: DateTime!
   email: String!
   id: String!
+  likedTweets(after: LikedTweetWhereUniqueInput, before: LikedTweetWhereUniqueInput, first: Int, last: Int): [LikedTweet!]!
   profile(after: ProfileWhereUniqueInput, before: ProfileWhereUniqueInput, first: Int, last: Int): [Profile!]!
-  tweets(after: TweetWhereUniqueInput, before: TweetWhereUniqueInput, first: Int, last: Int): [Tweet!]!
+  tweets: [Tweet!]!
   updatedAt: DateTime!
 }

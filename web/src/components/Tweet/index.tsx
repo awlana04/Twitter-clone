@@ -6,6 +6,7 @@ import { FiX, FiUser } from 'react-icons/fi';
 
 import CREATE_TWEET_MUTATION from '../../schemas/Mutations/CreateTweet';
 import ME_QUERY from '../../schemas/Queries/Me';
+import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 
 import Button from '../Button';
 
@@ -32,7 +33,7 @@ const Tweet: React.FC = () => {
     variables: {
       content: '',
     },
-    refetchQueries: [{ query: ME_QUERY }],
+    refetchQueries: [{ query: TWEETS_QUERY }],
   });
 
   if (loading) {

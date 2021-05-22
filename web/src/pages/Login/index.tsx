@@ -59,7 +59,7 @@ const Signup: React.FC = () => {
 
           setSubmitting(false);
 
-          history.push('/users');
+          history.push('/home');
         }}
       >
         <Form>
