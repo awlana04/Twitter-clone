@@ -103,6 +103,12 @@ export const StyledModal = styled(Modal)`
   justify-content: center;
 
   transition: 0.4s;
+
+  img,
+  span {
+    margin-top: -22px;
+    margin-left: 108px;
+  }
 `;
 
 export const Content = styled.div`
@@ -135,7 +141,7 @@ export const Name = styled.div`
 `;
 
 export const Logout = styled.div`
-  margin-top: 48px;
+  margin-top: 52px;
   margin-left: -10px;
   margin-bottom: 28px;
 

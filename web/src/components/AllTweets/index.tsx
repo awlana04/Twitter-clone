@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import { formatDistance, subDays } from 'date-fns';
 import { FiUser } from 'react-icons/fi';
 
 import TWEETS_QUERY from '../../schemas/Queries/Tweets';
@@ -43,7 +44,10 @@ const AllTweets: React.FC = () => {
           )}
 
           <h6>{tweet.author.profile.name}</h6>
-          <span>{tweet.createdAt}</span>
+          <span>
+            {formatDistance(subDays(new Date(tweet.createdAt), 0), new Date())}{' '}
+            ago
+          </span>
 
           <Content>
             <p>{tweet.content}</p>
