@@ -97,7 +97,7 @@ const Home: React.FC = () => {
           <h5>Hello World!</h5>
         </Feed> */}
 
-        <AllTweets id={data.me.id} />
+        <AllTweets />
       </HomePage>
     </Container>
   );

@@ -17,6 +17,9 @@ const ME_QUERY = gql`
         id
         content
       }
+      likedTweets {
+        id
+      }
     }
   }
 `;

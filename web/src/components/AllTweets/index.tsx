@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { formatDistance, subDays } from 'date-fns';
@@ -5,7 +6,6 @@ import { FiUser, FiHeart } from 'react-icons/fi';
 
 import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 import ME_QUERY from '../../schemas/Queries/Me';
-import LIKED_TWEETS_MUTATIONS from '../../schemas/Mutations/LikedTweets';
 
 import {
   Container,
@@ -15,15 +15,17 @@ import {
   Interactions,
   Like,
 } from './styles';
+import LikeTweet from '../LikeTweet';
 
 interface TweetsInterface {
   id: string;
   content: string;
-  likes: Array<{
-    id: string;
-  }>;
+  likes: [];
   createdAt: number;
   author: {
+    likedTweets: {
+      id: string;
+    };
     profile: Array<{
       name: string;
       avatar: string;
@@ -32,21 +34,16 @@ interface TweetsInterface {
 }
 
 interface TweetProps {
-  id: string;
+  tweet: {
+    id: string;
+  };
 }
 
-const AllTweets: React.FC<TweetProps> = ({ id }: TweetProps) => {
+const AllTweets: React.FC = () => {
   const { loading, error, data } = useQuery(TWEETS_QUERY);
-  const { loading: meLoading, error: meError, data: meData } = useQuery(
-    ME_QUERY,
-  );
-
-  const [likeTweet] = useMutation(LIKED_TWEETS_MUTATIONS, {
-    variables: {
-      id: '',
-    },
-    refetchQueries: [{ query: TWEETS_QUERY }],
-  });
+  // const { loading: meLoading, error: meError, data: meData } = useQuery(
+  //   ME_QUERY,
+  // );
 
   if (loading) {
     return <p>Loading...</p>;
@@ -56,21 +53,13 @@ const AllTweets: React.FC<TweetProps> = ({ id }: TweetProps) => {
     return <p>{error.message}</p>;
   }
 
-  if (meLoading) {
-    return <p>Loading...</p>;
-  }
+  // if (meLoading) {
+  //   return <p>Loading...</p>;
+  // }
 
-  if (meError) {
-    return <p>{meError.message}</p>;
-  }
-
-  const handleCreateLike = async () => {
-    await likeTweet({
-      variables: {
-        id,
-      },
-    });
-  };
+  // if (meError) {
+  //   return <p>{meError.message}</p>;
+  // }
 
   return (
     <Container>
@@ -101,15 +90,25 @@ const AllTweets: React.FC<TweetProps> = ({ id }: TweetProps) => {
           </Content>
 
           <Interactions>
-            <Like>
-              <button type="button" onClick={handleCreateLike}>
-                <span>
-                  <FiHeart size="20" />
+            {/* <Like>
+              {meData.me.likedTweets.map((t: TweetProps) =>
+                t.tweet.id === tweet.id ? (
+                  <button type="button">
+                    <span>
+                      <FiHeart size="20" />
+                    </span>
 
-                  <p>{tweet.likes.length}</p>
-                </span>
-              </button>
-            </Like>
+                    <p>{tweet.likes.length}</p>
+                  </button>
+                ) : (
+                  <span>
+                    <LikeTweet id={tweet.id} />
+
+                    <p>{tweet.likes.length}</p>
+                  </span>
+                ),
+              )}
+            </Like> */}
           </Interactions>
         </Tweet>
       ))}

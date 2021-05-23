@@ -45,14 +45,10 @@ export const Content = styled.div`
 
 export const Interactions = styled.div`
   button {
-    width: 34px;
-    height: 34px;
     margin-top: 12px;
-    margin-left: 286px;
-
-    border-radius: 50%;
 
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 
@@ -60,31 +56,46 @@ export const Interactions = styled.div`
 
     &:hover {
       cursor: pointer;
-      background-color: rgba(224, 36, 94, 0.1);
+    }
+
+    span {
+      width: 34px;
+      height: 34px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg {
+      margin-top: 2px;
+      color: #607486;
+    }
+
+    p {
+      margin-left: 14px;
+      margin-top: 6px;
+
+      font-size: 14px;
+    }
+  }
+`;
+
+export const Like = styled.div`
+  button {
+    margin-left: 286px;
+
+    &:hover {
+      span {
+        background-color: rgba(224, 36, 94, 0.1);
+      }
 
       svg,
       p {
         color: #e0245e;
       }
     }
-
-    span {
-      display: flex;
-      flex-direction: row;
-
-      svg {
-        margin-top: 5px;
-        color: #607486;
-      }
-
-      p {
-        margin-left: 14px;
-        margin-top: 7px;
-
-        font-size: 14px;
-      }
-    }
   }
 `;
-
-export const Like = styled.div``;
