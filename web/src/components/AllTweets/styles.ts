@@ -43,4 +43,48 @@ export const Content = styled.div`
   }
 `;
 
-export const Interactions = styled.div``;
+export const Interactions = styled.div`
+  button {
+    width: 34px;
+    height: 34px;
+    margin-top: 12px;
+    margin-left: 286px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.4s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(224, 36, 94, 0.1);
+
+      svg,
+      p {
+        color: #e0245e;
+      }
+    }
+
+    span {
+      display: flex;
+      flex-direction: row;
+
+      svg {
+        margin-top: 5px;
+        color: #607486;
+      }
+
+      p {
+        margin-left: 14px;
+        margin-top: 7px;
+
+        font-size: 14px;
+      }
+    }
+  }
+`;
+
+export const Like = styled.div``;

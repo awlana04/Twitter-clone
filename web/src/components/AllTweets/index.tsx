@@ -1,12 +1,20 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { formatDistance, subDays } from 'date-fns';
-import { FiUser } from 'react-icons/fi';
+import { FiUser, FiHeart } from 'react-icons/fi';
 
 import TWEETS_QUERY from '../../schemas/Queries/Tweets';
+import ME_QUERY from '../../schemas/Queries/Me';
 import LIKED_TWEETS_MUTATIONS from '../../schemas/Mutations/LikedTweets';
 
-import { Container, Tweet, TweetInfo, Content, Interactions } from './styles';
+import {
+  Container,
+  Tweet,
+  TweetInfo,
+  Content,
+  Interactions,
+  Like,
+} from './styles';
 
 interface TweetsInterface {
   id: string;
@@ -29,6 +37,9 @@ interface TweetProps {
 
 const AllTweets: React.FC<TweetProps> = ({ id }: TweetProps) => {
   const { loading, error, data } = useQuery(TWEETS_QUERY);
+  const { loading: meLoading, error: meError, data: meData } = useQuery(
+    ME_QUERY,
+  );
 
   const [likeTweet] = useMutation(LIKED_TWEETS_MUTATIONS, {
     variables: {
@@ -43,6 +54,14 @@ const AllTweets: React.FC<TweetProps> = ({ id }: TweetProps) => {
 
   if (error) {
     return <p>{error.message}</p>;
+  }
+
+  if (meLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (meError) {
+    return <p>{meError.message}</p>;
   }
 
   const handleCreateLike = async () => {
@@ -81,7 +100,17 @@ const AllTweets: React.FC<TweetProps> = ({ id }: TweetProps) => {
             <p>{tweet.content}</p>
           </Content>
 
-          <Interactions />
+          <Interactions>
+            <Like>
+              <button type="button" onClick={handleCreateLike}>
+                <span>
+                  <FiHeart size="20" />
+
+                  <p>{tweet.likes.length}</p>
+                </span>
+              </button>
+            </Like>
+          </Interactions>
         </Tweet>
       ))}
     </Container>
