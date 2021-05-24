@@ -11,9 +11,6 @@ const TWEETS_QUERY = gql`
       createdAt
       author {
         id
-        likedTweets {
-          id
-        }
         profile {
           id
           avatar

@@ -23,9 +23,6 @@ interface TweetsInterface {
   likes: [];
   createdAt: number;
   author: {
-    likedTweets: {
-      id: string;
-    };
     profile: Array<{
       name: string;
       avatar: string;
@@ -34,6 +31,7 @@ interface TweetsInterface {
 }
 
 interface TweetProps {
+  id: string;
   tweet: {
     id: string;
   };
@@ -41,9 +39,9 @@ interface TweetProps {
 
 const AllTweets: React.FC = () => {
   const { loading, error, data } = useQuery(TWEETS_QUERY);
-  // const { loading: meLoading, error: meError, data: meData } = useQuery(
-  //   ME_QUERY,
-  // );
+  const { loading: meLoading, error: meError, data: meData } = useQuery(
+    ME_QUERY,
+  );
 
   if (loading) {
     return <p>Loading...</p>;
@@ -53,13 +51,13 @@ const AllTweets: React.FC = () => {
     return <p>{error.message}</p>;
   }
 
-  // if (meLoading) {
-  //   return <p>Loading...</p>;
-  // }
+  if (meLoading) {
+    return <p>Loading...</p>;
+  }
 
-  // if (meError) {
-  //   return <p>{meError.message}</p>;
-  // }
+  if (meError) {
+    return <p>{meError.message}</p>;
+  }
 
   return (
     <Container>
@@ -90,25 +88,26 @@ const AllTweets: React.FC = () => {
           </Content>
 
           <Interactions>
-            {/* <Like>
-              {meData.me.likedTweets.map((t: TweetProps) =>
-                t.tweet.id === tweet.id ? (
-                  <button type="button">
-                    <span>
-                      <FiHeart size="20" />
-                    </span>
+            <Like>
+              {meData.me.map((t: TweetProps) =>
+                t.tweet.id.includes(tweet.id) ? (
+                  <span>
+                    <button type="button">
+                      <span>
+                        <FiHeart size="20" />
+                      </span>
 
-                    <p>{tweet.likes.length}</p>
-                  </button>
+                      <p>{tweet.likes.length}</p>
+                    </button>
+                  </span>
                 ) : (
                   <span>
                     <LikeTweet id={tweet.id} />
-
-                    <p>{tweet.likes.length}</p>
+                    {tweet.likes.length}
                   </span>
                 ),
               )}
-            </Like> */}
+            </Like>
           </Interactions>
         </Tweet>
       ))}

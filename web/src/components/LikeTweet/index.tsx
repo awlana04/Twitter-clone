@@ -6,6 +6,8 @@ import LIKED_TWEETS_MUTATIONS from '../../schemas/Mutations/LikedTweets';
 import ME_QUERY from '../../schemas/Queries/Me';
 import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 
+import { Container } from './styles';
+
 interface Props {
   id: string;
 }
@@ -22,11 +24,13 @@ const LikeTweet: React.FC<Props> = ({ id }: Props) => {
   };
 
   return (
-    <button type="button" onClick={handleCreateLike}>
-      <span>
-        <FiHeart size="20" />
-      </span>
-    </button>
+    <Container>
+      <button type="button" onClick={handleCreateLike}>
+        <span>
+          <FiHeart size="20" />
+        </span>
+      </button>
+    </Container>
   );
 };
 
