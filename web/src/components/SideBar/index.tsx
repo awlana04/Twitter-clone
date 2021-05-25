@@ -118,7 +118,7 @@ const SideBar: React.FC = () => {
 
       <Tweet />
 
-      <MoreOptions type="button" onClick={openModal || closeModal}>
+      <MoreOptions type="button" onClick={openModal}>
         <Content>
           <Avatar>
             {data.me.profile[0].avatar ? (

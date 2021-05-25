@@ -102,8 +102,12 @@ export const Like = styled.div`
 `;
 
 export const Liked = styled.div`
+  display: flex;
+  flex-direction: row;
+
   p {
     color: #e0245e;
+    margin-top: 22px;
   }
 `;
 

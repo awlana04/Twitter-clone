@@ -25,6 +25,7 @@ input LikedTweetWhereUniqueInput {
 type Mutation {
   createProfile(avatar: String, bio: String, id: String, location: String, name: String, website: String): Profile
   createTweet(content: String): Tweet
+  deleteLike(id: String): LikedTweet
   likedTweet(id: String): LikedTweet
   login(email: String!, password: String!): AuthPayload
   signup(email: String!, password: String!): AuthPayload

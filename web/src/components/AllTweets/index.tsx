@@ -18,6 +18,7 @@ import {
   NoLiked,
 } from './styles';
 import LikeTweet from '../LikeTweet';
+import DeleteLike from '../DeleteLike';
 
 interface TweetsInterface {
   id: string;
@@ -95,13 +96,15 @@ const AllTweets: React.FC = () => {
                 .map((t: TweetProps) => t.tweet.id)
                 .includes(tweet.id) ? (
                 <Liked>
-                  <button type="button">
-                    <span>
-                      <FiHeart size="20" color="#e0245e" fill="#e0245e" />
-                    </span>
+                  <DeleteLike
+                    id={
+                      meData.me.likedTweets.filter(
+                        (like: TweetProps) => like.tweet.id === tweet.id,
+                      )[0].id
+                    }
+                  />
 
-                    <p>{tweet.likes.length}</p>
-                  </button>
+                  <p>{tweet.likes.length}</p>
                 </Liked>
               ) : (
                 <NoLiked>

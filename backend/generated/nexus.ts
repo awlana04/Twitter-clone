@@ -120,6 +120,7 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     createProfile: NexusGenRootTypes['Profile'] | null; // Profile
     createTweet: NexusGenRootTypes['Tweet'] | null; // Tweet
+    deleteLike: NexusGenRootTypes['LikedTweet'] | null; // LikedTweet
     likedTweet: NexusGenRootTypes['LikedTweet'] | null; // LikedTweet
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
@@ -171,6 +172,7 @@ export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     createProfile: 'Profile'
     createTweet: 'Tweet'
+    deleteLike: 'LikedTweet'
     likedTweet: 'LikedTweet'
     login: 'AuthPayload'
     signup: 'AuthPayload'
@@ -221,6 +223,9 @@ export interface NexusGenArgTypes {
     }
     createTweet: { // args
       content?: string | null; // String
+    }
+    deleteLike: { // args
+      id?: string | null; // String
     }
     likedTweet: { // args
       id?: string | null; // String
