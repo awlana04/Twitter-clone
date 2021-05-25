@@ -87,7 +87,7 @@ const AllTweets: React.FC = () => {
             <p>{tweet.content}</p>
           </Content>
 
-          <Interactions>
+          {/* <Interactions>
             <Like>
               {meData.me.map((t: TweetProps) =>
                 t.tweet.id.includes(tweet.id) ? (
@@ -108,7 +108,7 @@ const AllTweets: React.FC = () => {
                 ),
               )}
             </Like>
-          </Interactions>
+          </Interactions> */}
         </Tweet>
       ))}
     </Container>

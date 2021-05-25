@@ -36,6 +36,7 @@ export const TweetInfo = styled.div`
 
 export const Content = styled.div`
   p {
+    width: 468px;
     margin-top: 12px;
     margin-left: 66px;
 
