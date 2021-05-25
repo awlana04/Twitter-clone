@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  p {
+    margin-left: 14px;
+    margin-top: 6px;
+
+    font-size: 14px;
+  }
+`;
 
 export const Tweet = styled.div``;
 
@@ -74,13 +81,6 @@ export const Interactions = styled.div`
       margin-top: 2px;
       color: #607486;
     }
-
-    p {
-      margin-left: 14px;
-      margin-top: 6px;
-
-      font-size: 14px;
-    }
   }
 `;
 
@@ -98,5 +98,20 @@ export const Like = styled.div`
         color: #e0245e;
       }
     }
+  }
+`;
+
+export const Liked = styled.div`
+  p {
+    color: #e0245e;
+  }
+`;
+
+export const NoLiked = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  p {
+    margin-top: 22px;
   }
 `;

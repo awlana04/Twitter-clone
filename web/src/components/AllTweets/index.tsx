@@ -14,6 +14,8 @@ import {
   Content,
   Interactions,
   Like,
+  Liked,
+  NoLiked,
 } from './styles';
 import LikeTweet from '../LikeTweet';
 
@@ -87,28 +89,29 @@ const AllTweets: React.FC = () => {
             <p>{tweet.content}</p>
           </Content>
 
-          {/* <Interactions>
+          <Interactions>
             <Like>
-              {meData.me.map((t: TweetProps) =>
-                t.tweet.id.includes(tweet.id) ? (
-                  <span>
-                    <button type="button">
-                      <span>
-                        <FiHeart size="20" />
-                      </span>
+              {meData.me.likedTweets
+                .map((t: TweetProps) => t.tweet.id)
+                .includes(tweet.id) ? (
+                <Liked>
+                  <button type="button">
+                    <span>
+                      <FiHeart size="20" color="#e0245e" fill="#e0245e" />
+                    </span>
 
-                      <p>{tweet.likes.length}</p>
-                    </button>
-                  </span>
-                ) : (
-                  <span>
-                    <LikeTweet id={tweet.id} />
-                    {tweet.likes.length}
-                  </span>
-                ),
+                    <p>{tweet.likes.length}</p>
+                  </button>
+                </Liked>
+              ) : (
+                <NoLiked>
+                  <LikeTweet id={tweet.id} />
+
+                  <p>{tweet.likes.length}</p>
+                </NoLiked>
               )}
             </Like>
-          </Interactions> */}
+          </Interactions>
         </Tweet>
       ))}
     </Container>

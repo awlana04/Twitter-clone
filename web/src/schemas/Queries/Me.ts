@@ -19,6 +19,9 @@ const ME_QUERY = gql`
       }
       likedTweets {
         id
+        tweet {
+          id
+        }
       }
     }
   }
