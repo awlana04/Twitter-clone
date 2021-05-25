@@ -7,6 +7,8 @@ export const Container = styled.div`
 
   font-size: 14px;
 
+  position: fixed;
+
   img {
     width: 28px;
     margin-bottom: 28px;

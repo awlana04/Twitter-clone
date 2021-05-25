@@ -13,6 +13,7 @@ import SideBar from '../../components/SideBar';
 import AllTweets from '../../components/AllTweets';
 
 import { Container, HomePage, Tweet, Feed } from './styles';
+import Aside from '../../components/Aside';
 
 interface TweetValues {
   content: string;
@@ -99,6 +100,8 @@ const Home: React.FC = () => {
 
         <AllTweets />
       </HomePage>
+
+      <Aside />
     </Container>
   );
 };

@@ -4,11 +4,13 @@ export const Container = styled.div`
   h3 {
     font-size: 22px;
   }
+
+  aside {
+    margin-top: 296px;
+  }
 `;
 
 export const ProfileContent = styled.div`
-  margin-top: -496px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +19,7 @@ export const ProfileContent = styled.div`
 export const ProfileInfo = styled.div``;
 
 export const ProfileHeader = styled.div`
-  margin-top: 36px;
+  margin-top: 16px;
 
   display: flex;
   flex-direction: row;

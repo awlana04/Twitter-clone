@@ -19,6 +19,7 @@ import {
   ProfileWebsite,
   Followers,
 } from './styles';
+import Aside from '../../components/Aside';
 
 const Profile: React.FC = () => {
   const history = useHistory();
@@ -87,6 +88,10 @@ const Profile: React.FC = () => {
           </Followers>
         </ProfileInfo>
       </ProfileContent>
+
+      <aside>
+        <Aside />
+      </aside>
     </Container>
   );
 };

@@ -3,13 +3,13 @@ import styled from 'styled-components';
 export const Container = styled.div``;
 
 export const HomePage = styled.div`
-  margin-top: -446px;
-
   display: grid;
   align-items: center;
   justify-content: center;
 
   h3 {
+    margin-top: 22px;
+
     font-size: 20px;
     font-weight: 700;
   }
