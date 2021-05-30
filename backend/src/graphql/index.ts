@@ -10,6 +10,7 @@ import { User } from './schemas/User';
 import { Profile } from './schemas/Profile';
 import { Tweet } from './schemas/Tweet';
 import { LikedTweet } from './schemas/LikedTweet';
+import { Reply } from './schemas/Reply';
 
 import { Query } from './resolvers/Query';
 import { Mutation } from './resolvers/Mutation';
@@ -23,6 +24,7 @@ export const schemaWithoutPermissions = makeSchema({
     Profile,
     Tweet,
     LikedTweet,
+    Reply,
     Query,
     Mutation,
     AuthPayload,

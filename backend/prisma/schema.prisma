@@ -17,9 +17,10 @@ model User {
   email    String @unique
   password String
 
-  tweets      Tweet[]
-  likedTweets LikedTweet[]
   profile     Profile[]
+  tweets      Tweet[]
+  reply       Reply[]
+  likedTweets LikedTweet[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -49,7 +50,9 @@ model Tweet {
   id String @id @default(uuid())
 
   content String?
+
   likes   LikedTweet[]
+  replies Reply[]
 
   authorId String? @map("author_id")
   author   User?   @relation(fields: [authorId], references: [id])
@@ -63,13 +66,29 @@ model Tweet {
 model LikedTweet {
   id String @id @default(uuid())
 
-  tweetId String?
-  tweet   Tweet?  @relation(fields: [tweetId], references: [id])
   userId  String? @map("user_id")
   user    User?   @relation(fields: [userId], references: [id])
+  tweetId String?
+  tweet   Tweet?  @relation(fields: [tweetId], references: [id])
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("liked_tweet")
+}
+
+model Reply {
+  id String @id @default(uuid())
+
+  content String?
+
+  userId  String? @map("user_id")
+  user    User?   @relation(fields: [userId], references: [id])
+  tweetId String?
+  tweet   Tweet?  @relation(fields: [tweetId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("replies")
 }

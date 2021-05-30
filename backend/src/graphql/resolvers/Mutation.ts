@@ -71,7 +71,7 @@ export const Mutation = objectType({
         location: stringArg(),
         website: stringArg(),
       },
-      resolve: (parent, { id, ...args }, context: Context) => {
+      resolve: (_parent, { id, ...args }, context: Context) => {
         const userId = getUserId(context);
 
         if (!userId) {
@@ -97,7 +97,7 @@ export const Mutation = objectType({
         location: stringArg(),
         website: stringArg(),
       },
-      resolve: (parent, { id, ...args }, context: Context) => {
+      resolve: (_parent, { id, ...args }, context: Context) => {
         const userId = getUserId(context);
 
         if (!userId) {
@@ -120,14 +120,14 @@ export const Mutation = objectType({
       args: {
         content: stringArg()
       },
-      resolve: (parent, { content }, ctx) => {
-        const userId = getUserId(ctx);
+      resolve: (_parent, { content }, context: Context) => {
+        const userId = getUserId(context);
 
         if (!userId) {
           throw new Error('Could not authenticate user.');
         }
 
-        return ctx.prisma.tweet.create({
+        return context.prisma.tweet.create({
           data: {
             content,
             author: { connect: { id: String(userId) } }
@@ -141,14 +141,14 @@ export const Mutation = objectType({
       args: {
         id: stringArg()
       },
-      resolve: (parent, { id }, ctx) => {
-        const userId = getUserId(ctx);
+      resolve: (_parent, { id }, context: Context) => {
+        const userId = getUserId(context);
 
         if (!userId) {
           throw new Error('Could not authenticate user.');
         }
 
-        return ctx.prisma.likedTweet.create({
+        return context.prisma.likedTweet.create({
           data: {
             tweet: { connect: { id: String(id) } },
             user: { connect: { id: String(userId) } }
@@ -162,15 +162,38 @@ export const Mutation = objectType({
       args: {
         id: stringArg()
       },
-      resolve: (parent, { id }, ctx) => {
-        const userId = getUserId(ctx);
+      resolve: (_parent, { id }, context: Context) => {
+        const userId = getUserId(context);
 
         if (!userId) {
           throw new Error('Could not authenticate user.');
         }
 
-        return ctx.prisma.likedTweet.delete({
+        return context.prisma.likedTweet.delete({
           where: { id: String(id) }
+        })
+      }
+    })
+
+    t.field('createReply', {
+      type: 'Reply',
+      args: {
+        id: stringArg(),
+        content: stringArg(),
+      },
+      resolve: (_parent, { id, content }, context: Context) => {
+        const userId = getUserId(context);
+
+        if (!userId) {
+          throw new Error('Could not authenticate user.');
+        }
+
+        return context.prisma.reply.create({
+          data: {
+            content,
+            tweet: { connect: { id: String(id) } },
+            user: { connect: { id: String(userId) } }
+          }
         })
       }
     })

@@ -16,6 +16,7 @@ type LikedTweet {
   createdAt: DateTime!
   id: String!
   tweet: Tweet
+  user: User
 }
 
 input LikedTweetWhereUniqueInput {
@@ -24,6 +25,7 @@ input LikedTweetWhereUniqueInput {
 
 type Mutation {
   createProfile(avatar: String, bio: String, id: String, location: String, name: String, website: String): Profile
+  createReply(content: String, id: String): Reply
   createTweet(content: String): Tweet
   deleteLike(id: String): LikedTweet
   likedTweet(id: String): LikedTweet
@@ -53,6 +55,19 @@ type Query {
   tweets: [Tweet!]!
 }
 
+type Reply {
+  content: String
+  createdAt: DateTime!
+  id: String!
+  tweet: Tweet
+  updatedAt: DateTime!
+  user: User
+}
+
+input ReplyWhereUniqueInput {
+  id: String
+}
+
 type Tweet {
   author: User
   content: String
@@ -68,6 +83,7 @@ type User {
   id: String!
   likedTweets(after: LikedTweetWhereUniqueInput, before: LikedTweetWhereUniqueInput, first: Int, last: Int): [LikedTweet!]!
   profile(after: ProfileWhereUniqueInput, before: ProfileWhereUniqueInput, first: Int, last: Int): [Profile!]!
+  reply(after: ReplyWhereUniqueInput, before: ReplyWhereUniqueInput, first: Int, last: Int): [Reply!]!
   tweets: [Tweet!]!
   updatedAt: DateTime!
 }
