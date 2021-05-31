@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import * as Yup from 'yup';
+import { FiMessageCircle } from 'react-icons/fi';
 
 import REPLY from '../../schemas/Mutations/Reply';
 import ME_QUERY from '../../schemas/Queries/Me';
@@ -32,9 +34,26 @@ const Reply: React.FC = () => {
     content: '',
   };
 
+  const validationSchema = Yup.object({
+    content: Yup.string()
+      .required()
+      .min(1, 'Must be more than one character')
+      .max(256, 'Must be less than 257 characters'),
+  });
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <Container>
-      <p>Hello world!</p>
+      <button type="button" onClick={openModal}>
+        <FiMessageCircle />
+      </button>
     </Container>
   );
 };
