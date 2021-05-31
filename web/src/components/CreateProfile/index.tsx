@@ -65,6 +65,11 @@ const CreateProfile: React.FC = () => {
         onRequestClose={closeModal}
         contentLabel="Modal"
         ariaHideApp={false}
+        style={{
+          overlay: {
+            background: '#9e9e9e69',
+          },
+        }}
       >
         <Formik
           initialValues={initialValues}

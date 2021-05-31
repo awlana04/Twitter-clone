@@ -8,6 +8,9 @@ const TWEETS_QUERY = gql`
       likes {
         id
       }
+      replies {
+        id
+      }
       createdAt
       author {
         id

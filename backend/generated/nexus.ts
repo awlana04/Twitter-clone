@@ -165,6 +165,7 @@ export interface NexusGenFieldTypes {
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     likes: NexusGenRootTypes['LikedTweet'][]; // [LikedTweet!]!
+    replies: NexusGenRootTypes['Reply'][]; // [Reply!]!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   User: { // field return type
@@ -228,6 +229,7 @@ export interface NexusGenFieldTypeNames {
     createdAt: 'DateTime'
     id: 'String'
     likes: 'LikedTweet'
+    replies: 'Reply'
     updatedAt: 'DateTime'
   }
   User: { // field return type name
@@ -286,6 +288,12 @@ export interface NexusGenArgTypes {
     likes: { // args
       after?: NexusGenInputs['LikedTweetWhereUniqueInput'] | null; // LikedTweetWhereUniqueInput
       before?: NexusGenInputs['LikedTweetWhereUniqueInput'] | null; // LikedTweetWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    replies: { // args
+      after?: NexusGenInputs['ReplyWhereUniqueInput'] | null; // ReplyWhereUniqueInput
+      before?: NexusGenInputs['ReplyWhereUniqueInput'] | null; // ReplyWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
     }

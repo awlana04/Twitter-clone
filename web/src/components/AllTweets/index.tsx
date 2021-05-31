@@ -19,11 +19,13 @@ import {
 } from './styles';
 import LikeTweet from '../LikeTweet';
 import DeleteLike from '../DeleteLike';
+import Reply from '../Reply';
 
 interface TweetsInterface {
   id: string;
   content: string;
   likes: [];
+  replies: [];
   createdAt: number;
   author: {
     profile: Array<{
@@ -114,6 +116,15 @@ const AllTweets: React.FC = () => {
                 </NoLiked>
               )}
             </Like>
+
+            <Reply
+              id={tweet.id}
+              avatar={tweet.author.profile[0].avatar}
+              name={tweet.author.profile[0].name}
+              tweet={tweet.content}
+            >
+              {tweet.replies.length > 0 ? tweet.replies.length : null}
+            </Reply>
           </Interactions>
         </Tweet>
       ))}

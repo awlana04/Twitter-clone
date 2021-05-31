@@ -74,6 +74,7 @@ type Tweet {
   createdAt: DateTime!
   id: String!
   likes(after: LikedTweetWhereUniqueInput, before: LikedTweetWhereUniqueInput, first: Int, last: Int): [LikedTweet!]!
+  replies(after: ReplyWhereUniqueInput, before: ReplyWhereUniqueInput, first: Int, last: Int): [Reply!]!
   updatedAt: DateTime!
 }
 
