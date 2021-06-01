@@ -4,12 +4,22 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FiMessageCircle, FiUser, FiX } from 'react-icons/fi';
 
+import { formatDistance, subDays } from 'date-fns';
 import ME_QUERY from '../../schemas/Queries/Me';
 import REPLY from '../../schemas/Mutations/Reply';
 
 import Button from '../Button';
 
-import { Container, StyledModal, ButtonClose, Avatar } from './styles';
+import {
+  Container,
+  StyledModal,
+  ButtonClose,
+  ReplyUser,
+  ReplyInfo,
+  Avatar,
+  ReplyLine,
+  UserAvatar,
+} from './styles';
 
 interface ReplyProps {
   content: string;
@@ -19,10 +29,17 @@ interface Props {
   id: string;
   avatar: string;
   name: string;
+  createdAt: number;
   tweet: string;
 }
 
-const Reply: React.FC<Props> = ({ id, avatar, name, tweet }: Props) => {
+const Reply: React.FC<Props> = ({
+  id,
+  avatar,
+  name,
+  createdAt,
+  tweet,
+}: Props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const { loading, error, data } = useQuery(ME_QUERY);
@@ -104,13 +121,40 @@ const Reply: React.FC<Props> = ({ id, avatar, name, tweet }: Props) => {
               </button>
             </ButtonClose>
 
-            <Avatar>
+            <ReplyUser>
+              <ReplyInfo>
+                <Avatar>
+                  {avatar ? (
+                    <img src={avatar} alt={`${name}' avatar`} />
+                  ) : (
+                    <FiUser size="64" color="#1a91da" />
+                  )}
+                </Avatar>
+
+                <h5>{name}</h5>
+
+                <span>
+                  {formatDistance(subDays(new Date(createdAt), 0), new Date())}{' '}
+                  ago
+                </span>
+              </ReplyInfo>
+
+              <ReplyLine>
+                <p>{tweet}</p>
+                <h6>Respondendo a {name}</h6>
+              </ReplyLine>
+            </ReplyUser>
+
+            <UserAvatar>
               {avatar ? (
-                <img src={avatar} alt={`${name}' avatar`} />
+                <img
+                  src={data.me.profile[0].avatar}
+                  alt={`${data.me.profile[0].name}' avatar`}
+                />
               ) : (
                 <FiUser size="64" color="#1a91da" />
               )}
-            </Avatar>
+            </UserAvatar>
 
             <Field
               type="text"

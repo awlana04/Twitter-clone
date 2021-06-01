@@ -26,8 +26,8 @@ export const StyledModal = styled(Modal)`
   max-width: 36em;
   min-width: 24em;
   min-height: 16em;
-  margin-top: 14%;
-  margin-left: 48%;
+  margin-top: 17%;
+  margin-left: 50%;
 
   background-color: #ffff;
 
@@ -87,10 +87,58 @@ export const ButtonClose = styled.div`
   }
 `;
 
+export const ReplyUser = styled.div``;
+
+export const ReplyInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  h5 {
+    margin-top: 46px;
+    margin-left: 26px;
+    margin-right: 16px;
+
+    font-size: 16px;
+  }
+
+  span {
+    margin-top: 48px;
+
+    color: #607486;
+    font-size: 14px;
+  }
+`;
+
 export const Avatar = styled.div`
   width: 52px;
   height: 52px;
   margin-top: 22px;
+  margin-left: 16px;
+  margin-bottom: -50px;
+
+  border-radius: 50%;
+`;
+
+export const ReplyLine = styled.div`
+  margin-top: 14px;
+  margin-left: 48px;
+  padding-top: -2px;
+  padding-left: 48px;
+
+  border-left: 2px solid rgba(96, 116, 134, 0.4);
+
+  h6 {
+    margin-top: 12px;
+
+    color: #607486;
+    font-size: 14px;
+    font-weight: 400;
+  }
+`;
+
+export const UserAvatar = styled.div`
+  width: 52px;
+  height: 52px;
   margin-left: 16px;
   margin-bottom: -50px;
 

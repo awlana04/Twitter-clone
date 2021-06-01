@@ -26,16 +26,7 @@ interface TweetsInterface {
   id: string;
   content: string;
   likes: [];
-  replies: Array<{
-    user: {
-      profile: {
-        avatar: string;
-        name: string;
-      };
-    };
-    content: string;
-    createdAt: number;
-  }>;
+  replies: [];
   createdAt: number;
   author: {
     profile: Array<{
@@ -102,33 +93,12 @@ const AllTweets: React.FC = () => {
             <p>{tweet.content}</p>
           </Content>
 
-          {/* {data.tweets.replies.map((reply: TweetsInterface) => (
-            <ReplyInfo>
-              {reply.replies. ? (
-                <img
-                  src={tweet.author.profile[0].avatar}
-                  alt={`${tweet.author.profile[0].name}' avatar`}
-                />
-              ) : (
-                <FiUser size="64" color="#1a91da" />
-              )}
-
-              <h6>{tweet.author.profile[0].name}</h6>
-              <span>
-                {formatDistance(
-                  subDays(new Date(tweet.createdAt), 0),
-                  new Date(),
-                )}{' '}
-                ago
-              </span>
-            </ReplyInfo>
-          ))} */}
-
           <Interactions>
             <Reply
               id={tweet.id}
               avatar={tweet.author.profile[0].avatar}
               name={tweet.author.profile[0].name}
+              createdAt={tweet.createdAt}
               tweet={tweet.content}
             >
               {tweet.replies.length > 0 ? tweet.replies.length : null}
