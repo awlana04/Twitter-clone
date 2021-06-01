@@ -7,6 +7,10 @@ import { FiUser, FiHeart } from 'react-icons/fi';
 import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 import ME_QUERY from '../../schemas/Queries/Me';
 
+import Reply from '../Reply';
+import LikeTweet from '../LikeTweet';
+import DeleteLike from '../DeleteLike';
+
 import {
   Container,
   Tweet,
@@ -17,15 +21,21 @@ import {
   Liked,
   NoLiked,
 } from './styles';
-import LikeTweet from '../LikeTweet';
-import DeleteLike from '../DeleteLike';
-import Reply from '../Reply';
 
 interface TweetsInterface {
   id: string;
   content: string;
   likes: [];
-  replies: [];
+  replies: Array<{
+    user: {
+      profile: {
+        avatar: string;
+        name: string;
+      };
+    };
+    content: string;
+    createdAt: number;
+  }>;
   createdAt: number;
   author: {
     profile: Array<{
@@ -92,7 +102,38 @@ const AllTweets: React.FC = () => {
             <p>{tweet.content}</p>
           </Content>
 
+          {/* {data.tweets.replies.map((reply: TweetsInterface) => (
+            <ReplyInfo>
+              {reply.replies. ? (
+                <img
+                  src={tweet.author.profile[0].avatar}
+                  alt={`${tweet.author.profile[0].name}' avatar`}
+                />
+              ) : (
+                <FiUser size="64" color="#1a91da" />
+              )}
+
+              <h6>{tweet.author.profile[0].name}</h6>
+              <span>
+                {formatDistance(
+                  subDays(new Date(tweet.createdAt), 0),
+                  new Date(),
+                )}{' '}
+                ago
+              </span>
+            </ReplyInfo>
+          ))} */}
+
           <Interactions>
+            <Reply
+              id={tweet.id}
+              avatar={tweet.author.profile[0].avatar}
+              name={tweet.author.profile[0].name}
+              tweet={tweet.content}
+            >
+              {tweet.replies.length > 0 ? tweet.replies.length : null}
+            </Reply>
+
             <Like>
               {meData.me.likedTweets
                 .map((t: TweetProps) => t.tweet.id)
@@ -116,15 +157,6 @@ const AllTweets: React.FC = () => {
                 </NoLiked>
               )}
             </Like>
-
-            <Reply
-              id={tweet.id}
-              avatar={tweet.author.profile[0].avatar}
-              name={tweet.author.profile[0].name}
-              tweet={tweet.content}
-            >
-              {tweet.replies.length > 0 ? tweet.replies.length : null}
-            </Reply>
           </Interactions>
         </Tweet>
       ))}

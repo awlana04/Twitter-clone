@@ -52,6 +52,9 @@ export const Content = styled.div`
 `;
 
 export const Interactions = styled.div`
+  display: flex;
+  flex-direction: row;
+
   button {
     margin-top: 12px;
 
@@ -86,8 +89,6 @@ export const Interactions = styled.div`
 
 export const Like = styled.div`
   button {
-    margin-left: 286px;
-
     &:hover {
       span {
         background-color: rgba(224, 36, 94, 0.1);

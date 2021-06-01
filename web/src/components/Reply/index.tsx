@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { FiMessageCircle, FiX } from 'react-icons/fi';
+import { FiMessageCircle, FiUser, FiX } from 'react-icons/fi';
 
 import ME_QUERY from '../../schemas/Queries/Me';
 import REPLY from '../../schemas/Mutations/Reply';
 
 import Button from '../Button';
 
-import { Container, StyledModal, ButtonClose } from './styles';
+import { Container, StyledModal, ButtonClose, Avatar } from './styles';
 
 interface ReplyProps {
   content: string;
@@ -65,7 +65,9 @@ const Reply: React.FC<Props> = ({ id, avatar, name, tweet }: Props) => {
   return (
     <Container>
       <button type="button" onClick={openModal}>
-        <FiMessageCircle size="20" />
+        <span>
+          <FiMessageCircle size="22" />
+        </span>
       </button>
 
       <StyledModal
@@ -101,6 +103,14 @@ const Reply: React.FC<Props> = ({ id, avatar, name, tweet }: Props) => {
                 </h5>
               </button>
             </ButtonClose>
+
+            <Avatar>
+              {avatar ? (
+                <img src={avatar} alt={`${name}' avatar`} />
+              ) : (
+                <FiUser size="64" color="#1a91da" />
+              )}
+            </Avatar>
 
             <Field
               type="text"

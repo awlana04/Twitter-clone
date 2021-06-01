@@ -2,8 +2,23 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 
 export const Container = styled.div`
-  svg:hover {
-    background-color: #1aa1f2;
+  span {
+    width: 36px;
+    height: 36px;
+
+    margin-left: 62px;
+    margin-right: 78px;
+    margin-bottom: -34px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: rgba(26, 161, 242, 0.2);
+    }
   }
 `;
 
@@ -35,8 +50,8 @@ export const StyledModal = styled(Modal)`
   }
 
   button {
-    width: 80px;
-    margin-left: 36em;
+    width: 118px;
+    margin-left: 33em;
     margin-bottom: 10px;
   }
 `;
@@ -70,4 +85,14 @@ export const ButtonClose = styled.div`
       margin: 7px;
     }
   }
+`;
+
+export const Avatar = styled.div`
+  width: 52px;
+  height: 52px;
+  margin-top: 22px;
+  margin-left: 16px;
+  margin-bottom: -50px;
+
+  border-radius: 50%;
 `;
