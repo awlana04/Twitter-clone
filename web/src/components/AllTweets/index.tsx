@@ -1,12 +1,12 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { formatDistance, subDays } from 'date-fns';
-import { FiUser, FiHeart } from 'react-icons/fi';
 
 import { Link } from 'react-router-dom';
 import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 import ME_QUERY from '../../schemas/Queries/Me';
 
+import Avatar from '../Avatar';
 import Reply from '../Reply';
 import LikeTweet from '../LikeTweet';
 import DeleteLike from '../DeleteLike';
@@ -74,14 +74,7 @@ const AllTweets: React.FC = () => {
             style={{ textDecoration: 'none', color: 'black' }}
           >
             <TweetInfo>
-              {tweet.author.profile[0].avatar ? (
-                <img
-                  src={tweet.author.profile[0].avatar}
-                  alt={`${tweet.author.profile[0].name}' avatar`}
-                />
-              ) : (
-                <FiUser size="64" color="#1a91da" />
-              )}
+              <Avatar />
 
               <h6>{tweet.author.profile[0].name}</h6>
               <span>

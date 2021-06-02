@@ -1,26 +1,25 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { FiArrowLeft, FiUser, FiLink } from 'react-icons/fi';
+import { FiLink } from 'react-icons/fi';
 
 import ME_QUERY from '../../schemas/Queries/Me';
 
 import SideBar from '../../components/SideBar';
+import Header from '../../components/Header';
+import Avatar from '../../components/Avatar';
 import CreateProfile from '../../components/CreateProfile';
 import UpdateProfile from '../../components/UpdateProfile';
+import Aside from '../../components/Aside';
 
 import {
   Container,
   ProfileContent,
   ProfileInfo,
-  ProfileHeader,
-  Avatar,
   MakeProfile,
   ProfileWebsite,
   Followers,
 } from './styles';
-import Aside from '../../components/Aside';
-import BackButton from '../../components/BackButton';
 
 const Profile: React.FC = () => {
   const history = useHistory();
@@ -41,22 +40,11 @@ const Profile: React.FC = () => {
 
       <ProfileContent>
         <ProfileInfo>
-          <ProfileHeader>
-            <BackButton />
-
+          <Header>
             <span>{data.me.profile[0].name}</span>
-          </ProfileHeader>
+          </Header>
 
-          <Avatar>
-            {data.me.profile[0].avatar ? (
-              <img
-                src={data.me.profile[0].avatar}
-                alt={`${data.me.profile[0].name}' avatar`}
-              />
-            ) : (
-              <FiUser size="64" color="#1a91da" />
-            )}
-          </Avatar>
+          <Avatar />
 
           <MakeProfile>
             {data.me.profile[0] ? <UpdateProfile /> : <CreateProfile />}

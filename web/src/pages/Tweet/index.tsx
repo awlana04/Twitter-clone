@@ -1,15 +1,15 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { FiArrowLeft, FiUser } from 'react-icons/fi';
+import { FiUser } from 'react-icons/fi';
 
 import TWEET_QUERY from '../../schemas/Queries/Tweet';
 
 import SideBar from '../../components/SideBar';
-import BackButton from '../../components/BackButton';
+import Header from '../../components/Header';
 import Aside from '../../components/Aside';
 
-import { Container } from './styles';
+import { Container, TweetContent } from './styles';
 
 interface ParamType {
   id: string;
@@ -36,11 +36,11 @@ const Tweet: React.FC = () => {
     <Container>
       <SideBar />
 
-      <Tweet>
-        <BackButton />
-
-        <span>Tweet</span>
-      </Tweet>
+      <TweetContent>
+        <Header>
+          <span>Tweet</span>
+        </Header>
+      </TweetContent>
 
       <Aside />
     </Container>

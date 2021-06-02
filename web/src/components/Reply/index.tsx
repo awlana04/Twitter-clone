@@ -9,11 +9,11 @@ import ME_QUERY from '../../schemas/Queries/Me';
 import REPLY from '../../schemas/Mutations/Reply';
 
 import Button from '../Button';
+import ButtonClose from '../CloseButton';
 
 import {
   Container,
   StyledModal,
-  ButtonClose,
   ReplyUser,
   ReplyInfo,
   Avatar,
@@ -113,13 +113,7 @@ const Reply: React.FC<Props> = ({
           }}
         >
           <Form>
-            <ButtonClose>
-              <button type="button" onClick={closeModal}>
-                <h5>
-                  <FiX size="24" color="#1da1f2" />
-                </h5>
-              </button>
-            </ButtonClose>
+            <ButtonClose closeModal={closeModal} />
 
             <ReplyUser>
               <ReplyInfo>

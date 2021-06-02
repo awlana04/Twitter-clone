@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  margin-top: 16px;
+
+  display: flex;
+  flex-direction: row;
+
   button {
     width: 36px;
     height: 36px;
+    margin-right: 16px;
 
     background-color: #ffffff;
 
@@ -16,5 +22,12 @@ export const Container = styled.div`
     svg {
       margin: 7px;
     }
+  }
+
+  span {
+    margin-top: 8px;
+
+    font-size: 18px;
+    font-weight: 700;
   }
 `;

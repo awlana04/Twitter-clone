@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { FiX, FiUser } from 'react-icons/fi';
 
 import CREATE_TWEET_MUTATION from '../../schemas/Mutations/CreateTweet';
 import ME_QUERY from '../../schemas/Queries/Me';
 import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 
 import Button from '../Button';
+import CloseButton from '../CloseButton';
+import Avatar from '../Avatar';
 
-import { Container, StyledModal, ButtonClose, Avatar } from './styles';
+import { Container, StyledModal, Close } from './styles';
 
 interface TweetValues {
   content: string;
@@ -87,24 +88,11 @@ const Tweet: React.FC = () => {
           }}
         >
           <Form>
-            <ButtonClose>
-              <button type="button" onClick={closeModal}>
-                <h5>
-                  <FiX size="24" color="#1da1f2" />
-                </h5>
-              </button>
-            </ButtonClose>
+            <Close>
+              <CloseButton closeModal={closeModal} />
+            </Close>
 
-            <Avatar>
-              {data.me.profile[0].avatar ? (
-                <img
-                  src={data.me.profile[0].avatar}
-                  alt={`${data.me.profile[0].name}' avatar`}
-                />
-              ) : (
-                <FiUser size="64" color="#1a91da" />
-              )}
-            </Avatar>
+            <Avatar />
 
             <Field
               name="content"

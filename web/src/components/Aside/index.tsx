@@ -1,6 +1,6 @@
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import { format } from 'date-fns';
-import React from 'react';
 import { FiUser, FiHeart } from 'react-icons/fi';
 
 import POPULAR_TWEETS_QUERY from '../../schemas/Queries/PopularTweets';

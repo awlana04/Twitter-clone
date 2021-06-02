@@ -18,50 +18,6 @@ export const ProfileContent = styled.div`
 
 export const ProfileInfo = styled.div``;
 
-export const ProfileHeader = styled.div`
-  margin-top: 16px;
-
-  display: flex;
-  flex-direction: row;
-
-  button {
-    width: 36px;
-    height: 36px;
-
-    background-color: #ffffff;
-
-    border-radius: 50%;
-
-    &:hover {
-      background-color: rgba(29, 161, 242, 0.1);
-    }
-
-    svg {
-      margin: 7px;
-    }
-  }
-
-  span {
-    margin-top: 6px;
-    margin-left: 22px;
-
-    font-size: 22px;
-    font-weight: 600;
-  }
-`;
-
-export const Avatar = styled.div`
-  img,
-  svg {
-    width: 156px;
-    height: 156px;
-    margin-top: 116px;
-
-    border: 2px solid #ffffff;
-    border-radius: 50%;
-  }
-`;
-
 export const MakeProfile = styled.div`
   width: 544px;
   margin-top: -66px;
