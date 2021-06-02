@@ -6,6 +6,7 @@ import Signup from '../pages/Signup';
 import Login from '../pages/Login';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
+import Tweet from '../pages/Tweet';
 
 import IsAuthenticated from './IsAuthenticated';
 
@@ -23,6 +24,10 @@ const Routes: React.FC = () => (
 
         <Route path="/profile">
           <Profile />
+        </Route>
+
+        <Route path="/tweet/:id">
+          <Tweet />
         </Route>
       </IsAuthenticated>
     </Switch>

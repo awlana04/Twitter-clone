@@ -1,9 +1,9 @@
-/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { formatDistance, subDays } from 'date-fns';
 import { FiUser, FiHeart } from 'react-icons/fi';
 
+import { Link } from 'react-router-dom';
 import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 import ME_QUERY from '../../schemas/Queries/Me';
 
@@ -69,29 +69,34 @@ const AllTweets: React.FC = () => {
     <Container>
       {data.tweets.map((tweet: TweetsInterface) => (
         <Tweet key={tweet.id}>
-          <TweetInfo>
-            {tweet.author.profile[0].avatar ? (
-              <img
-                src={tweet.author.profile[0].avatar}
-                alt={`${tweet.author.profile[0].name}' avatar`}
-              />
-            ) : (
-              <FiUser size="64" color="#1a91da" />
-            )}
+          <Link
+            to={`/tweet/${tweet.id}`}
+            style={{ textDecoration: 'none', color: 'black' }}
+          >
+            <TweetInfo>
+              {tweet.author.profile[0].avatar ? (
+                <img
+                  src={tweet.author.profile[0].avatar}
+                  alt={`${tweet.author.profile[0].name}' avatar`}
+                />
+              ) : (
+                <FiUser size="64" color="#1a91da" />
+              )}
 
-            <h6>{tweet.author.profile[0].name}</h6>
-            <span>
-              {formatDistance(
-                subDays(new Date(tweet.createdAt), 0),
-                new Date(),
-              )}{' '}
-              ago
-            </span>
-          </TweetInfo>
+              <h6>{tweet.author.profile[0].name}</h6>
+              <span>
+                {formatDistance(
+                  subDays(new Date(tweet.createdAt), 0),
+                  new Date(),
+                )}{' '}
+                ago
+              </span>
+            </TweetInfo>
 
-          <Content>
-            <p>{tweet.content}</p>
-          </Content>
+            <Content>
+              <p>{tweet.content}</p>
+            </Content>
+          </Link>
 
           <Interactions>
             <Reply

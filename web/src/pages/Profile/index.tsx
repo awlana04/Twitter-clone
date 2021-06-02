@@ -20,6 +20,7 @@ import {
   Followers,
 } from './styles';
 import Aside from '../../components/Aside';
+import BackButton from '../../components/BackButton';
 
 const Profile: React.FC = () => {
   const history = useHistory();
@@ -41,9 +42,7 @@ const Profile: React.FC = () => {
       <ProfileContent>
         <ProfileInfo>
           <ProfileHeader>
-            <button type="button" onClick={() => history.goBack()}>
-              <FiArrowLeft size="22" color="#1a91da" />
-            </button>
+            <BackButton />
 
             <span>{data.me.profile[0].name}</span>
           </ProfileHeader>

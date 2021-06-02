@@ -8,7 +8,7 @@ export const Query = objectType({
   definition(t) {
     t.nullable.field('me', {
       type: 'User',
-      resolve: (parent, args, context: Context) => {
+      resolve: (_parent, _args, context: Context) => {
         const userId = getUserId(context);
 
         return context.prisma.user.findUnique({
@@ -31,6 +31,20 @@ export const Query = objectType({
       resolve: (_parent, _args, context: Context) => {
         return context.prisma.tweet.findMany();
       },
+    })
+
+    t.nonNull.field("tweet", {
+      type: 'Tweet',
+      args: {
+        id: stringArg(),
+      },
+      resolve: (_parent, { id }, context) => {
+        return context.prisma.tweet.findUnique({
+          where: {
+            id: String(id),
+          }
+        })
+      }
     })
 
     // t.nullable.field('postById', {

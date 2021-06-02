@@ -52,6 +52,7 @@ input ProfileWhereUniqueInput {
 type Query {
   allUsers: [User!]!
   me: User
+  tweet(id: String): Tweet!
   tweets: [Tweet!]!
 }
 

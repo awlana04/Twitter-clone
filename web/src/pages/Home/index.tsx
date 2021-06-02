@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { FiX, FiUser } from 'react-icons/fi';
+import { FiUser } from 'react-icons/fi';
 
 import CREATE_TWEET_MUTATION from '../../schemas/Mutations/CreateTweet';
 import ME_QUERY from '../../schemas/Queries/Me';
@@ -11,9 +11,9 @@ import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 import Button from '../../components/Button';
 import SideBar from '../../components/SideBar';
 import AllTweets from '../../components/AllTweets';
-
-import { Container, HomePage, Tweet, Feed } from './styles';
 import Aside from '../../components/Aside';
+
+import { Container, HomePage, Tweet } from './styles';
 
 interface TweetValues {
   content: string;
@@ -93,10 +93,6 @@ const Home: React.FC = () => {
             </Form>
           </Formik>
         </Tweet>
-
-        {/* <Feed>
-          <h5>Hello World!</h5>
-        </Feed> */}
 
         <AllTweets />
       </HomePage>
