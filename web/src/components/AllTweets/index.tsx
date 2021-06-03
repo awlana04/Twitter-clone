@@ -1,8 +1,8 @@
 import React from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 import { formatDistance, subDays } from 'date-fns';
 
-import { Link } from 'react-router-dom';
 import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 import ME_QUERY from '../../schemas/Queries/Me';
 
@@ -115,13 +115,13 @@ const AllTweets: React.FC = () => {
                     }
                   />
 
-                  <p>{tweet.likes.length}</p>
+                  <p>{tweet.likes.length > 0 ? tweet.likes.length : null}</p>
                 </Liked>
               ) : (
                 <NoLiked>
                   <LikeTweet id={tweet.id} />
 
-                  <p>{tweet.likes.length}</p>
+                  <p>{tweet.likes.length > 0 ? tweet.likes.length : null}</p>
                 </NoLiked>
               )}
             </Like>

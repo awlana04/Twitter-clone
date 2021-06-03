@@ -10,16 +10,6 @@ const TWEETS_QUERY = gql`
       }
       replies {
         id
-        user {
-          id
-          profile {
-            id
-            avatar
-            name
-          }
-        }
-        content
-        createdAt
       }
       createdAt
       author {
