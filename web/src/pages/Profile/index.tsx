@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { FiLink } from 'react-icons/fi';
 
@@ -22,8 +22,6 @@ import {
 } from './styles';
 
 const Profile: React.FC = () => {
-  const history = useHistory();
-
   const { loading, error, data } = useQuery(ME_QUERY);
 
   if (loading) {
@@ -38,12 +36,12 @@ const Profile: React.FC = () => {
     <Container>
       <SideBar />
 
+      <Header>
+        <span>{data.me.profile[0].name}</span>
+      </Header>
+
       <ProfileContent>
         <ProfileInfo>
-          <Header>
-            <span>{data.me.profile[0].name}</span>
-          </Header>
-
           <Avatar />
 
           <MakeProfile>

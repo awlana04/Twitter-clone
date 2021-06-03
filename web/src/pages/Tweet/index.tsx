@@ -9,7 +9,13 @@ import SideBar from '../../components/SideBar';
 import Header from '../../components/Header';
 import Aside from '../../components/Aside';
 
-import { Container, TweetContent } from './styles';
+import {
+  Container,
+  TweetContent,
+  TweetInfo,
+  Content,
+  TweetAnalytics,
+} from './styles';
 
 interface ParamType {
   id: string;
@@ -36,10 +42,37 @@ const Tweet: React.FC = () => {
     <Container>
       <SideBar />
 
+      <Header>
+        <span>Tweet</span>
+      </Header>
+
       <TweetContent>
-        <Header>
-          <span>Tweet</span>
-        </Header>
+        <TweetInfo>
+          {data.tweet.author.profile[0].avatar ? (
+            <img
+              src={data.tweet.author.profile[0].avatar}
+              alt={`${data.tweet.author.profile[0].name}'s avatar`}
+            />
+          ) : (
+            <FiUser size="64" color="#1a91da" />
+          )}
+
+          <h5>{data.tweet.author.profile[0].name}</h5>
+        </TweetInfo>
+
+        <Content>
+          <p>{data.tweet.content}</p>
+        </Content>
+
+        <TweetAnalytics>
+          <span>
+            <strong>{data.tweet.replies.length}</strong> Tweets com comentários
+          </span>
+
+          <span>
+            <strong>{data.tweet.likes.length}</strong> Curtidas
+          </span>
+        </TweetAnalytics>
       </TweetContent>
 
       <Aside />
