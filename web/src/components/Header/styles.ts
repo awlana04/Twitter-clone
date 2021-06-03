@@ -1,15 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-top: 16px;
+  width: 544px;
+  height: 50px;
   margin-left: 356px;
 
+  background-color: #ffffff;
+
+  position: fixed;
   display: flex;
   flex-direction: row;
 
   button {
     width: 36px;
     height: 36px;
+    margin-top: 16px;
     margin-right: 16px;
 
     background-color: #ffffff;
@@ -26,7 +31,7 @@ export const Container = styled.div`
   }
 
   span {
-    margin-top: 8px;
+    margin-top: 22px;
 
     font-size: 18px;
     font-weight: 700;

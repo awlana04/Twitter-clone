@@ -4,7 +4,6 @@ export const Container = styled.div``;
 
 export const TweetContent = styled.div`
   width: 544px;
-  margin-top: 18px;
   margin-bottom: 26px;
 
   display: grid;
@@ -14,6 +13,9 @@ export const TweetContent = styled.div`
 `;
 
 export const TweetInfo = styled.div`
+  margin-top: 68px;
+  margin-left: 338px;
+
   display: flex;
   flex-direction: row;
 
@@ -44,8 +46,12 @@ export const Content = styled.div`
 `;
 
 export const TweetAnalytics = styled.div`
-  margin-top: 22px;
-  margin-left: 362px;
+  margin-top: 184px;
+  margin-left: 360px;
+
+  position: absolute;
+  display: grid;
+  grid-template-columns: 3fr 3fr 6fr;
 
   span {
     margin-right: 26px;
