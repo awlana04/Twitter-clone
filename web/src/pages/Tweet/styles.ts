@@ -64,3 +64,17 @@ export const TweetAnalytics = styled.div`
     }
   }
 `;
+
+export const Interactions = styled.div``;
+
+export const Like = styled.div``;
+
+export const Liked = styled.div``;
+
+export const NoLiked = styled.div``;
+
+export const Replies = styled.div``;
+
+export const ReplyInfo = styled.div``;
+
+export const ReplyContent = styled.div``;
