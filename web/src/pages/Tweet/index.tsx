@@ -33,7 +33,10 @@ interface ParamType {
 }
 
 interface ReplyType {
+  id: string;
   content: string;
+  likes: [];
+  replies: [];
   createdAt: number;
   user: {
     profile: Array<{
@@ -158,10 +161,12 @@ const Tweet: React.FC = () => {
                   <FiUser size="64" color="#1a91da" />
                 )}
 
-                <h6>{reply.user.profile[0].name}</h6>
+                <h5>{reply.user.profile[0].name}</h5>
               </ReplyInfo>
 
-              <ReplyContent>{reply.content}</ReplyContent>
+              <ReplyContent>
+                <p>{reply.content}</p>
+              </ReplyContent>
 
               {/* <span>{reply.createdAt}</span> */}
             </>
