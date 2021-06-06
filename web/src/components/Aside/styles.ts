@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-left: 1048px;
-  margin-top: -704px;
+  margin-top: 18px;
 
-  position: sticky;
+  position: absolute;
+
+  top: 0;
+  right: 0;
 
   h3 {
     font-size: 20px;

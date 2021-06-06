@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { formatDistance, subDays } from 'date-fns';
 import { FiUser } from 'react-icons/fi';
 
 import TWEET_QUERY from '../../schemas/Queries/Tweet';
@@ -162,13 +163,19 @@ const Tweet: React.FC = () => {
                 )}
 
                 <h5>{reply.user.profile[0].name}</h5>
+
+                {/* <span>
+                  {formatDistance(
+                    subDays(new Date(reply.createdAt), 0),
+                    new Date(),
+                  )}{' '}
+                  ago
+                </span> */}
               </ReplyInfo>
 
               <ReplyContent>
                 <p>{reply.content}</p>
               </ReplyContent>
-
-              {/* <span>{reply.createdAt}</span> */}
             </>
           ))}
         </Replies>

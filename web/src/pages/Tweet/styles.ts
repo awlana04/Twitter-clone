@@ -37,9 +37,11 @@ export const TweetInfo = styled.div`
 `;
 
 export const Content = styled.div`
+  margin-left: 100px;
+
   p {
     margin-top: 16px;
-    margin-left: -168px;
+    /* margin-left: -168px; */
 
     font-size: 20px;
   }
@@ -160,6 +162,14 @@ export const ReplyInfo = styled.div`
 
     font-size: 16px;
     font-weight: 600;
+  }
+
+  span {
+    width: 152px;
+    margin-top: 16px;
+
+    color: #607486;
+    font-size: 14px;
   }
 `;
 
