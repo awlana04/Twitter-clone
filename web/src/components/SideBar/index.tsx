@@ -32,7 +32,11 @@ import {
   Logout,
 } from './styles';
 
-const SideBar: React.FC = () => {
+interface SideBarProps {
+  page?: 'home' | 'profile' | 'messages' | 'notifications';
+}
+
+const SideBar: React.FC<SideBarProps> = ({ page }: SideBarProps) => {
   const history = useHistory();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -73,7 +77,11 @@ const SideBar: React.FC = () => {
         <Home>
           <Link to="/home">
             <h2>
-              <FiHome size="26" />
+              {page === 'home' ? (
+                <FiHome size="26" color="#1da1f2" />
+              ) : (
+                <FiHome size="26" />
+              )}
               <span>Home</span>
             </h2>
           </Link>
@@ -82,7 +90,12 @@ const SideBar: React.FC = () => {
         <Profile>
           <Link to="/profile">
             <h2>
-              <FiUser size="26" />
+              {page === 'profile' ? (
+                <FiUser size="26" color="#1da1f2" />
+              ) : (
+                <FiUser size="26" />
+              )}
+
               <span>Profile</span>
             </h2>
           </Link>
@@ -91,7 +104,11 @@ const SideBar: React.FC = () => {
         <Messages>
           <Link to="/users">
             <h2>
-              <FiMail size="26" />
+              {page === 'messages' ? (
+                <FiMail size="26" color="#1da1f2" />
+              ) : (
+                <FiMail size="26" />
+              )}
               <span>Messages</span>
             </h2>
           </Link>
@@ -100,7 +117,11 @@ const SideBar: React.FC = () => {
         <Notifications>
           <Link to="users">
             <h2>
-              <FiBell size="26" />
+              {page === 'notifications' ? (
+                <FiBell size="26" color="#1da1f2" />
+              ) : (
+                <FiBell size="26" />
+              )}
               <span>Notifications</span>
             </h2>
           </Link>

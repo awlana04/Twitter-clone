@@ -50,7 +50,7 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <SideBar />
+      <SideBar page="home" />
 
       <HomePage>
         <h3>Página Inicial</h3>

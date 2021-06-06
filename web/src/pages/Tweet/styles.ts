@@ -10,6 +10,17 @@ export const TweetContent = styled.div`
   align-items: center;
   justify-items: end;
   justify-content: center;
+
+  p {
+    width: 544px;
+    margin-top: 128px;
+    margin-left: 362px;
+    margin-bottom: 100px;
+
+    font-size: 20px;
+
+    position: absolute;
+  }
 `;
 
 export const TweetInfo = styled.div`
@@ -36,19 +47,8 @@ export const TweetInfo = styled.div`
   }
 `;
 
-export const Content = styled.div`
-  margin-left: 100px;
-
-  p {
-    margin-top: 16px;
-    /* margin-left: -168px; */
-
-    font-size: 20px;
-  }
-`;
-
 export const TweetAnalytics = styled.div`
-  margin-top: 184px;
+  margin-top: 192px;
   margin-left: 360px;
 
   position: absolute;
@@ -68,7 +68,7 @@ export const TweetAnalytics = styled.div`
 `;
 
 export const Interactions = styled.div`
-  margin-top: 38px;
+  margin-top: 84px;
   margin-bottom: 28px;
 
   display: flex;

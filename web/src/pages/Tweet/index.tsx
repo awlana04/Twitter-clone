@@ -18,7 +18,6 @@ import {
   Container,
   TweetContent,
   TweetInfo,
-  Content,
   TweetAnalytics,
   Interactions,
   Like,
@@ -105,9 +104,7 @@ const Tweet: React.FC = () => {
           <h5>{data.tweet.author.profile[0].name}</h5>
         </TweetInfo>
 
-        <Content>
-          <p>{data.tweet.content}</p>
-        </Content>
+        <p>{data.tweet.content}</p>
 
         <TweetAnalytics>
           <span>

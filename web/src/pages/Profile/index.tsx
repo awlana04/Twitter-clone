@@ -34,7 +34,7 @@ const Profile: React.FC = () => {
 
   return (
     <Container>
-      <SideBar />
+      <SideBar page="profile" />
 
       <Header>
         <span>{data.me.profile[0].name}</span>
