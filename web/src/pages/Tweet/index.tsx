@@ -18,6 +18,7 @@ import {
   Container,
   TweetContent,
   TweetInfo,
+  Content,
   TweetAnalytics,
   Interactions,
   Like,
@@ -104,7 +105,9 @@ const Tweet: React.FC = () => {
           <h5>{data.tweet.author.profile[0].name}</h5>
         </TweetInfo>
 
-        <p>{data.tweet.content}</p>
+        <Content>
+          <p>{data.tweet.content}</p>
+        </Content>
 
         <TweetAnalytics>
           <span>
@@ -161,13 +164,13 @@ const Tweet: React.FC = () => {
 
                 <h5>{reply.user.profile[0].name}</h5>
 
-                {/* <span>
+                <span>
                   {formatDistance(
                     subDays(new Date(reply.createdAt), 0),
                     new Date(),
                   )}{' '}
                   ago
-                </span> */}
+                </span>
               </ReplyInfo>
 
               <ReplyContent>

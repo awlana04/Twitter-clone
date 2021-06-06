@@ -10,22 +10,10 @@ export const TweetContent = styled.div`
   align-items: center;
   justify-items: end;
   justify-content: center;
-
-  p {
-    width: 544px;
-    margin-top: 128px;
-    margin-left: 362px;
-    margin-bottom: 100px;
-
-    font-size: 20px;
-
-    position: absolute;
-  }
 `;
 
 export const TweetInfo = styled.div`
   margin-top: 68px;
-  margin-left: 338px;
 
   display: flex;
   flex-direction: row;
@@ -34,16 +22,30 @@ export const TweetInfo = styled.div`
   svg {
     width: 56px;
     height: 56px;
+    margin-left: -186px;
 
     border-radius: 50%;
   }
 
   h5 {
-    margin-top: 14px;
-    margin-left: 8px;
+    margin-top: 16px;
+    margin-left: 12px;
 
     font-size: 16px;
     font-weight: 600;
+  }
+`;
+
+export const Content = styled.div`
+  p {
+    width: 544px;
+    margin-top: 4px;
+
+    margin-left: -184px;
+
+    font-size: 20px;
+
+    position: absolute;
   }
 `;
 
@@ -140,25 +142,35 @@ export const NoLiked = styled.div`
   }
 `;
 
-export const Replies = styled.div``;
+export const Replies = styled.div`
+  width: 544px;
+  margin-bottom: 26px;
+
+  display: grid;
+  align-items: center;
+  justify-items: end;
+  justify-content: center;
+`;
 
 export const ReplyInfo = styled.div`
-  margin-left: 338px;
+  /* margin-left: 338px; */
 
   display: flex;
   flex-direction: row;
 
   img,
   svg {
-    width: 56px;
-    height: 56px;
+    width: 62px;
+    height: 62px;
+    margin-left: 512px;
 
     border-radius: 50%;
   }
 
   h5 {
-    margin-top: 14px;
-    margin-left: 8px;
+    width: 112px;
+    margin-top: 16px;
+    margin-left: 12px;
 
     font-size: 16px;
     font-weight: 600;
@@ -166,7 +178,8 @@ export const ReplyInfo = styled.div`
 
   span {
     width: 152px;
-    margin-top: 16px;
+    margin-top: 18px;
+    margin-left: 4px;
 
     color: #607486;
     font-size: 14px;
@@ -175,10 +188,13 @@ export const ReplyInfo = styled.div`
 
 export const ReplyContent = styled.div`
   p {
-    margin-top: 16px;
-    margin-left: 338px;
-    margin-bottom: 22px;
+    width: 544px;
+    margin-top: 8px;
+
+    margin-left: -334px;
 
     font-size: 16px;
+
+    position: absolute;
   }
 `;
