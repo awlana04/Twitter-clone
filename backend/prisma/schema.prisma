@@ -84,7 +84,7 @@ model Reply {
 
   userId  String? @map("user_id")
   user    User?   @relation(fields: [userId], references: [id])
-  tweetId String?
+  tweetId String? @map("tweet_id")
   tweet   Tweet?  @relation(fields: [tweetId], references: [id])
 
   createdAt DateTime @default(now()) @map("created_at")

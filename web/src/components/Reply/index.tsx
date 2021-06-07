@@ -20,6 +20,7 @@ import {
   ReplyLine,
   UserAvatar,
 } from './styles';
+import TWEETS_QUERY from '../../schemas/Queries/Tweet';
 
 interface ReplyProps {
   content: string;
@@ -49,7 +50,7 @@ const Reply: React.FC<Props> = ({
       id: '',
       content: '',
     },
-    refetchQueries: [{ query: ME_QUERY }],
+    refetchQueries: [{ query: ME_QUERY }, { query: TWEETS_QUERY }],
   });
 
   if (loading) {
