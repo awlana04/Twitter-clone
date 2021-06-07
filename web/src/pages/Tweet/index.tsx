@@ -9,6 +9,7 @@ import ME_QUERY from '../../schemas/Queries/Me';
 
 import SideBar from '../../components/SideBar';
 import Header from '../../components/Header';
+import Comment from '../../components/Comment';
 import Reply from '../../components/Reply';
 import DeleteLike from '../../components/DeleteLike';
 import LikeTweet from '../../components/LikeTweet';
@@ -120,7 +121,7 @@ const Tweet: React.FC = () => {
         </TweetAnalytics>
 
         <Interactions>
-          <Reply
+          <Comment
             id={data.tweet.id}
             avatar={data.tweet.author.profile[0].avatar}
             name={data.tweet.author.profile[0].name}
@@ -176,6 +177,38 @@ const Tweet: React.FC = () => {
               <ReplyContent>
                 <p>{reply.content}</p>
               </ReplyContent>
+
+              <Interactions>
+                <Reply
+                  id={reply.id}
+                  avatar={reply.user.profile[0].avatar}
+                  name={reply.user.profile[0].name}
+                  createdAt={reply.createdAt}
+                  reply={reply.content}
+                  replyId={reply.id}
+                />
+
+                {/* <Like>
+                  {meData.me.likedTweets
+                    .map((r: ReplyProps) => r.tweet.id)
+                    .includes(data.tweet.id) ? (
+                    <Liked>
+                      <DeleteLike
+                        id={
+                          meData.me.likedTweets.filter(
+                            (like: ReplyProps) =>
+                              like.tweet.id === data.tweet.id,
+                          )[0].id
+                        }
+                      />
+                    </Liked>
+                  ) : (
+                    <NoLiked>
+                      <LikeTweet id={data.tweet.id} />
+                    </NoLiked>
+                  )}
+                </Like> */}
+              </Interactions>
             </>
           ))}
         </Replies>

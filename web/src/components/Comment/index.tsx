@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { formatDistance, subDays } from 'date-fns';
 import * as Yup from 'yup';
 import { FiMessageCircle, FiUser, FiX } from 'react-icons/fi';
 
+import { formatDistance, subDays } from 'date-fns';
 import ME_QUERY from '../../schemas/Queries/Me';
-import CREATE_REPLY_MUTATION from '../../schemas/Mutations/Reply';
+import CREATE_COMMENT_MUTATION from '../../schemas/Mutations/Comment';
 import TWEET_QUERY from '../../schemas/Queries/Tweet';
 
 import Button from '../Button';
@@ -22,7 +22,7 @@ import {
   UserAvatar,
 } from './styles';
 
-interface ReplyProps {
+interface CommentProps {
   content: string;
 }
 
@@ -31,27 +31,24 @@ interface Props {
   avatar: string;
   name: string;
   createdAt: number;
-  reply: string;
-  replyId: string;
+  tweet: string;
 }
 
-const Reply: React.FC<Props> = ({
+const Comment: React.FC<Props> = ({
   id,
   avatar,
   name,
   createdAt,
-  reply,
-  replyId,
+  tweet,
 }: Props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const { loading, error, data } = useQuery(ME_QUERY);
 
-  const [comment] = useMutation(CREATE_REPLY_MUTATION, {
+  const [comment] = useMutation(CREATE_COMMENT_MUTATION, {
     variables: {
       id: '',
       content: '',
-      replyId: '',
     },
     refetchQueries: [{ query: ME_QUERY }, { query: TWEET_QUERY }],
   });
@@ -64,7 +61,7 @@ const Reply: React.FC<Props> = ({
     return <p>{error.message}</p>;
   }
 
-  const initialValues: ReplyProps = {
+  const initialValues: CommentProps = {
     content: '',
   };
 
@@ -109,7 +106,7 @@ const Reply: React.FC<Props> = ({
             setSubmitting(true);
 
             await comment({
-              variables: { ...values, id, replyId },
+              variables: { ...values, id },
             });
 
             setSubmitting(false);
@@ -138,7 +135,7 @@ const Reply: React.FC<Props> = ({
               </ReplyInfo>
 
               <ReplyLine>
-                <p>{reply}</p>
+                <p>{tweet}</p>
                 <h6>Respondendo a {name}</h6>
               </ReplyLine>
             </ReplyUser>
@@ -172,4 +169,4 @@ const Reply: React.FC<Props> = ({
   );
 };
 
-export default Reply;
+export default Comment;

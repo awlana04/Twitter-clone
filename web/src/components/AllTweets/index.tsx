@@ -7,7 +7,7 @@ import TWEETS_QUERY from '../../schemas/Queries/Tweets';
 import ME_QUERY from '../../schemas/Queries/Me';
 
 import Avatar from '../Avatar';
-import Reply from '../Reply';
+import Reply from '../Comment';
 import LikeTweet from '../LikeTweet';
 import DeleteLike from '../DeleteLike';
 
