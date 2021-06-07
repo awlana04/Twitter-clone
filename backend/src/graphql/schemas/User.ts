@@ -7,7 +7,7 @@ export const User = objectType({
       t.model.email(),
       t.model.profile(),
       t.model.tweets({ pagination: false }),
-      t.model.reply(),
+      t.model.replies(),
       t.model.likedTweets(),
       t.model.createdAt(),
       t.model.updatedAt()

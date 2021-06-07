@@ -156,6 +156,8 @@ export interface NexusGenFieldTypes {
     content: string | null; // String
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
+    replies: NexusGenRootTypes['Reply'] | null; // Reply
+    reply: NexusGenRootTypes['Reply'][]; // [Reply!]!
     tweet: NexusGenRootTypes['Tweet'] | null; // Tweet
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     user: NexusGenRootTypes['User'] | null; // User
@@ -175,7 +177,7 @@ export interface NexusGenFieldTypes {
     id: string; // String!
     likedTweets: NexusGenRootTypes['LikedTweet'][]; // [LikedTweet!]!
     profile: NexusGenRootTypes['Profile'][]; // [Profile!]!
-    reply: NexusGenRootTypes['Reply'][]; // [Reply!]!
+    replies: NexusGenRootTypes['Reply'][]; // [Reply!]!
     tweets: NexusGenRootTypes['Tweet'][]; // [Tweet!]!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
@@ -221,6 +223,8 @@ export interface NexusGenFieldTypeNames {
     content: 'String'
     createdAt: 'DateTime'
     id: 'String'
+    replies: 'Reply'
+    reply: 'Reply'
     tweet: 'Tweet'
     updatedAt: 'DateTime'
     user: 'User'
@@ -240,7 +244,7 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
     likedTweets: 'LikedTweet'
     profile: 'Profile'
-    reply: 'Reply'
+    replies: 'Reply'
     tweets: 'Tweet'
     updatedAt: 'DateTime'
   }
@@ -291,6 +295,14 @@ export interface NexusGenArgTypes {
       id?: string | null; // String
     }
   }
+  Reply: {
+    reply: { // args
+      after?: NexusGenInputs['ReplyWhereUniqueInput'] | null; // ReplyWhereUniqueInput
+      before?: NexusGenInputs['ReplyWhereUniqueInput'] | null; // ReplyWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
   Tweet: {
     likes: { // args
       after?: NexusGenInputs['LikedTweetWhereUniqueInput'] | null; // LikedTweetWhereUniqueInput
@@ -318,7 +330,7 @@ export interface NexusGenArgTypes {
       first?: number | null; // Int
       last?: number | null; // Int
     }
-    reply: { // args
+    replies: { // args
       after?: NexusGenInputs['ReplyWhereUniqueInput'] | null; // ReplyWhereUniqueInput
       before?: NexusGenInputs['ReplyWhereUniqueInput'] | null; // ReplyWhereUniqueInput
       first?: number | null; // Int

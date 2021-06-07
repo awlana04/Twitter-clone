@@ -60,6 +60,8 @@ type Reply {
   content: String
   createdAt: DateTime!
   id: String!
+  replies: Reply
+  reply(after: ReplyWhereUniqueInput, before: ReplyWhereUniqueInput, first: Int, last: Int): [Reply!]!
   tweet: Tweet
   updatedAt: DateTime!
   user: User
@@ -85,7 +87,7 @@ type User {
   id: String!
   likedTweets(after: LikedTweetWhereUniqueInput, before: LikedTweetWhereUniqueInput, first: Int, last: Int): [LikedTweet!]!
   profile(after: ProfileWhereUniqueInput, before: ProfileWhereUniqueInput, first: Int, last: Int): [Profile!]!
-  reply(after: ReplyWhereUniqueInput, before: ReplyWhereUniqueInput, first: Int, last: Int): [Reply!]!
+  replies(after: ReplyWhereUniqueInput, before: ReplyWhereUniqueInput, first: Int, last: Int): [Reply!]!
   tweets: [Tweet!]!
   updatedAt: DateTime!
 }
