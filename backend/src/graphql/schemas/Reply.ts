@@ -7,7 +7,7 @@ export const Reply = objectType({
       t.model.content(),
       t.model.user(),
       t.model.tweet(),
-      t.model.tweetId(),
+      t.model.replyId(),
       t.model.reply(),
       t.model.replies(),
       t.model.createdAt(),

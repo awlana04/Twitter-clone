@@ -175,7 +175,7 @@ export const Mutation = objectType({
       }
     })
 
-    t.field('createReply', {
+    t.field('createComment', {
       type: 'Reply',
       args: {
         id: stringArg(),
@@ -193,6 +193,31 @@ export const Mutation = objectType({
             content,
             tweet: { connect: { id: String(id) } },
             user: { connect: { id: String(userId) } }
+          }
+        })
+      }
+    })
+
+    t.field('createReply', {
+      type: 'Reply',
+      args: {
+        id: stringArg(),
+        content: stringArg(),
+        replyId: stringArg(),
+      },
+      resolve: (_parent, { id, content, replyId }, context: Context) => {
+        const userId = getUserId(context);
+
+        if (!userId) {
+          throw new Error('Could not authenticate user.');
+        }
+
+        return context.prisma.reply.create({
+          data: {
+            content,
+            tweet: { connect: { id: String(id) } },
+            user: { connect: { id: String(userId) } },
+            reply: { connect: { id: String(replyId) } }
           }
         })
       }

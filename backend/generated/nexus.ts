@@ -90,6 +90,7 @@ export interface NexusGenObjects {
     content?: string | null; // String
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
+    replyId?: string | null; // String
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   Tweet: { // root type
@@ -128,6 +129,7 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User'] | null; // User
   }
   Mutation: { // field return type
+    createComment: NexusGenRootTypes['Reply'] | null; // Reply
     createProfile: NexusGenRootTypes['Profile'] | null; // Profile
     createReply: NexusGenRootTypes['Reply'] | null; // Reply
     createTweet: NexusGenRootTypes['Tweet'] | null; // Tweet
@@ -158,6 +160,7 @@ export interface NexusGenFieldTypes {
     id: string; // String!
     replies: NexusGenRootTypes['Reply'] | null; // Reply
     reply: NexusGenRootTypes['Reply'][]; // [Reply!]!
+    replyId: string | null; // String
     tweet: NexusGenRootTypes['Tweet'] | null; // Tweet
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     user: NexusGenRootTypes['User'] | null; // User
@@ -195,6 +198,7 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
   }
   Mutation: { // field return type name
+    createComment: 'Reply'
     createProfile: 'Profile'
     createReply: 'Reply'
     createTweet: 'Tweet'
@@ -225,6 +229,7 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
     replies: 'Reply'
     reply: 'Reply'
+    replyId: 'String'
     tweet: 'Tweet'
     updatedAt: 'DateTime'
     user: 'User'
@@ -252,6 +257,10 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createComment: { // args
+      content?: string | null; // String
+      id?: string | null; // String
+    }
     createProfile: { // args
       avatar?: string | null; // String
       bio?: string | null; // String
@@ -263,6 +272,7 @@ export interface NexusGenArgTypes {
     createReply: { // args
       content?: string | null; // String
       id?: string | null; // String
+      replyId?: string | null; // String
     }
     createTweet: { // args
       content?: string | null; // String

@@ -6,7 +6,8 @@ import { FiMessageCircle, FiUser, FiX } from 'react-icons/fi';
 
 import { formatDistance, subDays } from 'date-fns';
 import ME_QUERY from '../../schemas/Queries/Me';
-import REPLY from '../../schemas/Mutations/Reply';
+import CREATE_COMMENT_MUTATION from '../../schemas/Mutations/Comment';
+import TWEETS_QUERY from '../../schemas/Queries/Tweet';
 
 import Button from '../Button';
 import ButtonClose from '../CloseButton';
@@ -20,7 +21,6 @@ import {
   ReplyLine,
   UserAvatar,
 } from './styles';
-import TWEETS_QUERY from '../../schemas/Queries/Tweet';
 
 interface ReplyProps {
   content: string;
@@ -45,7 +45,7 @@ const Reply: React.FC<Props> = ({
 
   const { loading, error, data } = useQuery(ME_QUERY);
 
-  const [reply] = useMutation(REPLY, {
+  const [comment] = useMutation(CREATE_COMMENT_MUTATION, {
     variables: {
       id: '',
       content: '',
@@ -105,7 +105,7 @@ const Reply: React.FC<Props> = ({
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
 
-            await reply({
+            await comment({
               variables: { ...values, id },
             });
 
