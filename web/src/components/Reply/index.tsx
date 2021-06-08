@@ -53,7 +53,10 @@ const Reply: React.FC<Props> = ({
       content: '',
       replyId: '',
     },
-    refetchQueries: [{ query: ME_QUERY }, { query: TWEET_QUERY }],
+    refetchQueries: [
+      { query: ME_QUERY },
+      { query: TWEET_QUERY, variables: { id } },
+    ],
   });
 
   if (loading) {

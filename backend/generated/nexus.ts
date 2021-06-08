@@ -158,8 +158,7 @@ export interface NexusGenFieldTypes {
     content: string | null; // String
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
-    replies: NexusGenRootTypes['Reply'] | null; // Reply
-    reply: NexusGenRootTypes['Reply'][]; // [Reply!]!
+    reply: NexusGenRootTypes['Reply'] | null; // Reply
     replyId: string | null; // String
     tweet: NexusGenRootTypes['Tweet'] | null; // Tweet
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -227,7 +226,6 @@ export interface NexusGenFieldTypeNames {
     content: 'String'
     createdAt: 'DateTime'
     id: 'String'
-    replies: 'Reply'
     reply: 'Reply'
     replyId: 'String'
     tweet: 'Tweet'
@@ -303,14 +301,6 @@ export interface NexusGenArgTypes {
   Query: {
     tweet: { // args
       id?: string | null; // String
-    }
-  }
-  Reply: {
-    reply: { // args
-      after?: NexusGenInputs['ReplyWhereUniqueInput'] | null; // ReplyWhereUniqueInput
-      before?: NexusGenInputs['ReplyWhereUniqueInput'] | null; // ReplyWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
     }
   }
   Tweet: {

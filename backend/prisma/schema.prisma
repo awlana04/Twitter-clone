@@ -87,8 +87,8 @@ model Reply {
   tweetId String? @map("tweet_id")
   tweet   Tweet?  @relation(fields: [tweetId], references: [id])
   replyId String? @map("reply_id")
-  replies Reply?  @relation("ReplyToReply", fields: [replyId], references: [id])
-  reply   Reply[] @relation("ReplyToReply")
+  reply   Reply?  @relation("ReplyToReply", fields: [replyId], references: [id])
+  replies Reply[] @relation("ReplyToReply")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

@@ -9,7 +9,6 @@ export const Reply = objectType({
       t.model.tweet(),
       t.model.replyId(),
       t.model.reply(),
-      t.model.replies(),
       t.model.createdAt(),
       t.model.updatedAt()
   }

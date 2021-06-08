@@ -205,7 +205,7 @@ export const Mutation = objectType({
         content: stringArg(),
         replyId: stringArg(),
       },
-      resolve: (_parent, { id, content, replyId }, context: Context) => {
+      resolve: (_parent, { content, id, replyId }, context: Context) => {
         const userId = getUserId(context);
 
         if (!userId) {

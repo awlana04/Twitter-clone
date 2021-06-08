@@ -61,8 +61,7 @@ type Reply {
   content: String
   createdAt: DateTime!
   id: String!
-  replies: Reply
-  reply(after: ReplyWhereUniqueInput, before: ReplyWhereUniqueInput, first: Int, last: Int): [Reply!]!
+  reply: Reply
   replyId: String
   tweet: Tweet
   updatedAt: DateTime!
