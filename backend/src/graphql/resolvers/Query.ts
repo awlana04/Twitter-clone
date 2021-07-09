@@ -33,20 +33,19 @@ export const Query = objectType({
       },
     })
 
-    t.nonNull.field("tweet", {
+    t.field('tweet', {
       type: 'Tweet',
       args: {
-        id: stringArg(),
+        id: stringArg()
       },
       resolve: (_parent, { id }, context) => {
         return context.prisma.tweet.findUnique({
           where: {
-            id: String(id),
+            id: String(id)
           }
         })
       }
     })
-
     // t.nullable.field('postById', {
     //   type: 'Post',
     //   args: {

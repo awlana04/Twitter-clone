@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  display: flex;
+
   h3 {
     margin-top: 46px;
     margin-bottom: 46px;
@@ -24,7 +26,8 @@ export const Container = styled.div`
   }
 
   p {
-    margin-top: 14%;
+    position: absolute;
+    bottom: 16px;
     margin-left: 128px;
 
     color: #5b7071;
@@ -58,8 +61,8 @@ export const LeftContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
-  margin-top: -550px;
-  margin-left: 46%;
+  margin-top: 256px;
+  margin-left: 36px;
 `;
 
 export const Buttons = styled.div``;

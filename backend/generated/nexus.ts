@@ -151,7 +151,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     allUsers: NexusGenRootTypes['User'][]; // [User!]!
     me: NexusGenRootTypes['User'] | null; // User
-    tweet: NexusGenRootTypes['Tweet']; // Tweet!
+    tweet: NexusGenRootTypes['Tweet'] | null; // Tweet
     tweets: NexusGenRootTypes['Tweet'][]; // [Tweet!]!
   }
   Reply: { // field return type
